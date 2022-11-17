@@ -1,0 +1,49 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: clballes <clballes@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/11/02 13:28:06 by clballes          #+#    #+#              #
+#    Updated: 2022/11/04 17:56:40 by clballes         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = push_swap
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+RM = /bin/rm -f
+
+# Path
+LIBFT_DIR = LIBFT/
+LIBFT = LIBFT/libft.a
+
+# Sources
+SRCS = ft_check.c ft_funciones.c ft_push_swap.c
+OBJS = $(SRCS:%.c=%.o)
+LIB = push_swap.h
+
+# Comandos
+%.o: %.c
+	@$(CC) $(CFLAGS) -I./ -c $< -o $@
+
+all: $(NAME)	
+
+libs:
+	make -C $(LIBFT_DIR)
+
+$(NAME): $(OBJS) $(LIB)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+clean:
+	@$(MAKE) clean -C $(LIBFT_DIR) 
+	@$(RM) $(OBJS)
+
+fclean: clean
+	@$(MAKE) fclean -C $
+	@$(MAKE) fclean -C $
+	@$(RM) $
+	
+re: fclean all
+
+.PHONY: all clean fclean re
