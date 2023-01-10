@@ -6,7 +6,7 @@
 #    By: clballes <clballes@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 13:28:06 by clballes          #+#    #+#              #
-#    Updated: 2022/11/04 17:56:40 by clballes         ###   ########.fr        #
+#    Updated: 2023/01/09 15:20:26 by clballes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,9 @@ RM = /bin/rm -f
 
 # Path
 LIBFT_DIR = LIBFT/
-LIBFT = LIBFT/libft.a
 
 # Sources
-SRCS = ft_check.c ft_funciones.c ft_push_swap.c
+SRCS = ft_check.c ft_funciones.c ft_push_swap.c ft_utils_list.c ft_operaciones.c
 OBJS = $(SRCS:%.c=%.o)
 LIB = push_swap.h
 
@@ -34,7 +33,7 @@ libs:
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) $(LIB)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)/libft.a -o $(NAME)
 clean:
 	@$(MAKE) clean -C $(LIBFT_DIR) 
 	@$(RM) $(OBJS)

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "LIBFT/libft.h"
 #include "push_swap.h"
 
 void	ft_check(int argc, char **argv)
@@ -34,7 +33,7 @@ void	ft_check(int argc, char **argv)
 			else
 				write_error();
 		}
-	j++;
+		j++;
 	}
 	j = 1;
 	ft_comparedigit(argv, argc, j);

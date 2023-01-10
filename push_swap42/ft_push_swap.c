@@ -13,11 +13,26 @@
 #include "push_swap.h"
 int	main(int argc, char **argv)
 {
+	int i;
+	t_push_list *stack;
+
+	// t_push_list *stack_b;
+
+	stack = NULL;
+	// stack_b = NULL;
 	if (argc == 1)
 		write_error();
-	ft_check(argc, argv);
-	take_numbers(argc, argv);
+	else
+	{
+		ft_check(argc, argv);
+		i = 1;
+	  	while(argv[i])
+		{
+			take_numbers(&stack, ft_atoi(argv[i]));
+			i++;
+		}
+		ft_setindex(&stack);
+	}
+	toprotate(&stack);
 	return (0);
 }
-
-
