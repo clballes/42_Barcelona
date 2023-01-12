@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "LIBFT/libft.h"
+# include <stdio.h>
 
 typedef struct s_push_list
 {
@@ -34,21 +35,15 @@ void		take_numbers(t_push_list **stack, int num);
 t_push_list	*ft_push_lstnew(int num);
 t_push_list	*ft_push_lstlast(t_push_list *lst);
 void	ft_push_lstadd_back(t_push_list **lst, t_push_list *new);
-int	ft_push_lstsize(t_push_list	*lst);
+int	    ft_push_lstsize(t_push_list	*lst);
 void    ft_setindex(t_push_list **stack);
-void swap(t_push_list **stack);
-<<<<<<< HEAD
-void    top_rotate(t_push_list **stack);
-void bottom_rotate(t_push_list **stack);
+//Operation functions
+void    swap(t_push_list **stack, char c);
+void    top_rotate(t_push_list **stack, char c);
+void bottom_rotate(t_push_list **stack, char c);
 void print(t_push_list **stack);
-=======
-void    toprotate(t_push_list **stack);
-void bottomrotate(t_push_list **stack);
+//Sort functions
 void	sort(t_push_list **stack, t_push_list **stack_b, int i);
-void    sort_three(t_push_list **stack);
+void    sort_three(t_push_list **stack, char c);
 void    sort_five(t_push_list **stack, t_push_list **stack_b);
-
->>>>>>> 9540066a3ae818e87a3d4c965baa755a65201f01
-
-
 #endif

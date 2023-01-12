@@ -11,44 +11,25 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-<<<<<<< HEAD
-void swap(t_push_list **stack)
-=======
 
-void swap(t_push_list **stack, char c)
->>>>>>> 9540066a3ae818e87a3d4c965baa755a65201f01
-{
+void    swap(t_push_list **stack, char c){
+
     t_push_list *first;
     t_push_list *second;
-
+    //decalar principalment
     first = *stack;
     second = first->next;
-    second = first;
-    second = second->previous = NULL;
-    first = first->next;
-
+    //fer el swap de nodes
+    first->next = second->next;
+    first->previous = second;
+    second->next = first;
+    second->previous = NULL;
+    *stack = second;
+    // print(stack);
+    printf(" vengo de operaciones: s%c\n", c);
 }
+void top_rotate(t_push_list **stack, char c){
 
-void    bottom_rotate(t_push_list **stack)
-{
-    t_push_list *bottom;
-    t_push_list *top;
-
-    top = *stack;
-    bottom = ft_push_lstlast(top);
-
-    bottom->previous->next = NULL;
-    top->previous = bottom;
-    bottom->next = top;
-    bottom->previous = NULL;
-    top->next = top->next->next;
-    *stack = bottom;
-    // print(stack);    
-}
-
-void top_rotate(t_push_list **stack)
-{
     t_push_list *bottom;
     t_push_list *top;
     t_push_list *second;
@@ -62,6 +43,24 @@ void top_rotate(t_push_list **stack)
     top->previous = bottom;
     bottom->next = top;
     // print(stack);
+    printf(" vengo de operaciones: r%c\n", c);
+}
+
+void    bottom_rotate(t_push_list **stack, char c){
+    t_push_list *bottom;
+    t_push_list *top;
+
+    top = *stack;
+    bottom = ft_push_lstlast(top);
+
+    bottom->previous->next = NULL;
+    top->previous = bottom;
+    bottom->next = top;
+    print(&bottom);
+    bottom->previous = NULL;
+    top->next = top->next->next;
+    *stack = bottom;
+    printf(" vengo de operaciones: rr%c\n", c);
 }
 
 // void send(t_push_list **stack_A, t_push_list **stack_B){
@@ -81,6 +80,7 @@ void top_rotate(t_push_list **stack)
 //         A->previous = B;
 //      }
 // }
+
 void print(t_push_list **stack) {
     t_push_list *temp;
     temp = *stack;
@@ -92,13 +92,6 @@ void print(t_push_list **stack) {
 }
 
 
-
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 9540066a3ae818e87a3d4c965baa755a65201f01
 // void    print_list (t_element **list_a, t_element **list_b)
 // {
 //     t_element *temp_a;
