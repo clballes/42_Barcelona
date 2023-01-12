@@ -12,7 +12,12 @@
 
 #include "push_swap.h"
 #include <stdio.h>
+<<<<<<< HEAD
 void swap(t_push_list **stack)
+=======
+
+void swap(t_push_list **stack, char c)
+>>>>>>> 9540066a3ae818e87a3d4c965baa755a65201f01
 {
     t_push_list *first;
     t_push_list *second;
@@ -22,6 +27,7 @@ void swap(t_push_list **stack)
     second = first;
     second = second->previous = NULL;
     first = first->next;
+
 }
 
 void    bottom_rotate(t_push_list **stack)
@@ -87,9 +93,12 @@ void print(t_push_list **stack) {
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 9540066a3ae818e87a3d4c965baa755a65201f01
 // void    print_list (t_element **list_a, t_element **list_b)
 // {
 //     t_element *temp_a;
