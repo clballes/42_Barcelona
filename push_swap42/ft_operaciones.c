@@ -12,7 +12,6 @@
 
 #include "push_swap.h"
 #include <stdio.h>
-
 void swap(t_push_list **stack)
 {
     t_push_list *first;
@@ -25,51 +24,71 @@ void swap(t_push_list **stack)
     first = first->next;
 }
 
-// void    bottomrotate(t_push_list **stack)
-// {
-//     t_push_list *p;
-//     t_push_list *top;
-
-//     p = *stack;
-//     while(p)
-//     {
-//         if(p->next == NULL) //aqui estic al final de tot
-//         {
-//             p->previous = NULL;
-//             p->next = top;
-//             printf("el ultimo numero: %d\n", p->value);
-//             break;
-//         }
-//         else{
-//             printf("%d\n", p->value);   
-//             p = p->next;
-//         }
-//     }
-// }
-
-void toprotate(t_push_list **stack)
+void    bottom_rotate(t_push_list **stack)
 {
     t_push_list *bottom;
     t_push_list *top;
 
     top = *stack;
-    top->previous = NULL;
-    bottom = *stack;
+    bottom = ft_push_lstlast(top);
 
-    while(bottom)
-    {
-        if(bottom->next == NULL) //aqui estic al final de tot
-        {
-            bottom->next = top;
-            printf("el ultimo numero: %d\n", top->value);
-            break;
-        }
-        else{
-            bottom = bottom->next;
-        }
-    }
-    
+    bottom->previous->next = NULL;
+    top->previous = bottom;
+    bottom->next = top;
+    bottom->previous = NULL;
+    top->next = top->next->next;
+    *stack = bottom;
+    // print(stack);    
 }
+
+void top_rotate(t_push_list **stack)
+{
+    t_push_list *bottom;
+    t_push_list *top;
+    t_push_list *second;
+
+    top = *stack;
+    bottom = ft_push_lstlast(top);
+    second = top->next;
+    second->previous = NULL;
+    *stack = second;
+    top->next = NULL;
+    top->previous = bottom;
+    bottom->next = top;
+    // print(stack);
+}
+
+// void send(t_push_list **stack_A, t_push_list **stack_B){
+    
+//     t_push_list *top_A;
+//     t_push_list *top_B;
+
+//      top_A = *stack_A;
+//      top_B = *stack_B;
+
+//      if(top_A = NULL){
+//         top_B->next = top_A;
+//         *stack_A = top_B;
+//         top_B->next->next = NULL;
+//         top_A->previous->next = NULL;
+//         B->previous = NULL;
+//         A->previous = B;
+//      }
+// }
+void print(t_push_list **stack) {
+    t_push_list *temp;
+    temp = *stack;
+
+   	while ( temp != NULL) {
+        printf("%d\n ", temp->value);
+        temp = temp->next;
+    }
+}
+
+
+
+
+
 
 // void    print_list (t_element **list_a, t_element **list_b)
 // {

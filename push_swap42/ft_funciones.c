@@ -12,13 +12,12 @@
 
 #include "push_swap.h"
 
-int	take_numbers(t_push_list **stack, int num)
+void	take_numbers(t_push_list **stack, int num)
 {
 	t_push_list *tmp;
 
 	tmp = ft_push_lstnew(num);
 	ft_push_lstadd_back(stack, tmp);
-	return (0);
 }
 
 void    ft_setindex(t_push_list **stack)
