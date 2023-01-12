@@ -39,5 +39,10 @@ void    ft_setindex(t_push_list **stack);
 void swap(t_push_list **stack);
 void    toprotate(t_push_list **stack);
 void bottomrotate(t_push_list **stack);
+void	sort(t_push_list **stack, t_push_list **stack_b, int i);
+void    sort_three(t_push_list **stack);
+void    sort_five(t_push_list **stack, t_push_list **stack_b);
+
+
 
 #endif

@@ -11,21 +11,28 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort(t_push_list **stack, t_push_list **stack_b, int i){
+	if (i == 3)
+		sort_three(&stack);
+	if (i == 5)
+		sort_five(&stack, &stack_b);
+}
+
 int	main(int argc, char **argv)
 {
 	int i;
 	t_push_list *stack;
-
-	// t_push_list *stack_b;
+	t_push_list *stack_b;
 
 	stack = NULL;
-	// stack_b = NULL;
+	stack_b = NULL;
+	i = 1;
 	if (argc == 1)
 		write_error();
 	else
 	{
 		ft_check(argc, argv);
-		i = 1;
 	  	while(argv[i])
 		{
 			take_numbers(&stack, ft_atoi(argv[i]));
@@ -33,6 +40,6 @@ int	main(int argc, char **argv)
 		}
 		ft_setindex(&stack);
 	}
-	toprotate(&stack);
+	sort(&stack, &stack_b, i);
 	return (0);
 }

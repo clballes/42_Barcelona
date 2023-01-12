@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void swap(t_push_list **stack)
+void swap(t_push_list **stack, char c)
 {
     t_push_list *first;
     t_push_list *second;
@@ -23,6 +23,7 @@ void swap(t_push_list **stack)
     second = first;
     second = second->previous = NULL;
     first = first->next;
+
 }
 
 // void    bottomrotate(t_push_list **stack)
@@ -70,6 +71,8 @@ void toprotate(t_push_list **stack)
     }
     
 }
+
+
 
 // void    print_list (t_element **list_a, t_element **list_b)
 // {
