@@ -40,8 +40,8 @@ void    ft_setindex(t_push_list **stack);
 //Operation functions
 void    swap(t_push_list **stack, char c);
 void    top_rotate(t_push_list **stack, char c);
-void bottom_rotate(t_push_list **stack, char c);
-void print(t_push_list **stack);
+void    bottom_rotate(t_push_list **stack, char c);
+void    print(t_push_list **stack);
 //Sort functions
 void	sort(t_push_list **stack, t_push_list **stack_b, int i);
 void    sort_three(t_push_list **stack, char c);
