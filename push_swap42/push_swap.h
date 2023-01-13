@@ -46,4 +46,6 @@ void    print(t_push_list **stack);
 void	sort(t_push_list **stack, t_push_list **stack_b, int i);
 void    sort_three(t_push_list **stack, char c);
 void    sort_five(t_push_list **stack, t_push_list **stack_b);
+void    print_list ( t_push_list **list_a, t_push_list **list_b);
+void    send(t_push_list **stack_a, t_push_list **stack_b, char c);
 #endif

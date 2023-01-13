@@ -19,14 +19,20 @@ void    swap(t_push_list **stack, char c){
     //decalar principalment
     first = *stack;
     second = first->next;
+    if(first->next == 0){
+        return ;
+    }
     //fer el swap de nodes
     first->next = second->next;
     first->previous = second;
+    if(second->next != 0){
+        second->next->previous = first;
+    }
     second->next = first;
     second->previous = NULL;
     *stack = second;
     // print(stack);
-    printf(" vengo de operaciones: s%c\n", c);
+    printf("s%c\n", c);
 }
 void top_rotate(t_push_list **stack, char c){
 
@@ -42,8 +48,7 @@ void top_rotate(t_push_list **stack, char c){
     top->next = NULL;
     top->previous = bottom;
     bottom->next = top;
-    // print(stack);
-    printf(" vengo de operaciones: r%c\n", c);
+    printf("r%c\n", c);
 }
 
 void    bottom_rotate(t_push_list **stack, char c){
@@ -51,62 +56,61 @@ void    bottom_rotate(t_push_list **stack, char c){
     t_push_list *top;
 
     top = *stack;
-    bottom = ft_push_lstlast(top);
+    bottom = ft_push_lstlast(*stack);
 
     bottom->previous->next = NULL;
-    top->previous = bottom;
-    bottom->next = top;
-    print(&bottom);
     bottom->previous = NULL;
-    top->next = top->next->next;
     *stack = bottom;
-    printf(" vengo de operaciones: rr%c\n", c);
+    bottom->next = top;
+    top->previous = bottom;
+    printf("rr%c\n", c);
 }
 
-// void send(t_push_list **stack_A, t_push_list **stack_B){
-    
-//     t_push_list *top_A;
-//     t_push_list *top_B;
+void send(t_push_list **stack_a, t_push_list **stack_b, char c)
+{
+    t_push_list *top_a;
+    t_push_list *top_b;
 
-//      top_A = *stack_A;
-//      top_B = *stack_B;
+     top_a = *stack_a;
+     top_b = *stack_b;
 
-//      if(top_A = NULL){
-//         top_B->next = top_A;
-//         *stack_A = top_B;
-//         top_B->next->next = NULL;
-//         top_A->previous->next = NULL;
-//         B->previous = NULL;
-//         A->previous = B;
-//      }
-// }
+     if(top_b == NULL)
+     {
+        top_a->next->previous = NULL;
+        *stack_a = top_a->next;
+        *stack_b = top_a;
+        top_a->next = NULL;
+    }
+    else
+    {
+        top_a->next->previous = NULL;
+        *stack_a = top_a->next;
+        *stack_b = top_b;
+        top_b->previous =  top_a;
+        top_a->next = top_b;
+        *stack_b = top_a;
+        top_a->previous = NULL;
+    }
+    printf("p%c\n", c);
+    // print_list(stack_a, stack_b);
+}
 
-void print(t_push_list **stack) {
-    t_push_list *temp;
-    temp = *stack;
-
-   	while ( temp != NULL) {
-        printf("%d\n ", temp->value);
-        temp = temp->next;
+void    print_list ( t_push_list **list_a, t_push_list **list_b)
+{
+    t_push_list *temp_a;
+    t_push_list *temp_b;
+    temp_a = *list_a;
+    temp_b = *list_b;
+            printf("----------------------------------------\n");
+    while (temp_a)
+    {
+        printf("valor en lista_a: %d, valor en index: %d\n", temp_a->value, temp_a->index);
+        temp_a = temp_a->next;
+    }
+    printf("----------------------------------------\n");
+    while(temp_b)
+    {
+        printf("valor en lista_b: %d, valor en index:%d\n", temp_b->value, temp_b->index);
+        temp_b = temp_b->next;
     }
 }
-
-
-// void    print_list (t_element **list_a, t_element **list_b)
-// {
-//     t_element *temp_a;
-//     t_element *temp_b;
-//     temp_a = *list_a;
-//     temp_b = *list_b;
-//     while (temp_a)
-//     {
-//         printf("valor en lista_1:%d, valor en index:%d\n", temp_a->value, temp_a->index);
-//         temp_a = temp_a->next;
-//     }
-//     printf("----------------------------------------\n");
-//     while(temp_b)
-//     {
-//         printf("valor en lista_2:%d, valor en index:%d\n", temp_b->value, temp_b->index);
-//         temp_b = temp_b->next;
-//     }
-// }

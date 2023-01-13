@@ -15,22 +15,19 @@
 void	sort(t_push_list **stack, t_push_list **stack_b, int i)
 {
 	if (i == 3)
-		// print(stack); AQUI ENTRA BE!
 		sort_three(stack, 'a');
-	if (i == 5)
+	if (i == 5){
 	 	sort_five(stack, stack_b);
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	int				 	i;
-	// char a;
-	// char b;
+
 	t_push_list *stack;
 	t_push_list *stack_b;
 
-	// a = stack;
-	// b = stack_b;
 	stack = NULL;
 	stack_b = NULL;
 	i = 1;
