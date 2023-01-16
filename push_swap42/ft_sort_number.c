@@ -36,28 +36,13 @@ void    sort_three(t_push_list **stack, char c)
             swap(&pointer, c);
             top_rotate(&pointer, c);
         }
-        else //case5
+        else
             bottom_rotate(&pointer, c);
     }
 }
 
 void    sort_five(t_push_list **stack, t_push_list **stack_b)
 {
-    char c;
-    c = 'a';
-    if (stack){
-        if (c){
-            c = 'b';
-            send(stack, stack_b, c);
-            send(stack, stack_b, c);
-        }
-        c = 'a';
-        swap(stack, c);
-        top_rotate(stack, c);
-
-        }
-        send(stack, stack_b, c); ////send to b stack
-        print_list(stack, stack_b);
-        //send to b stack
-        top_rotate(stack, c);
+    stack_b = NULL;
+    min(stack);
 }

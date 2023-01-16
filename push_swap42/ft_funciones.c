@@ -46,3 +46,16 @@ void    ft_setindex(t_push_list **stack)
 			tmp2 = tmp2->next;
 	}
 }
+
+void	ft_setletter(t_push_list **stack, t_push_list **stack_b)
+{
+	t_push_list *temp;
+	t_push_list *temp2;
+
+	temp = *stack;
+	temp2 = *stack_b;
+	if (temp)
+		temp->id = 'a';
+	else
+		temp->id = 'b';
+}

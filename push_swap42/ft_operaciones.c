@@ -16,7 +16,7 @@ void    swap(t_push_list **stack, char c){
 
     t_push_list *first;
     t_push_list *second;
-    //decalar principalment
+    //declarar principalment
     first = *stack;
     second = first->next;
     if(first->next == 0){
@@ -34,8 +34,8 @@ void    swap(t_push_list **stack, char c){
     // print(stack);
     printf("s%c\n", c);
 }
-void top_rotate(t_push_list **stack, char c){
-
+void top_rotate(t_push_list **stack, char c)
+{
     t_push_list *bottom;
     t_push_list *top;
     t_push_list *second;
@@ -51,7 +51,8 @@ void top_rotate(t_push_list **stack, char c){
     printf("r%c\n", c);
 }
 
-void    bottom_rotate(t_push_list **stack, char c){
+void    bottom_rotate(t_push_list **stack, char c)
+{
     t_push_list *bottom;
     t_push_list *top;
 
@@ -74,25 +75,19 @@ void send(t_push_list **stack_a, t_push_list **stack_b, char c)
      top_a = *stack_a;
      top_b = *stack_b;
 
-     if(top_b == NULL)
-     {
-        top_a->next->previous = NULL;
+    if (stack_a){
+        if(top_a->next)
+            top_a->next->previous = NULL;
         *stack_a = top_a->next;
         *stack_b = top_a;
-        top_a->next = NULL;
-    }
-    else
-    {
-        top_a->next->previous = NULL;
-        *stack_a = top_a->next;
-        *stack_b = top_b;
-        top_b->previous =  top_a;
-        top_a->next = top_b;
-        *stack_b = top_a;
-        top_a->previous = NULL;
+        if (top_b == NULL)
+            top_a->next = NULL;
+        else{
+            top_b->previous =  top_a;
+            top_a->next = top_b;
+        }
     }
     printf("p%c\n", c);
-    // print_list(stack_a, stack_b);
 }
 
 void    print_list ( t_push_list **list_a, t_push_list **list_b)

@@ -24,7 +24,6 @@ void	sort(t_push_list **stack, t_push_list **stack_b, int i)
 int	main(int argc, char **argv)
 {
 	int				 	i;
-
 	t_push_list *stack;
 	t_push_list *stack_b;
 
@@ -42,8 +41,10 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		ft_setindex(&stack);
+		ft_setletter(&stack, &stack_b);
 	}
 	i = i - 1;
+
 	sort(&stack, &stack_b, i);
 	return (0);
 }

@@ -53,7 +53,6 @@ void	ft_push_lstadd_back(t_push_list **lst, t_push_list *new)
 		*lst = new;
 }
 
-
 int	ft_push_lstsize(t_push_list	*lst)
 {
 	int	i;
@@ -66,4 +65,3 @@ int	ft_push_lstsize(t_push_list	*lst)
 	}	
 	return (i);
 }
-
