@@ -59,3 +59,19 @@ void	ft_setletter(t_push_list **stack, t_push_list **stack_b)
 	else
 		temp->id = 'b';
 }
+
+void    send_minimum(t_push_list *stack, t_push_list *stack_b, int resultado)
+{
+        if (resultado == 2)
+            swap(&stack, 'a');
+        else if (resultado >= 3 && resultado <= 5)
+        {
+            bottom_rotate(&stack, 'a');
+            if (resultado == 3 || resultado == 4)
+                bottom_rotate(&stack, 'a');
+            if(resultado == 3)
+                bottom_rotate(&stack, 'a');
+        }
+        send(&stack, &stack_b, 'b');
+        resultado = min(&stack);
+		print_list(&stack, &stack_b);}

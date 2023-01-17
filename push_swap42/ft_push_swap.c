@@ -12,12 +12,13 @@
 
 #include "push_swap.h"
 
-void	sort(t_push_list **stack, t_push_list **stack_b, int i)
+void	sort(t_push_list *stack, t_push_list *stack_b, int i)
 {
 	if (i == 3)
 		sort_three(stack, 'a');
 	if (i == 5){
-	 	sort_five(stack, stack_b);
+		sort_five(stack, stack_b);
+		// print_list(&stack, &stack_b);
 	}
 }
 
@@ -44,7 +45,7 @@ int	main(int argc, char **argv)
 		ft_setletter(&stack, &stack_b);
 	}
 	i = i - 1;
-
-	sort(&stack, &stack_b, i);
+	sort(stack, stack_b, i);
+	// print_list(&stack, &stack_b);
 	return (0);
 }

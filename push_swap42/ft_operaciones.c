@@ -31,7 +31,7 @@ void    swap(t_push_list **stack, char c){
     second->next = first;
     second->previous = NULL;
     *stack = second;
-    // print(stack);
+    // print_list(stack, stack_b);
     printf("s%c\n", c);
 }
 void top_rotate(t_push_list **stack, char c)
@@ -72,8 +72,8 @@ void send(t_push_list **stack_a, t_push_list **stack_b, char c)
     t_push_list *top_a;
     t_push_list *top_b;
 
-     top_a = *stack_a;
-     top_b = *stack_b;
+    top_a = *stack_a;
+    top_b = *stack_b;
 
     if (stack_a){
         if(top_a->next)
