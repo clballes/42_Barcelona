@@ -12,40 +12,39 @@
 
 #include "push_swap.h"
 
-void	sort(t_push_list *stack, t_push_list *stack_b, int i)
+void	sort(t_push_list *stack, t_push_list *stack_b, int len)
 {
-	if (i == 3)
-		sort_three(stack, 'a');
-	if (i == 5){
-		sort_five(stack, stack_b);
-		// print_list(&stack, &stack_b);
+	if (len == 3)
+		sort_three(&stack, 'a');
+	if (len == 5 || len == 4){
+		sort_five(&stack, &stack_b, len);
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	int				 	i;
+	int				 	len;
 	t_push_list *stack;
 	t_push_list *stack_b;
 
 	stack = NULL;
 	stack_b = NULL;
-	i = 1;
+	len = 1;
 	if (argc == 1)
 		write_error();
 	else
 	{
 		ft_check(argc, argv);
-	  	while(argv[i])
+	  	while(argv[len])
 		{
-			take_numbers(&stack, ft_atoi(argv[i]));
-			i++;
+			take_numbers(&stack, ft_atoi(argv[len]));
+			len++;
 		}
 		ft_setindex(&stack);
 		ft_setletter(&stack, &stack_b);
 	}
-	i = i - 1;
-	sort(stack, stack_b, i);
-	// print_list(&stack, &stack_b);
+	len = len - 1;
+	ft_checkindex(&stack);
+	sort(stack, stack_b, len);
 	return (0);
 }

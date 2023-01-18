@@ -20,7 +20,7 @@ void	take_numbers(t_push_list **stack, int num)
 	ft_push_lstadd_back(stack, tmp);
 }
 
-void    ft_setindex(t_push_list **stack)
+void   ft_setindex(t_push_list **stack)
 {
 	int i;
 	int size_list;
@@ -60,18 +60,47 @@ void	ft_setletter(t_push_list **stack, t_push_list **stack_b)
 		temp->id = 'b';
 }
 
-void    send_minimum(t_push_list *stack, t_push_list *stack_b, int resultado)
+void    send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado)
 {
-        if (resultado == 2)
-            swap(&stack, 'a');
+		if (resultado == 2)
+            swap(stack, 'a');
         else if (resultado >= 3 && resultado <= 5)
         {
-            bottom_rotate(&stack, 'a');
+            bottom_rotate(stack, 'a');
             if (resultado == 3 || resultado == 4)
-                bottom_rotate(&stack, 'a');
+                bottom_rotate(stack, 'a');
             if(resultado == 3)
-                bottom_rotate(&stack, 'a');
+                bottom_rotate(stack, 'a');
         }
-        send(&stack, &stack_b, 'b');
-        resultado = min(&stack);
-		print_list(&stack, &stack_b);}
+        send(stack, stack_b, 'b');
+}
+
+int	ft_checkindex(t_push_list **stack)
+{
+	t_push_list *temp;
+	int index;
+	int i;
+
+	temp = *stack;
+	index = temp->index;
+	i = 1;
+	while (temp)
+	{
+		if (index == 1)
+		{
+			i++;
+			temp = temp->next;
+		if (index == i){
+			printf("el indice NEXT es: %d\n", temp->next->index);
+			printf("la i es: %d\n", i);
+			printf("el index del if: %d\n", index);
+		}
+		else
+			return 0;
+	}
+		}
+	return 0;
+}
+	// 		printf("la i es: %d\n", i);
+	// printf("el indice es: %d\n", index);
+	// 	printf("el indice NEXT es: %d\n", temp->next->index);

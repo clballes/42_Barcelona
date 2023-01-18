@@ -44,13 +44,14 @@ void    top_rotate(t_push_list **stack, char c);
 void    bottom_rotate(t_push_list **stack, char c);
 void    print(t_push_list **stack);
 //Sort functions
+int	ft_checkindex(t_push_list **stack);
 void	sort(t_push_list *stack, t_push_list *stack_b, int i);
-void    sort_three(t_push_list *stack, char c);
-void    sort_five(t_push_list *stack, t_push_list *stack_b);
+void    sort_three(t_push_list **stack, char c);
+void    sort_five(t_push_list **stack, t_push_list **stack_b, int len);
 void    print_list ( t_push_list **list_a, t_push_list **list_b);
 void    send(t_push_list **stack_a, t_push_list **stack_b, char c);
 void	ft_setletter(t_push_list **stack, t_push_list **stack_b);
 //encontrar el minmax
-int min(t_push_list **stack);
-void   send_minimum(t_push_list *stack, t_push_list *stack_b, int resultado);
+int min(t_push_list **stack, int i, int j);
+void   send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado);
 #endif
