@@ -78,29 +78,26 @@ void    send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado)
 int	ft_checkindex(t_push_list **stack)
 {
 	t_push_list *temp;
-	int index;
 	int i;
 
 	temp = *stack;
-	index = temp->index;
 	i = 1;
-	while (temp)
+	while (temp->index)
 	{
-		if (index == 1)
+		if (temp->index == 1)
 		{
 			i++;
 			temp = temp->next;
-		if (index == i){
-			printf("el indice NEXT es: %d\n", temp->next->index);
-			printf("la i es: %d\n", i);
-			printf("el index del if: %d\n", index);
+			while (temp->index == i)
+			{
+				i++;
+				temp = temp->next;
+				if (temp->next == NULL)
+					return 1;
+			}
 		}
 		else
-			return 0;
+			return (0);
 	}
-		}
 	return 0;
 }
-	// 		printf("la i es: %d\n", i);
-	// printf("el indice es: %d\n", index);
-	// 	printf("el indice NEXT es: %d\n", temp->next->index);

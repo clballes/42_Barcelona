@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 		ft_setletter(&stack, &stack_b);
 	}
 	len = len - 1;
-	ft_checkindex(&stack);
-	sort(stack, stack_b, len);
+	if (ft_checkindex(&stack) == 0)
+		sort(stack, stack_b, len);
 	return (0);
 }
