@@ -51,6 +51,8 @@ void    sort_five(t_push_list **stack, t_push_list **stack_b, int len);
 void    print_list ( t_push_list **list_a, t_push_list **list_b);
 void    send(t_push_list **stack_a, t_push_list **stack_b, char c);
 void	ft_setletter(t_push_list **stack, t_push_list **stack_b);
+int	ft_sort(t_push_list **stack);
+
 //encontrar el minmax
 int min(t_push_list **stack, int i, int j);
 void   send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado);

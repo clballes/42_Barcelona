@@ -25,10 +25,11 @@ void	ft_check(int argc, char **argv)
 			write_error();
 		while (argv[j][i])
 		{	
-			if (argv[j][i] == '-')
-				i++;
-			if ((argv[j][i] >= 48 && argv[j][i] <= 57)
-				|| (argv[j][i] == '-'))
+			if ((argv[j][i] == '-' && argv[j][i + 1] == '-') || (argv[j][i] == '+' && argv[j][i + 1] == '+'))
+				write_error();
+			else if ((argv[j][i] >= 48 && argv[j][i] <= 57 && ((argv[j][i + 1]) == '-')) || (argv[j][i] >= 48 && argv[j][i] <= 57 && ((argv[j][i + 1]) == '+')))
+				write_error();
+			if ((argv[j][i] >= 48 && argv[j][i] <= 57) || ((argv[j][i] == '-') && argv[j][i + 1] != '\0'))
 				i++;
 			else
 				write_error();

@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	len = 1;
 	if (argc == 1)
-		write_error();
+		return (0);
 	else
 	{
 		ft_check(argc, argv);
@@ -41,7 +41,8 @@ int	main(int argc, char **argv)
 			len++;
 		}
 		ft_setindex(&stack);
-		ft_setletter(&stack, &stack_b);
+		if (ft_sort(&stack) == 0)
+			return (0);
 	}
 	len = len - 1;
 	if (ft_checkindex(&stack) == 0)

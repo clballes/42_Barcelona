@@ -67,5 +67,5 @@ void    sort_five(t_push_list **stack, t_push_list **stack_b, int len)
 	send(stack_b, stack, 'a');
     if (len == 5)
         send(stack_b, stack, 'a');
-    print_list(stack, stack_b);
+    // print_list(stack, stack_b);
 }

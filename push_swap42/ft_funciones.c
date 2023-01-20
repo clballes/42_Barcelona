@@ -47,18 +47,18 @@ void   ft_setindex(t_push_list **stack)
 	}
 }
 
-void	ft_setletter(t_push_list **stack, t_push_list **stack_b)
-{
-	t_push_list *temp;
-	t_push_list *temp2;
+// void	ft_setletter(t_push_list **stack, t_push_list **stack_b)
+// {
+// 	t_push_list *temp;
+// 	t_push_list *temp2;
 
-	temp = *stack;
-	temp2 = *stack_b;
-	if (temp)
-		temp->id = 'a';
-	else
-		temp->id = 'b';
-}
+// 	temp = *stack;
+// 	temp2 = *stack_b;
+// 	if (temp)
+// 		temp->id = 'a';
+// 	else
+// 		temp->id = 'b';
+// }
 
 void    send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado)
 {
@@ -100,4 +100,24 @@ int	ft_checkindex(t_push_list **stack)
 			return (0);
 	}
 	return 0;
+}
+
+int	ft_sort(t_push_list **stack)
+{
+	t_push_list *temp;
+
+	temp = *stack;
+	if (temp->next == NULL)
+		return 0;
+	if (temp->next->next == NULL)
+		{
+			if (temp->index < temp->next->index)
+				return 0;
+			else
+			{
+				swap(stack, 'a');
+				return (0);
+			}
+		}
+	return (1);
 }
