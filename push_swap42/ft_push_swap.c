@@ -16,9 +16,10 @@ void	sort(t_push_list *stack, t_push_list *stack_b, int len)
 {
 	if (len == 3)
 		sort_three(&stack, 'a');
-	if (len == 5 || len == 4){
+	if (len == 5 || len == 4)
 		sort_five(&stack, &stack_b, len);
-	}
+	if (len > 5)
+		sort_hundred(&stack, &stack_b, len);
 }
 
 int	main(int argc, char **argv)
