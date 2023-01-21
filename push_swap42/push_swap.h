@@ -61,5 +61,6 @@ void   send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado);
 //create chunk
 void    chunk(t_push_list **stack, t_push_list **stack_b, t_push_list *half);
 int    ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont);
+int    ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont);
 void    ft_upper_half(t_push_list **stack, t_push_list **stack_b);
 #endif
