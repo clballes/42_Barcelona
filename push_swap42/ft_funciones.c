@@ -34,7 +34,7 @@ void   ft_setindex(t_push_list **stack)
 	while (tmp)
 	{
 		if(tmp->value < tmp2->value)
-			i++;	
+			i++;
 		if(tmp2->next == NULL)
 		{
 			tmp->index = (size_list - i);
@@ -46,19 +46,6 @@ void   ft_setindex(t_push_list **stack)
 			tmp2 = tmp2->next;
 	}
 }
-
-// void	ft_setletter(t_push_list **stack, t_push_list **stack_b)
-// {
-// 	t_push_list *temp;
-// 	t_push_list *temp2;
-
-// 	temp = *stack;
-// 	temp2 = *stack_b;
-// 	if (temp)
-// 		temp->id = 'a';
-// 	else
-// 		temp->id = 'b';
-// }
 
 void    send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado)
 {

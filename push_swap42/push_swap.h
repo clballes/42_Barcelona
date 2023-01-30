@@ -22,7 +22,6 @@
 typedef struct s_push_list
 {
     int                value;
-    char                id;
     int                index;
 	struct s_push_list	*next;
     struct s_push_list	*previous;
@@ -51,7 +50,6 @@ void    sort_five(t_push_list **stack, t_push_list **stack_b, int len);
 void    sort_hundred(t_push_list **stack, t_push_list **stack_b, int len);
 void    print_list ( t_push_list **list_a, t_push_list **list_b);
 void    send(t_push_list **stack_a, t_push_list **stack_b, char c);
-void	ft_setletter(t_push_list **stack, t_push_list **stack_b);
 int	    ft_sort(t_push_list **stack);
 
 //encontrar el minmax
@@ -62,7 +60,6 @@ void   send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado);
 int    chunk(t_push_list **stack, t_push_list **stack_b,int half, int cont);
 int    ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont);
 int    ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont);
-int readlist(t_push_list **stack, int half);
-void    compare(t_push_list **stack, t_push_list **stack_b, int cont1, int cont2);
+
 
 #endif
