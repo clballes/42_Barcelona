@@ -12,19 +12,47 @@
 
 #include "push_swap.h"
 
-void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half)
+void	range_chunk(t_push_list **stack, t_push_list **stack_b, int len)
+{
+	t_push_list	*temp;
+	int			half;
+	int			beg;
+	int			end;
+
+	beg = 0;
+	end = 0;
+	half = len / 2;
+	temp = *stack_b;
+	if (temp == NULL)
+	{
+		beg = 0;
+		end = 19;
+		sort_hundred(stack, stack_b, half, beg, end);
+	}
+	while (len > 20)
+	{
+		beg = 20;
+		end = 39;
+		sort_hundred(stack, stack_b, half, beg, end);
+		beg = 40;
+		end = 59;
+		sort_hundred(stack, stack_b, half, beg, end);
+	}
+
+}
+
+void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg, int end)
 {
 	t_push_list	*temp;
 	int			cont;
 
 	cont = 0;
-	half = half / 2;
 	temp = *stack;
 	while (temp)
 	{
-		if (temp->index <= 8)
+		if (temp->index >= beg && temp->index <= end)
 		{
-			cont = chunk(stack, stack_b, half, cont);
+			cont = chunk(stack, stack_b, half, cont, end);
 			temp = *stack;
 		}
 		else
@@ -36,19 +64,19 @@ void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half)
 	print_list(stack, stack_b);
 }
 
-int	chunk(t_push_list **stack, t_push_list **stack_b, int half, int cont)
+int	chunk(t_push_list **stack, t_push_list **stack_b, int half, int cont, int end)
 {
 	if (cont < half)
-		cont = ft_sort_chunk_ra(stack, stack_b, cont);
+		cont = ft_sort_chunk_ra(stack, stack_b, cont, end);
 	else if (cont >= half)
 	{
 		cont = (half * 2) - cont;
-		cont = ft_sort_chunk_rra(stack, stack_b, cont);
+		cont = ft_sort_chunk_rra(stack, stack_b, cont, end);
 	}
 	return (cont);
 }
 
-int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont)
+int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont, int end)
 {
 	t_push_list	*temp;
 	t_push_list	*temp_b;
@@ -62,7 +90,7 @@ int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont)
 		return (0);
 	else
 	{
-		if (temp->index < 4)
+		if (temp->index >= (end / 2))
 			top_rotate(stack_b, 'b');
 		else
 			return (0);
@@ -70,7 +98,7 @@ int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont)
 	return (0);
 }
 
-int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont)
+int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont, int end)
 {
 	t_push_list	*temp;
 	t_push_list	*temp_b;
@@ -84,7 +112,7 @@ int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont)
 		return (0);
 	else
 	{
-		if (temp->index < 4)
+		if (temp->index >= (end / 2))
 			top_rotate(stack_b, 'b');
 		else
 			return (0);
