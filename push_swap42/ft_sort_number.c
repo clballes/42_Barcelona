@@ -25,13 +25,15 @@ void    sort_three(t_push_list **stack, char c)
     index3 = temp->next->next->index; 
     if ((index3 > index2) && (index3 > index) && (index > index2)) //case1
         swap(stack, c);
-    else if ((index3 < index2) && (index2 < index) && (index > index3)){ //case2
+    else if ((index3 < index2) && (index2 < index) && (index > index3))
+    { //case2
         swap(stack, c);
         bottom_rotate(stack, c);
     }
     else  if((index > index2) && (index > index3) && (index2 < index3))//case3
         top_rotate(stack, c);
-    else if((index2 > index) && (index2 > index3)){ //case4
+    else if((index2 > index) && (index2 > index3))
+    { //case4
         if(index < index3){
             swap(stack, c);
             top_rotate(stack, c);
@@ -67,5 +69,4 @@ void    sort_five(t_push_list **stack, t_push_list **stack_b, int len)
 	send(stack_b, stack, 'a');
     if (len == 5)
         send(stack_b, stack, 'a');
-    // print_list(stack, stack_b);
 }

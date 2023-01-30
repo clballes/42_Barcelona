@@ -59,8 +59,10 @@ int min(t_push_list **stack, int i, int j);
 void   send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado);
 
 //create chunk
-void    chunk(t_push_list **stack, t_push_list **stack_b, t_push_list *half);
+int    chunk(t_push_list **stack, t_push_list **stack_b,int half, int cont);
 int    ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont);
 int    ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont);
-void    ft_upper_half(t_push_list **stack, t_push_list **stack_b);
+int readlist(t_push_list **stack, int half);
+void    compare(t_push_list **stack, t_push_list **stack_b, int cont1, int cont2);
+
 #endif
