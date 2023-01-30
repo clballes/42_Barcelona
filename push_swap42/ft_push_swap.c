@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:51:17 by clballes          #+#    #+#             */
-/*   Updated: 2022/11/04 18:17:54 by clballes         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:40:18 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	sort(t_push_list *stack, t_push_list *stack_b, int len)
 
 int	main(int argc, char **argv)
 {
-	int				 	len;
-	t_push_list *stack;
-	t_push_list *stack_b;
+	int			len;
+	t_push_list	*stack;
+	t_push_list	*stack_b;
 
 	stack = NULL;
 	stack_b = NULL;
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		ft_check(argc, argv);
-	  	while(argv[len])
+		while (argv[len])
 		{
 			take_numbers(&stack, ft_atoi(argv[len]));
 			len++;

@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:54:55 by clballes          #+#    #+#             */
-/*   Updated: 2023/01/09 12:54:57 by clballes         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:46:09 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_push_list	*ft_push_lstnew(int num)
 		return (NULL);
 	list->value = num;
 	list->next = NULL;
-    list->previous = NULL;
+	list->previous = NULL;
 	return (list);
 }
 

@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:33:29 by clballes          #+#    #+#             */
-/*   Updated: 2022/11/04 18:06:37 by clballes         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:57:42 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,16 @@ void	ft_check(int argc, char **argv)
 			write_error();
 		while (argv[j][i])
 		{	
-			if ((argv[j][i] == '-' && argv[j][i + 1] == '-') || (argv[j][i] == '+' && argv[j][i + 1] == '+'))
+			if ((argv[j][i] == '-' && argv[j][i + 1] == '-')
+					|| (argv[j][i] == '+' && argv[j][i + 1] == '+'))
 				write_error();
-			else if ((argv[j][i] >= 48 && argv[j][i] <= 57 && ((argv[j][i + 1]) == '-')) || (argv[j][i] >= 48 && argv[j][i] <= 57 && ((argv[j][i + 1]) == '+')))
+			else if ((argv[j][i] >= 48 && argv[j][i] <= 57
+						&& ((argv[j][i + 1]) == '-'))
+					|| (argv[j][i] >= 48 && argv[j][i] <= 57
+						&& ((argv[j][i + 1]) == '+')))
 				write_error();
-			if ((argv[j][i] >= 48 && argv[j][i] <= 57) || ((argv[j][i] == '-') && argv[j][i + 1] != '\0'))
+			if ((argv[j][i] >= 48 && argv[j][i] <= 57)
+					|| ((argv[j][i] == '-') && argv[j][i + 1] != '\0'))
 				i++;
 			else
 				write_error();
