@@ -61,4 +61,7 @@ int			ft_sort_chunk_ra(t_push_list **stack,
 				t_push_list **stack_b, int cont);
 int			ft_sort_chunk_rra(t_push_list **stack,
 				t_push_list **stack_b, int cont);
+//ORDER STACK B
+void	ft_order_stack_b(t_push_list **stack, t_push_list **stack_b);
+
 #endif
