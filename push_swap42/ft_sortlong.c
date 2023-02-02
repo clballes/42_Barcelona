@@ -18,27 +18,26 @@ void	range_chunk(t_push_list **stack, t_push_list **stack_b, int len)
 	int			half;
 	int			beg;
 	int			end;
+	int			chunk;
+	int			size_b;
 
 	beg = 0;
 	end = 0;
+	chunk = 20;
 	half = len / 2;
 	temp = *stack_b;
 	if (temp == NULL)
+		sort_hundred(stack, stack_b, half, beg, (end + 19));
+	while (temp)
 	{
-		beg = 0;
-		end = 19;
-		sort_hundred(stack, stack_b, half, beg, end);
+		size_b = ft_push_lstsize(temp);
+		printf("SIZE B ES:	%d\n", size_b);
+		if (size_b >= chunk)
+		{
+			sort_hundred(stack, stack_b, half, (beg + chunk), (end + chunk));
+			chunk = chunk + 20;
+		}
 	}
-	while (len > 20)
-	{
-		beg = 20;
-		end = 39;
-		sort_hundred(stack, stack_b, half, beg, end);
-		beg = 40;
-		end = 59;
-		sort_hundred(stack, stack_b, half, beg, end);
-	}
-
 }
 
 void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg, int end)
@@ -60,8 +59,8 @@ void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg,
 			temp = temp->next;
 			cont++;
 		}
+		// print_list(stack, stack_b);
 	}
-	print_list(stack, stack_b);
 }
 
 int	chunk(t_push_list **stack, t_push_list **stack_b, int half, int cont, int end)
@@ -90,7 +89,7 @@ int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont, int 
 		return (0);
 	else
 	{
-		if (temp->index >= (end / 2))
+		if (temp->index <= (end / 2))
 			top_rotate(stack_b, 'b');
 		else
 			return (0);
@@ -108,14 +107,25 @@ int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont, int e
 		top_rotate(stack, 'a');
 	send(stack, stack_b, 'b');
 	temp_b = *stack_b;
+				printf("TEM VALUE INDEX = 	%d\n",temp_b->index);
+			print_list(stack, stack_b);
+
 	if (temp_b->next == NULL)
 		return (0);
-	else
+	else if (temp_b)
 	{
-		if (temp->index >= (end / 2))
+		if (temp->index <= (end / 2))
+		{
 			top_rotate(stack_b, 'b');
+			printf("EL INDEX ES:	%d\n",temp->index);
+			// print_list(stack, stack_b);
+
+		}
 		else
+		{
+			printf("EL INDEX ELSEEE ES:	%d\n",temp->index);
 			return (0);
+		}
 	}
 	return (0);
 }
