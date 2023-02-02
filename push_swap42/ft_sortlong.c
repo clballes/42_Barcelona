@@ -59,7 +59,7 @@ void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg,
 			temp = temp->next;
 			cont++;
 		}
-		// print_list(stack, stack_b);
+		print_list(stack, stack_b);
 	}
 }
 
@@ -87,13 +87,10 @@ int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont, int 
 	temp_b = *stack_b;
 	if (temp_b->next == NULL)
 		return (0);
+	else if (temp_b->index <= (end / 2))
+		top_rotate(stack_b, 'b');
 	else
-	{
-		if (temp->index <= (end / 2))
-			top_rotate(stack_b, 'b');
-		else
-			return (0);
-	}
+		return (0);
 	return (0);
 }
 
@@ -107,25 +104,11 @@ int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont, int e
 		top_rotate(stack, 'a');
 	send(stack, stack_b, 'b');
 	temp_b = *stack_b;
-				printf("TEM VALUE INDEX = 	%d\n",temp_b->index);
-			print_list(stack, stack_b);
-
 	if (temp_b->next == NULL)
 		return (0);
-	else if (temp_b)
-	{
-		if (temp->index <= (end / 2))
-		{
-			top_rotate(stack_b, 'b');
-			printf("EL INDEX ES:	%d\n",temp->index);
-			// print_list(stack, stack_b);
-
-		}
-		else
-		{
-			printf("EL INDEX ELSEEE ES:	%d\n",temp->index);
-			return (0);
-		}
-	}
+	else if (temp_b->index <= (end / 2))
+		top_rotate(stack_b, 'b');
+	else
+		return (0);
 	return (0);
 }
