@@ -46,7 +46,7 @@ void	range_chunk(t_push_list **stack, t_push_list **stack_b, int len)
 			len_num += 20;
 		}
 	}
-	// print_list(stack, stack_b);
+	print_list(stack, stack_b);
 }
 
 void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg, int end, int len_num)
@@ -69,8 +69,6 @@ void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg,
 			cont++;
 		}
 	}
-		print_list(stack, stack_b);
-
 }
 
 int	chunk(t_push_list **stack, t_push_list **stack_b, int half, int cont, int end, int len_num)
@@ -117,7 +115,11 @@ int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont, int e
 	if (temp_b->next == NULL)
 		return (0);
 	else if (temp_b->index <= ((end + len_num)/ 2))
+	{
+		if (temp->index == 100)
+			return (0);
 		top_rotate(stack_b, 'b');
+	}
 	else
 		return (0);
 	return (0);
