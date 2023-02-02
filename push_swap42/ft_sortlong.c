@@ -14,33 +14,42 @@
 
 void	range_chunk(t_push_list **stack, t_push_list **stack_b, int len)
 {
+	t_push_list	*temp_b;
 	t_push_list	*temp;
 	int			half;
 	int			beg;
 	int			end;
-	int			chunk;
+	int			len_num;
 	int			size_b;
 
 	beg = 0;
-	end = 0;
-	chunk = 20;
+	end = 19;
+	len_num = 0;
+	size_b = 0;
 	half = len / 2;
-	temp = *stack_b;
-	if (temp == NULL)
-		sort_hundred(stack, stack_b, half, beg, (end + 19));
-	while (temp)
+	temp = *stack;
+	temp_b = *stack_b;
+	if (temp_b == NULL)
 	{
-		size_b = ft_push_lstsize(temp);
-		printf("SIZE B ES:	%d\n", size_b);
-		if (size_b >= chunk)
+		sort_hundred(stack, stack_b, half, beg, end, len_num);
+		temp_b = *stack_b;
+		temp = *stack;
+	}
+	while (temp_b && temp != NULL)
+	{
+		size_b = ft_push_lstsize(temp_b);
+		if ((size_b + 1) >= len_num)
 		{
-			sort_hundred(stack, stack_b, half, (beg + chunk), (end + chunk));
-			chunk = chunk + 20;
+			sort_hundred(stack, stack_b, half, (beg + len_num), (end + len_num), len_num);
+			temp_b = *stack_b;
+			temp = *stack;
+			len_num += 20;
 		}
 	}
+	// print_list(stack, stack_b);
 }
 
-void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg, int end)
+void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg, int end, int len_num)
 {
 	t_push_list	*temp;
 	int			cont;
@@ -51,7 +60,7 @@ void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg,
 	{
 		if (temp->index >= beg && temp->index <= end)
 		{
-			cont = chunk(stack, stack_b, half, cont, end);
+			cont = chunk(stack, stack_b, half, cont, end, len_num);
 			temp = *stack;
 		}
 		else
@@ -59,23 +68,24 @@ void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg,
 			temp = temp->next;
 			cont++;
 		}
-		print_list(stack, stack_b);
 	}
+		print_list(stack, stack_b);
+
 }
 
-int	chunk(t_push_list **stack, t_push_list **stack_b, int half, int cont, int end)
+int	chunk(t_push_list **stack, t_push_list **stack_b, int half, int cont, int end, int len_num)
 {
 	if (cont < half)
-		cont = ft_sort_chunk_ra(stack, stack_b, cont, end);
+		cont = ft_sort_chunk_ra(stack, stack_b, cont, end, len_num);
 	else if (cont >= half)
 	{
 		cont = (half * 2) - cont;
-		cont = ft_sort_chunk_rra(stack, stack_b, cont, end);
+		cont = ft_sort_chunk_rra(stack, stack_b, cont, end, len_num);
 	}
 	return (cont);
 }
 
-int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont, int end)
+int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont, int end, int len_num)
 {
 	t_push_list	*temp;
 	t_push_list	*temp_b;
@@ -87,14 +97,14 @@ int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b, int cont, int 
 	temp_b = *stack_b;
 	if (temp_b->next == NULL)
 		return (0);
-	else if (temp_b->index <= (end / 2))
+	else if (temp_b->index <= ((end + len_num)/ 2))
 		top_rotate(stack_b, 'b');
 	else
 		return (0);
 	return (0);
 }
 
-int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont, int end)
+int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont, int end, int len_num)
 {
 	t_push_list	*temp;
 	t_push_list	*temp_b;
@@ -106,7 +116,7 @@ int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont, int e
 	temp_b = *stack_b;
 	if (temp_b->next == NULL)
 		return (0);
-	else if (temp_b->index <= (end / 2))
+	else if (temp_b->index <= ((end + len_num)/ 2))
 		top_rotate(stack_b, 'b');
 	else
 		return (0);
