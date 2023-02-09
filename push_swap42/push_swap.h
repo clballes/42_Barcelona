@@ -63,10 +63,9 @@ int			ft_sort_chunk_rra(t_push_list **stack,
 				t_push_list **stack_b, int cont, int end, int len_num);
 void		range_chunk(t_push_list **stack, t_push_list **stack_b, int len);
 // int			findmax(t_push_list **stack, t_push_list **stack_b);
-void    	sort_b(t_push_list **stack, t_push_list **stack_b, 	t_push_list	*temp_b);
-int		check_cont(t_push_list **stack, t_push_list **stack_b, int max);
-int    	findmax(t_push_list **stack_b);
-
-
-
+void    	sort_b(t_push_list **stack, t_push_list **stack_b, 	t_push_list	*temp_b, t_push_list	*temps);
+int			check_cont(t_push_list **stack, t_push_list **stack_b, int max);
+int    		findmax(t_push_list **stack_b);
+int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max);
+int			cont_stackb(t_push_list **stack, t_push_list **stack_b, int max);
 #endif

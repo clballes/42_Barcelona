@@ -46,7 +46,7 @@ void	range_chunk(t_push_list **stack, t_push_list **stack_b, int len)
 			len_num += 20;
 		}
 	}
-	sort_b(stack, stack_b, temp_b);
+	sort_b(stack, stack_b, temp_b, temp);
 }
 
 void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg, int end, int len_num)

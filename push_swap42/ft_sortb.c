@@ -1,75 +1,104 @@
 #include "push_swap.h"
 
-int	cont_stackb(t_push_list **stack_b, int res2)
+int	cont_stackb(t_push_list **stack, t_push_list **stack_b, int max)
 {
 	t_push_list *temp_b;
 	int cont;
 
 	cont = 0;
 	temp_b = *stack_b;
+	if (max == 2)
+	{
+		printf("El max es: %d\n", max);
+		if (temp_b->index < temp_b->next->index)
+			swap(stack_b,'b');
+		send(stack_b, stack, 'a');
+		send(stack_b, stack, 'a');
+	}
 	while(temp_b)
 	{
-		if (temp_b->index == res2)
+		if (temp_b->index == max)
 			return (cont);
 		cont++;
-		temp_b = temp_b->next;
+		temp_b = temp_b->next;		
 	}
 	return 0;
 }
 
-void    sort_b(t_push_list **stack, t_push_list **stack_b,	t_push_list	*temp_b)
+int	rotate_b(t_push_list **stack, t_push_list **stack_b, int max) //funcio top rotate o backrotate & 
+{
+	int size;
+	int cont;
+	
+	print_list(stack, stack_b);
+	size = ft_push_lstsize(*stack_b);
+	// printf("LA SIZE ES ----- %d\n", size);
+	cont = cont_stackb(stack, stack_b, max);
+	// printf("EL CONTADOR ES ----- %d\n", cont);
+
+	if (cont == 0)
+		send(stack_b, stack, 'a');
+	else if (cont >= (size / 2)) //bottom rotate
+	{
+		cont = max - cont;
+		while(cont--)
+			bottom_rotate(stack_b,'b');
+		send(stack_b, stack, 'a');
+	}
+	else if (cont < (size / 2))
+	{
+		// printf("EL CONTADOR after operation ----- %d\n", cont);
+		while(cont--)
+			top_rotate(stack_b,'b');
+		send(stack_b, stack, 'a');
+	}
+	return (0);
+}
+
+void    sort_b(t_push_list **stack, t_push_list **stack_b,	t_push_list	*temp_b, t_push_list *temp)
 {
     int max;
-	int res;
-	int cont;
 	int size;
-
+	int cont_size;
+	int i = 15;
+	
+	cont_size = 0;
 	size = ft_push_lstsize(*stack_b);
-	send(stack_b, stack, 'a');
+	i = findmax(stack_b);
 	temp_b = *stack_b;
-	// print_list(stack, stack_b);
-	while(temp_b && size--)
+	while (i-- && temp_b)
 	{
-		max = findmax(stack_b);
-		res = check_cont(stack, stack_b, max); //check si tenim consecutius x estalviar moviments
-		temp_b = *stack_b;
-		if (res == 0)
+		if (max == 2)
 		{
-			size = ft_push_lstsize(*stack_b);
-			max = findmax(stack_b);
-			if(size == max)
-			{
-				top_rotate(stack_b, 'b');
-				send(stack_b, 'b');
-			}
-			2.5
-			else if((size / 2) > max)
-			{
-				//fariem contador
-				cont--
-				cont = cont_stackb(stack_b, max); 
-				check_cont(stack, stack_b, max); //check si tenim consecutius x estalviar moviments
-
-			}
-
-
-			print_list(stack, stack_b);
-			printf("la size:	-- %d\n", size);
-			printf("el  max es:	-- %d\n", max);
+				printf("HOaaaaaaaaaaLA\n");
+			cont_stackb(stack, stack_b, max);
+			break;
 		}
-
-			//funcio top rotate o backrotate
+		if(check_cont(stack, stack_b, max) == 0) //check si tenim consecutius x estalviar moviments
+		{
+			max = findmax(stack_b);
+			
+			rotate_b(stack, stack_b, max);
+			temp_b = *stack_b;
+			temp = *stack; 		
+			print_list(stack, stack_b);
+		}
+		i = max;
+		printf("EL MAX ES %d\n", max);
 	}
-		// print_list(stack, stack_b);
 }
+
 
 int	check_cont(t_push_list **stack, t_push_list **stack_b, int max)
 {
 	int cont_max_nxt;
 	int cont_max_nxt_nxt;
 
-	cont_max_nxt = cont_stackb(stack_b, max); //contador del indice 19
-	cont_max_nxt_nxt = cont_stackb(stack_b, (max - 1)); //contador indice 18
+	cont_max_nxt = cont_stackb(stack, stack_b, max); //contador del indice 19
+	cont_max_nxt_nxt = cont_stackb(stack, stack_b, (max - 1)); //contador indice 18
+	printf("el max 222es %d\n", max);
+	if (cont_max_nxt == 0)
+		return 0;
 	if (cont_max_nxt == cont_max_nxt_nxt - 1) //aixo es x si tenim els indexs consecutius
 	{
 		while(cont_max_nxt--)
