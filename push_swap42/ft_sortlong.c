@@ -46,8 +46,7 @@ void	range_chunk(t_push_list **stack, t_push_list **stack_b, int len)
 			len_num += 20;
 		}
 	}
-	print_list(stack, stack_b);
-	sort_b(stack, stack_b);
+	sort_b(stack, stack_b, temp_b);
 }
 
 void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg, int end, int len_num)
@@ -117,12 +116,15 @@ int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b, int cont, int e
 		top_rotate(stack, 'a');
 	send(stack, stack_b, 'b');
 	temp_b = *stack_b;
+	int res;
+	res = (end + len_num) / 2;
 	if (temp_b->next == NULL)
 		return (0);
-	else if (temp_b->index <= ((end + len_num)/ 2))
+
+	if (temp_b->index <= ((end + len_num)/ 2))
 	{
-		if (temp->index == len_num)
-			return (0);
+		if (ft_push_lstsize(*stack) == 0 && temp->previous == NULL)
+		 	return (0);
 		top_rotate(stack_b, 'b');
 	}
 	else
