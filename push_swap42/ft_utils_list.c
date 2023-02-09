@@ -63,6 +63,5 @@ int	ft_push_lstsize(t_push_list	*lst)
 		lst = lst->next;
 		i++;
 	}
-	// printf("LA I ES: 	%d\n", i);
 	return (i);
 }
