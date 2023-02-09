@@ -9,7 +9,6 @@ int	cont_stackb(t_push_list **stack, t_push_list **stack_b, int max)
 	temp_b = *stack_b;
 	if (max == 2)
 	{
-		printf("El max es: %d\n", max);
 		if (temp_b->index < temp_b->next->index)
 			swap(stack_b,'b');
 		send(stack_b, stack, 'a');
@@ -30,12 +29,8 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int max) //funcio top r
 	int size;
 	int cont;
 	
-	print_list(stack, stack_b);
 	size = ft_push_lstsize(*stack_b);
-	// printf("LA SIZE ES ----- %d\n", size);
 	cont = cont_stackb(stack, stack_b, max);
-	// printf("EL CONTADOR ES ----- %d\n", cont);
-
 	if (cont == 0)
 		send(stack_b, stack, 'a');
 	else if (cont >= (size / 2)) //bottom rotate
@@ -47,7 +42,6 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int max) //funcio top r
 	}
 	else if (cont < (size / 2))
 	{
-		// printf("EL CONTADOR after operation ----- %d\n", cont);
 		while(cont--)
 			top_rotate(stack_b,'b');
 		send(stack_b, stack, 'a');
@@ -66,26 +60,21 @@ void    sort_b(t_push_list **stack, t_push_list **stack_b,	t_push_list	*temp_b, 
 	size = ft_push_lstsize(*stack_b);
 	i = findmax(stack_b);
 	temp_b = *stack_b;
-	while (i-- && temp_b)
+	while (i-- && temp_b && i > 2)
 	{
-		if (max == 2)
-		{
-				printf("HOaaaaaaaaaaLA\n");
-			cont_stackb(stack, stack_b, max);
-			break;
-		}
 		if(check_cont(stack, stack_b, max) == 0) //check si tenim consecutius x estalviar moviments
 		{
 			max = findmax(stack_b);
-			
 			rotate_b(stack, stack_b, max);
 			temp_b = *stack_b;
 			temp = *stack; 		
-			print_list(stack, stack_b);
 		}
 		i = max;
-		printf("EL MAX ES %d\n", max);
 	}
+	max -= 1;
+	if (max == 2)
+		cont_stackb(stack, stack_b, max);
+	print_list(stack, stack_b);
 }
 
 
@@ -96,7 +85,6 @@ int	check_cont(t_push_list **stack, t_push_list **stack_b, int max)
 
 	cont_max_nxt = cont_stackb(stack, stack_b, max); //contador del indice 19
 	cont_max_nxt_nxt = cont_stackb(stack, stack_b, (max - 1)); //contador indice 18
-	printf("el max 222es %d\n", max);
 	if (cont_max_nxt == 0)
 		return 0;
 	if (cont_max_nxt == cont_max_nxt_nxt - 1) //aixo es x si tenim els indexs consecutius
