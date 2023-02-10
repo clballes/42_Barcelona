@@ -115,8 +115,7 @@ int	check_cont(t_push_list **stack, t_push_list **stack_b, int max)
 		swap(stack, 'a');
 		return (1);
 	}
-	else
-		return (0);
+	return (0);
 }
 
 int	findmax(t_push_list **stack_b)

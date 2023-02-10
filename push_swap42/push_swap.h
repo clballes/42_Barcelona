@@ -19,13 +19,13 @@
 # include "LIBFT/libft.h"
 # include <stdio.h>
 
-	typedef struct s_push_list
-	{
-		int						value;
-		int						index;
-		struct s_push_list		*next;
-		struct s_push_list		*previous;
-	}							t_push_list;
+typedef struct s_push_list
+{
+	int						value;
+	int						index;
+	struct s_push_list		*next;
+	struct s_push_list		*previous;
+}							t_push_list;
 void		ft_check(int argc, char **argv);
 void		write_error(void);
 void		ft_maxmin_int(char **argv, int argc, int j);
@@ -46,7 +46,7 @@ int			ft_checkindex(t_push_list **stack);
 void		sort(t_push_list *stack, t_push_list *stack_b, int i);
 void		sort_three(t_push_list **stack, char c);
 void		sort_five(t_push_list **stack, t_push_list **stack_b, int len);
-void		sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg, int end, int len_num);
+void		sort_hundred(t_push_list **stack, t_push_list **stack_b, int beg);
 void		print_list(t_push_list **list_a, t_push_list **list_b);
 void		send(t_push_list **stack_a, t_push_list **stack_b, char c);
 int			ft_sort(t_push_list **stack);
@@ -55,12 +55,13 @@ void		send_minimum(t_push_list **stack,
 				t_push_list **stack_b, int resultado);
 //create chunk
 int			chunk(t_push_list **stack, t_push_list **stack_b,
-				int half, int cont, int end, int len_num);
+				int cont, int end);
 int			ft_sort_chunk_ra(t_push_list **stack,
-				t_push_list **stack_b, int cont, int end, int len_num);
+				t_push_list **stack_b, int cont, int end);
 int			ft_sort_chunk_rra(t_push_list **stack,
-				t_push_list **stack_b, int cont, int end, int len_num);
-void		range_chunk(t_push_list **stack, t_push_list **stack_b, int len);
+				t_push_list **stack_b, int cont, int end);
+void		range_chunk(t_push_list **stack, t_push_list **stack_b,
+				int end, int size_b);
 // int			findmax(t_push_list **stack, t_push_list **stack_b);
 void		sort_b(t_push_list **stack, t_push_list **stack_b,
 				t_push_list	*temp_b, t_push_list *temp);
@@ -69,4 +70,6 @@ int			findmax(t_push_list **stack_b);
 int			find_contmin(t_push_list **stack);
 int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max);
 int			cont_stackb(t_push_list **stack, t_push_list **stack_b, int max);
+void		sort_five_hundred(t_push_list **stack, t_push_list **stack_b);
+
 #endif

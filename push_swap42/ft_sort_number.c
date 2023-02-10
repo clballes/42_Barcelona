@@ -53,14 +53,12 @@ void	sort_five(t_push_list **stack, t_push_list **stack_b, int len)
 	i = 0;
 	if (len == 5)
 	{
-		// resultado = min(stack, i, j);
 		resultado = find_contmin(stack);
 		send_minimum(stack, stack_b, resultado);
 	}
 	if (len == 5 || len == 4)
 	{
 		resultado = find_contmin(stack);
-		// resultado = min(stack, i, j);
 		if (resultado == 3 || resultado == 4)
 		{
 			resultado = resultado + 1;

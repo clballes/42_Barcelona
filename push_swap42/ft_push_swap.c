@@ -14,13 +14,17 @@
 
 void	sort(t_push_list *stack, t_push_list *stack_b, int len)
 {
+	int			end;
+	int			size_b;
+
+	end = 0;
+	size_b = 0;
 	if (len == 3)
 		sort_three(&stack, 'a');
 	if (len == 5 || len == 4)
 		sort_five(&stack, &stack_b, len);
 	if (len > 5)
-		range_chunk(&stack, &stack_b, len);
-	// print_list(&stack, &stack_b);
+		range_chunk(&stack, &stack_b, end, size_b);
 }
 
 int	main(int argc, char **argv)
