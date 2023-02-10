@@ -87,22 +87,22 @@ void	send(t_push_list **stack_a, t_push_list **stack_b, char c)
 	printf("p%c\n", c);
 }
 
-void    print_list ( t_push_list **list_a, t_push_list **list_b)
-{
-    t_push_list *temp_a;
-    t_push_list *temp_b;
-    temp_a = *list_a;
-    temp_b = *list_b;
-            printf("----------------------------------------\n");
-    while (temp_a)
-    {
-        printf("valor en lista_a: %d, valor en index: %d\n", temp_a->value, temp_a->index);
-        temp_a = temp_a->next;
-    }
-    printf("----------------------------------------\n");
-    while(temp_b)
-    {
-        printf("valor en lista_b: %d, valor en index:%d\n", temp_b->value, temp_b->index);
-        temp_b = temp_b->next;
-    }
-}
+// void    print_list ( t_push_list **list_a, t_push_list **list_b)
+// {
+//     t_push_list *temp_a;
+//     t_push_list *temp_b;
+//     temp_a = *list_a;
+//     temp_b = *list_b;
+//             printf("----------------------------------------\n");
+//     while (temp_a)
+//     {
+//         printf("valor en lista_a: %d, valor en index: %d\n", temp_a->value, temp_a->index);
+//         temp_a = temp_a->next;
+//     }
+//     printf("----------------------------------------\n");
+//     while(temp_b)
+//     {
+//         printf("valor en lista_b: %d, valor en index:%d\n", temp_b->value, temp_b->index);
+//         temp_b = temp_b->next;
+//     }
+// }

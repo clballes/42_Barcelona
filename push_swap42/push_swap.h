@@ -44,10 +44,9 @@ void		print(t_push_list **stack);
 //Sort functions
 int			ft_checkindex(t_push_list **stack);
 void		sort(t_push_list *stack, t_push_list *stack_b, int i);
-void		sort_three(t_push_list **stack, char c, int index2, int index);
+void		sort_three(t_push_list **stack, char c);
 void		sort_five(t_push_list **stack, t_push_list **stack_b, int len);
-void		sort_hundred(t_push_list **stack, t_push_list **stack_b,
-				int beg, int end, int len_num);
+void		sort_hundred(t_push_list **stack, t_push_list **stack_b, int half, int beg, int end, int len_num);
 void		print_list(t_push_list **list_a, t_push_list **list_b);
 void		send(t_push_list **stack_a, t_push_list **stack_b, char c);
 int			ft_sort(t_push_list **stack);
@@ -57,20 +56,16 @@ void		send_minimum(t_push_list **stack,
 				t_push_list **stack_b, int resultado);
 //create chunk
 int			chunk(t_push_list **stack, t_push_list **stack_b,
-				int cont, int sum);
+				int half, int cont, int end, int len_num);
 int			ft_sort_chunk_ra(t_push_list **stack,
-				t_push_list **stack_b, int cont, int sum);
+				t_push_list **stack_b, int cont, int end, int len_num);
 int			ft_sort_chunk_rra(t_push_list **stack,
-				t_push_list **stack_b, int cont, int sum);
+				t_push_list **stack_b, int cont, int end, int len_num);
 void		range_chunk(t_push_list **stack, t_push_list **stack_b, int len);
-void		sort_b(t_push_list **stack, t_push_list **stack_b,
-				t_push_list *temp_b, t_push_list *temp);
+// int			findmax(t_push_list **stack, t_push_list **stack_b);
+void    	sort_b(t_push_list **stack, t_push_list **stack_b, 	t_push_list	*temp_b, t_push_list	*temps);
 int			check_cont(t_push_list **stack, t_push_list **stack_b, int max);
-int			findmax(t_push_list **stack_b);
+int    		findmax(t_push_list **stack_b);
 int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max);
 int			cont_stackb(t_push_list **stack, t_push_list **stack_b, int max);
-void		ft_sendx2(t_push_list **stack_b, t_push_list **stack);
-void		ft_longword_index(t_push_list **stack);
-int			findmin(t_push_list **stack_b);
-
 #endif

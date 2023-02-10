@@ -14,15 +14,8 @@
 
 void	sort(t_push_list *stack, t_push_list *stack_b, int len)
 {
-	t_push_list	*temp;
-	int			index2;
-	int			index;
-
-	temp = stack;
-	index = temp->index;
-	index2 = temp->next->index;
 	if (len == 3)
-		sort_three(&stack, 'a', index2, index);
+		sort_three(&stack, 'a');
 	if (len == 5 || len == 4)
 		sort_five(&stack, &stack_b, len);
 	if (len > 5)

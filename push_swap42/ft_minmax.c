@@ -12,13 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_sendx2(t_push_list **stack_b, t_push_list **stack)
-{
-	send (stack_b, stack, 'a');
-	send (stack_b, stack, 'a');
-}
-
-int	findmin(t_push_list **stack)
+int	min(t_push_list **stack, int i, int j)
 {
 	t_push_list	*temp;
 	t_push_list	*temp2;
@@ -27,9 +21,23 @@ int	findmin(t_push_list **stack)
 	temp2 = *stack;
 	while (temp2)
 	{
-		if (temp2->index < temp->index)
-			temp = temp2;
+		if (temp2->next == NULL)
+		{
+			if (temp->index > temp2->index)
+				i++;
+			if (i == 0)
+				return (j);
+			else
+			{
+				temp = temp->next;
+				temp2 = *stack;
+				i = 0;
+				j++;
+			}
+		}
+		if (temp->index > temp2->index)
+			i++;
 		temp2 = temp2->next;
 	}
-	return (temp->index);
+	return (0);
 }
