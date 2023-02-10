@@ -20,6 +20,7 @@ void	sort(t_push_list *stack, t_push_list *stack_b, int len)
 		sort_five(&stack, &stack_b, len);
 	if (len > 5)
 		range_chunk(&stack, &stack_b, len);
+	// print_list(&stack, &stack_b);
 }
 
 int	main(int argc, char **argv)

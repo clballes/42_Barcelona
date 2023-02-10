@@ -19,13 +19,13 @@
 # include "LIBFT/libft.h"
 # include <stdio.h>
 
-typedef struct s_push_list
-{
-	int						value;
-	int						index;
-	struct s_push_list		*next;
-	struct s_push_list		*previous;
-}							t_push_list;
+	typedef struct s_push_list
+	{
+		int						value;
+		int						index;
+		struct s_push_list		*next;
+		struct s_push_list		*previous;
+	}							t_push_list;
 void		ft_check(int argc, char **argv);
 void		write_error(void);
 void		ft_maxmin_int(char **argv, int argc, int j);
@@ -51,7 +51,6 @@ void		print_list(t_push_list **list_a, t_push_list **list_b);
 void		send(t_push_list **stack_a, t_push_list **stack_b, char c);
 int			ft_sort(t_push_list **stack);
 //encontrar el minmax
-int			min(t_push_list **stack, int i, int j);
 void		send_minimum(t_push_list **stack,
 				t_push_list **stack_b, int resultado);
 //create chunk
@@ -63,9 +62,11 @@ int			ft_sort_chunk_rra(t_push_list **stack,
 				t_push_list **stack_b, int cont, int end, int len_num);
 void		range_chunk(t_push_list **stack, t_push_list **stack_b, int len);
 // int			findmax(t_push_list **stack, t_push_list **stack_b);
-void    	sort_b(t_push_list **stack, t_push_list **stack_b, 	t_push_list	*temp_b, t_push_list	*temps);
+void		sort_b(t_push_list **stack, t_push_list **stack_b,
+				t_push_list	*temp_b, t_push_list *temp);
 int			check_cont(t_push_list **stack, t_push_list **stack_b, int max);
-int    		findmax(t_push_list **stack_b);
+int			findmax(t_push_list **stack_b);
+int			find_contmin(t_push_list **stack);
 int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max);
 int			cont_stackb(t_push_list **stack, t_push_list **stack_b, int max);
 #endif
