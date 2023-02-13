@@ -43,8 +43,9 @@ void		bottom_rotate(t_push_list **stack);
 void		print_swap(t_push_list **stack, char c);
 void		print_rotate(t_push_list **stack, char c);
 void		print_rev_rotate(t_push_list **stack, char c);
-void		print_rotate_both(t_push_list **stack, t_push_list **stack_b);
+int			print_rotate_both(t_push_list **stack, t_push_list **stack_b);
 void		check_three(t_push_list **stack);
+
 //Sort functions
 int			ft_checkindex(t_push_list **stack);
 void		sort(t_push_list *stack, t_push_list *stack_b, int i);
@@ -75,7 +76,7 @@ void		sort_b(t_push_list **stack, t_push_list **stack_b,
 int			check_cont(t_push_list **stack, t_push_list **stack_b, int max);
 int			findmax(t_push_list **stack_b);
 int			find_contmin(t_push_list **stack);
-int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max);
+int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max, int cont);
 int			cont_stackb(t_push_list **stack, t_push_list **stack_b, int max);
 void		range_sort(t_push_list **stack, t_push_list **stack_b, int len);
 void		range_chunk500(t_push_list **stack, t_push_list **stack_b,

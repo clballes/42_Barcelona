@@ -29,28 +29,30 @@ int	cont_stackb(t_push_list **stack, t_push_list **stack_b, int max)
 	while (temp_b)
 	{
 		if (temp_b->index == max)
+		{
+			printf("EL cont ES: %d\n", cont);
 			return (cont);
+		}
 		cont++;
 		temp_b = temp_b->next;
 	}
 	return (0);
 }
 
-int	rotate_b(t_push_list **stack, t_push_list **stack_b, int max)
+int	rotate_b(t_push_list **stack, t_push_list **stack_b, int max, int cont)
 {
 	int	size;
-	int	cont;
 
 	size = ft_push_lstsize(*stack_b);
-	cont = cont_stackb(stack, stack_b, max);
 	if (cont == 0)
 		send(stack_b, stack, 'a');
 	else if (cont >= (size / 2))
 	{
-		cont = max - cont;
+		cont = (max - cont);
 		while (cont--)
 			print_rev_rotate(stack_b, 'b');
 		send(stack_b, stack, 'a');
+		// print_list(stack, stack_b);
 	}
 	else if (cont < (size / 2))
 	{
@@ -66,56 +68,97 @@ void	sort_b(t_push_list **stack, t_push_list **stack_b,
 {
 	int	max;
 	int	size;
-	int	cont_size;
 	int	i;
 
-	cont_size = 0;
 	size = ft_push_lstsize(*stack_b);
 	i = findmax(stack_b);
 	temp_b = *stack_b;
-	while (i-- && temp_b && i > 2)
-	{
-		if (check_cont(stack, stack_b, max) == 0)
-		{
-			max = findmax(stack_b);
-			rotate_b(stack, stack_b, max);
+	max = findmax(stack_b);
+	printf("EL MAXIM ES: %d\n", max);
+
+			check_cont(stack, stack_b, max);
+	// while (i-- && temp_b && i > 2)
+	// {
 			temp_b = *stack_b;
 			temp = *stack;
-		}
-		i = max;
-	}
+	// 		i = max;
+	// }
 	max -= 1;
 	if (max == 2)
 		cont_stackb(stack, stack_b, max);
 }
 
+// int	check_cont(t_push_list **stack, t_push_list **stack_b, int max)
+// {
+// 	int	cont_max_nxt;
+// 	int	cont_max_nxt_nxt;
+// 	cont_max_nxt = cont_stackb(stack, stack_b, max);
+// 	cont_max_nxt_nxt = cont_stackb(stack, stack_b, (max - 1));
+
+// 	if (cont_max_nxt == 0)
+// 		return (0);
+// 	if (cont_max_nxt == cont_max_nxt_nxt - 1)
+// 	{
+// 		while (cont_max_nxt--)
+// 			print_rotate(stack_b, 'b');
+// 		send(stack_b, stack, 'a');
+// 		send(stack_b, stack, 'a');
+// 		return (1);
+// 	}
+// 	else if (cont_max_nxt == cont_max_nxt_nxt + 1)
+// 	{
+// 		while (cont_max_nxt_nxt--)
+// 			print_rotate(stack_b, 'a');
+// 		send(stack_b, stack, 'a');
+// 		send(stack_b, stack, 'a');
+// 		print_swap(stack, 'a');
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+
 int	check_cont(t_push_list **stack, t_push_list **stack_b, int max)
 {
-	int	cont_max_nxt;
-	int	cont_max_nxt_nxt;
+	int cont_max;
+	int cont_max2;
+	int cont_max3;
 
-	cont_max_nxt = cont_stackb(stack, stack_b, max);
-	cont_max_nxt_nxt = cont_stackb(stack, stack_b, (max - 1));
-	if (cont_max_nxt == 0)
-		return (0);
-	if (cont_max_nxt == cont_max_nxt_nxt - 1)
+	cont_max = cont_stackb(stack, stack_b, max);
+	cont_max2 = cont_stackb(stack, stack_b, (max - 1));
+	cont_max3 = cont_stackb(stack, stack_b, (max - 2));
+	
+	printf("el maxim es: %d\n", cont_max);
+	printf("el max - 1 es: %d\n", cont_max2);
+	printf("el max - 2 es: %d\n", cont_max3);
+	if (cont_max3 < cont_max && cont_max < cont_max2)
 	{
-		while (cont_max_nxt--)
-			print_rotate(stack_b, 'b');
-		send(stack_b, stack, 'a');
-		send(stack_b, stack, 'a');
+		rotate_b(stack, stack_b, max, cont_max3);
+		if (ft_push_lstsize(*stack) > 1)
+			print_rev_rotate(stack, 'a'); //ra per baixar el numero
+		cont_max = cont_stackb(stack, stack_b, max);
+		rotate_b(stack, stack_b, max, cont_max); //numero gran enviat
+		cont_max2 = cont_stackb(stack, stack_b, max);
+		rotate_b(stack, stack_b, max, cont_max2);
+		print_rev_rotate(stack, 'a');
+		print_list(stack, stack_b);
 		return (1);
 	}
-	else if (cont_max_nxt == cont_max_nxt_nxt + 1)
+	if (cont_max3 < cont_max && cont_max > cont_max2)
 	{
-		while (cont_max_nxt_nxt--)
-			print_rotate(stack_b, 'a');
-		send(stack_b, stack, 'a');
-		send(stack_b, stack, 'a');
-		print_swap(stack, 'a');
-		return (1);
+		rotate_b(stack, stack_b, max, cont_max3);
+		if (ft_push_lstsize(*stack) > 1)
+			print_rev_rotate(stack, 'a'); 
+		print_list(stack, stack_b);
+		cont_max2 = cont_stackb(stack, stack_b, max);
+		rotate_b(stack, stack_b, max, cont_max2);
+		print_list(stack, stack_b);
+
 	}
-	return (0);
+
+	if (cont_max < cont_max2 && cont_max < cont_max3)
+		rotate_b(stack, stack_b, max, cont_max3);
+	return 0;
+
 }
 
 int	findmax(t_push_list **stack_b)

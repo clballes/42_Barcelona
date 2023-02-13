@@ -18,11 +18,17 @@ void	print_rotate(t_push_list **stack, char c)
 		write(1, "ra\n", 3);
 }
 
-void	print_rotate_both(t_push_list **stack, t_push_list **stack_b)
+int	print_rotate_both(t_push_list **stack, t_push_list **stack_b)
 {
+	if (!*stack_b)
+	{
+		printf("putoooo\n");
+		return (0);
+	}
 	top_rotate (stack);
 	top_rotate (stack_b);
 	write(1, "rr\n", 3);
+	return (1);
 }
 
 void	print_rev_rotate(t_push_list **stack, char c)

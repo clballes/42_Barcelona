@@ -48,7 +48,7 @@ int	chunk500(t_push_list **stack, t_push_list **stack_b, int cont, int end)
 	int	size_a;
 
 	size_a = ft_push_lstsize(*stack);
-	if (end > 61)
+	if (end > 60)
 		end += end - 61;
 	if (cont < (size_a / 2))
 		cont = ft_sort_chunk_ra(stack, stack_b, cont, end);

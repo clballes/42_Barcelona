@@ -71,7 +71,7 @@ int	chunk(t_push_list **stack, t_push_list **stack_b, int cont, int end)
 	int	size_a;
 
 	size_a = ft_push_lstsize(*stack);
-	if (end > 19)
+	if (end >= 19)
 		end += end - 20;
 	if (cont < (size_a / 2))
 		cont = ft_sort_chunk_ra(stack, stack_b, cont, end);
@@ -123,3 +123,4 @@ int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b,
 		print_rotate(stack_b, 'b');
 	return (0);
 }
+
