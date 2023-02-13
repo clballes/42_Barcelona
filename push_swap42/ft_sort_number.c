@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sort_three(t_push_list **stack, char c)
+void	sort_three(t_push_list **stack)
 {
 	int			index3;
 	t_push_list	*temp;
@@ -21,36 +21,42 @@ void	sort_three(t_push_list **stack, char c)
 	index3 = temp->next->next->index;
 	if ((index3 > temp->next->index) && (index3 > temp->index)
 		&& (temp->index > temp->next->index))
-		swap(stack, c);
+		print_swap(stack, 'a');
 	else if ((index3 < temp->next->index) && temp->next->index < temp->index
 		&& (temp->index > index3))
 	{
-		swap(stack, c);
-		bottom_rotate(stack, c);
+		print_swap(stack, 'a');
+		print_rev_rotate(stack, 'a');
 	}
 	else if ((temp->index > temp->next->index)
 		&& (temp->index > index3) && temp->next->index < index3)
-		top_rotate(stack, c);
+		print_rotate(stack, 'a');
 	else if ((temp->next->index > temp->index) && (temp->next->index > index3))
+		check_three(stack);
+}
+
+void	check_three(t_push_list **stack)
+{
+	t_push_list	*temp;
+	int			index3;
+
+	temp = *stack;
+	index3 = temp->next->next->index;
+	if (temp->index < index3)
 	{
-		if (temp->index < index3)
-		{
-			swap(stack, c);
-			top_rotate(stack, c);
-		}
-		else
-			bottom_rotate(stack, c);
+		print_swap(stack, 'a');
+		print_rotate(stack, 'a');
 	}
+	else
+		print_rev_rotate(stack, 'a');
 }
 
 void	sort_five(t_push_list **stack, t_push_list **stack_b, int len)
 {
 	int	resultado;
 	int	j;
-	int	i;
 
 	j = 1;
-	i = 0;
 	if (len == 5)
 	{
 		resultado = find_contmin(stack);
@@ -67,7 +73,7 @@ void	sort_five(t_push_list **stack, t_push_list **stack_b, int len)
 		else
 			send_minimum(stack, stack_b, resultado);
 	}
-	sort_three(stack, 'a');
+	sort_three(stack);
 	send(stack_b, stack, 'a');
 	if (len == 5)
 		send(stack_b, stack, 'a');

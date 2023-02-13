@@ -24,7 +24,7 @@ void	range_chunk(t_push_list **stack, t_push_list **stack_b,
 	temp_b = *stack_b;
 	if (temp_b == NULL)
 	{
-		sort_hundred(stack, stack_b, (end + i));
+		sort_long(stack, stack_b, (end + i));
 		temp_b = *stack_b;
 		temp = *stack;
 	}
@@ -34,7 +34,7 @@ void	range_chunk(t_push_list **stack, t_push_list **stack_b,
 		if ((size_b + 1) >= i)
 		{
 			i += 20;
-			sort_hundred(stack, stack_b, (end + i));
+			sort_long(stack, stack_b, (end + i));
 			temp_b = *stack_b;
 			temp = *stack;
 		}
@@ -42,7 +42,7 @@ void	range_chunk(t_push_list **stack, t_push_list **stack_b,
 	sort_b(stack, stack_b, temp_b, temp);
 }
 
-void	sort_hundred(t_push_list **stack, t_push_list **stack_b, int end)
+void	sort_long(t_push_list **stack, t_push_list **stack_b, int end)
 {
 	t_push_list	*temp;
 	t_push_list	*temp2;
@@ -96,15 +96,13 @@ int	ft_sort_chunk_rra(t_push_list **stack, t_push_list **stack_b,
 
 	temp = *stack;
 	while (cont--)
-		bottom_rotate(stack, 'a');
+		print_rev_rotate(stack, 'a');
 	send(stack, stack_b, 'b');
 	temp_b = *stack_b;
 	if (temp_b->next == NULL)
 		return (0);
 	else if (temp_b->index <= (end / 2))
-		top_rotate(stack_b, 'b');
-	else
-		return (0);
+		print_rotate(stack_b, 'b');
 	return (0);
 }
 
@@ -116,14 +114,12 @@ int	ft_sort_chunk_ra(t_push_list **stack, t_push_list **stack_b,
 
 	temp = *stack;
 	while (cont--)
-		top_rotate(stack, 'a');
+		print_rotate(stack, 'a');
 	send(stack, stack_b, 'b');
 	temp_b = *stack_b;
 	if (temp_b->next == NULL)
 		return (0);
 	if (temp_b->index <= (end / 2))
-		top_rotate(stack_b, 'b');
-	else
-		return (0);
+		print_rotate(stack_b, 'b');
 	return (0);
 }

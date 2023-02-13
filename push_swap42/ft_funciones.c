@@ -50,14 +50,14 @@ void	ft_setindex(t_push_list **stack)
 void	send_minimum(t_push_list **stack, t_push_list **stack_b, int resultado)
 {
 	if (resultado == 2)
-		swap(stack, 'a');
+		print_swap(stack, 'a');
 	else if (resultado >= 3 && resultado <= 5)
 	{
-		bottom_rotate(stack, 'a');
+		print_rev_rotate(stack, 'a');
 		if (resultado == 3 || resultado == 4)
-			bottom_rotate(stack, 'a');
+			print_rev_rotate(stack, 'a');
 		if (resultado == 3)
-			bottom_rotate(stack, 'a');
+			print_rev_rotate(stack, 'a');
 	}
 	send(stack, stack_b, 'b');
 }
@@ -102,7 +102,7 @@ int	ft_sort(t_push_list **stack)
 			return (0);
 		else
 		{
-			swap(stack, 'a');
+			print_swap(stack, 'a');
 			return (0);
 		}
 	}

@@ -19,7 +19,7 @@ RM = /bin/rm -f
 LIBFT_DIR = LIBFT/
 
 # Sources
-SRCS = ft_check.c ft_funciones.c ft_push_swap.c ft_utils_list.c ft_operaciones.c ft_sort_number.c ft_minmax.c ft_sortlong.c ft_sortb.c ft_sort5hundred.c
+SRCS = ft_check.c ft_funciones.c ft_push_swap.c ft_utils_list.c ft_operaciones.c ft_sort_number.c ft_minmax.c ft_sortlong.c ft_sortb.c ft_sort5hundred.c ft_sort500.c ft_printmoves.c
 OBJS = $(SRCS:%.c=%.o)
 LIB = push_swap.h
 

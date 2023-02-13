@@ -31,9 +31,7 @@ int	find_contmin(t_push_list **stack)
 	while (temp2)
 	{
 		if (temp->index == temp2->index)
-		{
 			return (cont);
-		}
 		cont++;
 		temp2 = temp2->next;
 	}

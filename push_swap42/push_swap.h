@@ -37,19 +37,26 @@ void		ft_push_lstadd_back(t_push_list **lst, t_push_list *new);
 int			ft_push_lstsize(t_push_list	*lst);
 void		ft_setindex(t_push_list **stack);
 //Operation functions
-void		swap(t_push_list **stack, char c);
-void		top_rotate(t_push_list **stack, char c);
-void		bottom_rotate(t_push_list **stack, char c);
-void		print(t_push_list **stack);
+void		swap(t_push_list **stack);
+void		top_rotate(t_push_list **stack);
+void		bottom_rotate(t_push_list **stack);
+void		print_swap(t_push_list **stack, char c);
+void		print_rotate(t_push_list **stack, char c);
+void		print_rev_rotate(t_push_list **stack, char c);
+void		print_rotate_both(t_push_list **stack, t_push_list **stack_b);
+void		check_three(t_push_list **stack);
 //Sort functions
 int			ft_checkindex(t_push_list **stack);
 void		sort(t_push_list *stack, t_push_list *stack_b, int i);
-void		sort_three(t_push_list **stack, char c);
-void		sort_five(t_push_list **stack, t_push_list **stack_b, int len);
-void		sort_hundred(t_push_list **stack, t_push_list **stack_b, int beg);
+void		sort_three(t_push_list **stack);
+void		sort_five(t_push_list **stack, t_push_list **stack_b,
+				int len);
+void		sort_long(t_push_list **stack, t_push_list **stack_b, int beg);
 void		print_list(t_push_list **list_a, t_push_list **list_b);
 void		send(t_push_list **stack_a, t_push_list **stack_b, char c);
 int			ft_sort(t_push_list **stack);
+void		ft_functions(int argc, char **argv);
+
 //encontrar el minmax
 void		send_minimum(t_push_list **stack,
 				t_push_list **stack_b, int resultado);
@@ -70,6 +77,10 @@ int			findmax(t_push_list **stack_b);
 int			find_contmin(t_push_list **stack);
 int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max);
 int			cont_stackb(t_push_list **stack, t_push_list **stack_b, int max);
-void		sort_five_hundred(t_push_list **stack, t_push_list **stack_b);
+void		range_sort(t_push_list **stack, t_push_list **stack_b, int len);
+void		range_chunk500(t_push_list **stack, t_push_list **stack_b,
+				int end, int size_b);
+int			chunk500(t_push_list **stack, t_push_list **stack_b,
+				int cont, int end);
 
 #endif

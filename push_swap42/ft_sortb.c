@@ -22,7 +22,7 @@ int	cont_stackb(t_push_list **stack, t_push_list **stack_b, int max)
 	if (max == 2)
 	{
 		if (temp_b->index < temp_b->next->index)
-			swap (stack_b, 'b');
+			print_swap(stack_b, 'b');
 		send(stack_b, stack, 'a');
 		send(stack_b, stack, 'a');
 	}
@@ -49,13 +49,13 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int max)
 	{
 		cont = max - cont;
 		while (cont--)
-			bottom_rotate(stack_b, 'b');
+			print_rev_rotate(stack_b, 'b');
 		send(stack_b, stack, 'a');
 	}
 	else if (cont < (size / 2))
 	{
 		while (cont--)
-			top_rotate(stack_b, 'b');
+			print_rotate(stack_b, 'b');
 		send(stack_b, stack, 'a');
 	}
 	return (0);
@@ -101,7 +101,7 @@ int	check_cont(t_push_list **stack, t_push_list **stack_b, int max)
 	if (cont_max_nxt == cont_max_nxt_nxt - 1)
 	{
 		while (cont_max_nxt--)
-			top_rotate(stack_b, 'b');
+			print_rotate(stack_b, 'b');
 		send(stack_b, stack, 'a');
 		send(stack_b, stack, 'a');
 		return (1);
@@ -109,10 +109,10 @@ int	check_cont(t_push_list **stack, t_push_list **stack_b, int max)
 	else if (cont_max_nxt == cont_max_nxt_nxt + 1)
 	{
 		while (cont_max_nxt_nxt--)
-			top_rotate(stack_b, 'a');
+			print_rotate(stack_b, 'a');
 		send(stack_b, stack, 'a');
 		send(stack_b, stack, 'a');
-		swap(stack, 'a');
+		print_swap(stack, 'a');
 		return (1);
 	}
 	return (0);
