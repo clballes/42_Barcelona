@@ -42,7 +42,6 @@ void	ft_reduce_moves(t_push_list **stack, int max)
 		size_a = findmax(stack);
 		if (temp->next->index == (max - 1))
 		{
-			printf("holaaa\n");
 			swap(stack, 'a');
 			temp = *stack;
 		}
@@ -74,14 +73,13 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
 		send(stack_b, stack, 'a');
 	else if (cont >= (size / 2))
 	{
-		printf("entres aqui bitx??????\n");
 		cont = size - cont;
 		while (cont--)
 		{
 			temp_b = *stack_b;
 			if (temp_b->index == (max - 1))
 				send(stack_b, stack, 'a');
-			if (temp_b->index == (max - 2))
+			else if(temp_b->index == (max - 2))
 			{
 				send(stack_b, stack, 'a');
 				if (ft_push_lstsize(*stack) >= 1)
@@ -98,22 +96,17 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
 	{
 		while (cont--)
 		{
-			printf("el max es: %d\n", max);
 			temp_b = *stack_b;
 			if (temp_b->index == (max - 1))
-			{
 				send(stack_b, stack, 'a');
-				cont = cont_stackb(stack_b, max);
-				temp_b = *stack_b;
-			}
-			if (temp_b->index == (max - 2))
+			else if (temp_b->index == (max - 2))
 			{
 				send(stack_b, stack, 'a');
 				if (ft_push_lstsize(*stack) >= 1)
 					top_rotate(stack, 'a');
-				temp_b = *stack_b;
 			}
-			top_rotate(stack_b, 'b');
+			else
+				top_rotate(stack_b, 'b');
 		}
 		send(stack_b, stack, 'a');
 		temp = *stack;
@@ -133,39 +126,48 @@ void	sort_b(t_push_list **stack, t_push_list **stack_b,
 	int cont;
 
 	cont = 0;
-	size = ft_push_lstsize(*stack_b);
+	max = 0;
+	// size = ft_push_lstsize(*stack_b);
+	max = findmax(stack_b);
 	temp_b = *stack_b;
 	while (temp_b && max > 2)
 	{
-			// print_list(stack, stack_b);
-			max = findmax(stack_b);
-			if (max >= 0 && max <= 2)
-				break;
-			cont = cont_stackb(stack_b, max);
-			rotate_b(stack, stack_b, cont, max);
-			print_list(stack, stack_b);
-			temp_b = *stack_b;
-			temp = *stack;
-			//print_list(stack, stack_b);
+		max = findmax(stack_b);
+		if (max >= 0 && max <= 3)
+		{
+			printf("holaaaaaaa\n");
+			break;
+		}
+		cont = cont_stackb(stack_b, max);
+		rotate_b(stack, stack_b, cont, max);
+		temp_b = *stack_b;
+		temp = *stack;
+		print_list(stack, stack_b);
 	}
+	max = findmax(stack);
 	size = ft_push_lstsize(*stack_b);
-	if (size <= 2)
-		sort_two(stack, stack_b, size);
+	printf("sizeee es %d\n", size);
 	print_list(stack, stack_b);
+	if (size <= 2)
+		sort_two(stack, stack_b, size, max);	//em falta nomes els tres ultims numeros
 }
 
 
-void	sort_two(t_push_list **stack, t_push_list **stack_b, int size)
+void	sort_two(t_push_list **stack, t_push_list **stack_b, int size, int max)
 {
 	t_push_list *temp;
 
 	temp = *stack;
+	max = 0;
 	if (size == 2)
 	{
+		// if (max == 3)
+		// 	cont
 		if (temp->index < temp->next->index)
 			swap (stack, 'a');
 		send(stack_b, stack, 'a');
 		send(stack_b, stack, 'a');
+		temp = *stack;
 	}
 	else if (size == 1)
 	{

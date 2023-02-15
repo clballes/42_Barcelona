@@ -71,7 +71,7 @@ int			find_contmin(t_push_list **stack);
 int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max, int cont);
 int			cont_stackb(t_push_list **stack_b, int max);
 void		sort_five_hundred(t_push_list **stack, t_push_list **stack_b);
-void		sort_two(t_push_list **stack, t_push_list **stack_b, int size);
+void		sort_two(t_push_list **stack, t_push_list **stack_b, int size, int max);
 //sorting 500 numbers
 int			chunk500(t_push_list **stack, t_push_list **stack_b, int cont, int end);
 void		range_chunk500(t_push_list **stack, t_push_list **stack_b, int end, int size_b);
