@@ -68,8 +68,10 @@ void		sort_b(t_push_list **stack, t_push_list **stack_b,
 int			check_cont(t_push_list **stack, t_push_list **stack_b, int max);
 int			findmax(t_push_list **stack_b);
 int			find_contmin(t_push_list **stack);
-int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max);
-int			cont_stackb(t_push_list **stack, t_push_list **stack_b, int max);
+int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max, int cont);
+int			cont_stackb(t_push_list **stack_b, int max);
 void		sort_five_hundred(t_push_list **stack, t_push_list **stack_b);
+void		sort_two(t_push_list **stack, t_push_list **stack_b, int max);
+
 
 #endif
