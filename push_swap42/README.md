@@ -8,3 +8,4 @@ Debes escribir un programa llamado push_swap que recibirá como argumento el sta
 • Tu programa no recibirá puntos tanto si tu programa muestra una lista demasiado larga como si el resultado no es correcto.
 • Si no se especifican parámetros, el programa no deberá mostrar nada y deberá devolver el control al usuario.
 • En caso de error, deberás mostrar Error seguido de un “\n” en la salida de erro- res estándar. Algunos de los posibles errores son: argumentos que no son enteros, argumentos superiores a un int, y/o encontrar números duplicados.
+//

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+//
 void	range_chunk(t_push_list **stack, t_push_list **stack_b,
 			int end, int size_b)
 {	
