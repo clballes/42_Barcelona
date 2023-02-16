@@ -6,12 +6,12 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:33:29 by clballes          #+#    #+#             */
-/*   Updated: 2023/01/30 09:57:42 by clballes         ###   ########.fr       */
+/*   Updated: 2023/02/16 13:17:41 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//
+
 void	ft_check(int argc, char **argv)
 {
 	int	j;

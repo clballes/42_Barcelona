@@ -9,7 +9,7 @@
 /*   Updated: 2023/01/30 10:15:38 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-//
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <unistd.h>
@@ -40,11 +40,11 @@ void		ft_setindex(t_push_list **stack);
 void		swap(t_push_list **stack, char c);
 void		top_rotate(t_push_list **stack, char c);
 void		bottom_rotate(t_push_list **stack, char c);
-void		print(t_push_list **stack);
+void		check_three(t_push_list **stack);
 //Sort functions
 int			ft_checkindex(t_push_list **stack);
 void		sort(t_push_list *stack, t_push_list *stack_b, int i);
-void		sort_three(t_push_list **stack, char c);
+void		sort_three(t_push_list **stack);
 void		sort_five(t_push_list **stack, t_push_list **stack_b, int len);
 void		sort_hundred(t_push_list **stack, t_push_list **stack_b, int beg);
 void		print_list(t_push_list **list_a, t_push_list **list_b);
@@ -67,12 +67,15 @@ void		sort_b(t_push_list **stack, t_push_list **stack_b,
 int			check_cont(t_push_list **stack, t_push_list **stack_b, int max);
 int			findmax(t_push_list **stack_b);
 int			find_contmin(t_push_list **stack);
-int			rotate_b(t_push_list **stack, t_push_list **stack_b, int max, int cont);
+int			rotate_b(t_push_list **stack, t_push_list **stack_b,
+				int max, int cont);
 int			cont_stackb(t_push_list **stack_b, int max);
 void		sort_five_hundred(t_push_list **stack, t_push_list **stack_b);
 //sorting 500 numbers
-int			chunk500(t_push_list **stack, t_push_list **stack_b, int cont, int end);
-void		range_chunk500(t_push_list **stack, t_push_list **stack_b, int end, int size_b);
+int			chunk500(t_push_list **stack, t_push_list **stack_b,
+				int cont, int end);
+void		range_chunk500(t_push_list **stack, t_push_list **stack_b,
+				int end, int size_b);
 void		range_sort(t_push_list **stack, t_push_list **stack_b, int len);
 void		sort_5hundred(t_push_list **stack, t_push_list **stack_b, int end);
 void		ft_reduce_moves(t_push_list **stack, int max);

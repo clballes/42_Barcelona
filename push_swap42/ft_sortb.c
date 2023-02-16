@@ -31,17 +31,17 @@ int	cont_stackb(t_push_list **stack_b, int max)
 
 void	ft_reduce_moves(t_push_list **stack, int max)
 {
-	t_push_list *temp;
+	t_push_list	*temp;
 
 	temp = *stack;
 	if (!temp->next)
 		return ;
-	if(temp->index > temp->next->index)
+	if (temp->index > temp->next->index)
 	{
 		swap(stack, 'a');
 		temp = *stack;
 	}
-	while(temp->next)
+	while (temp->next)
 		temp = temp->next;
 	if (temp->index < max)
 		bottom_rotate(stack, 'a');
@@ -49,9 +49,9 @@ void	ft_reduce_moves(t_push_list **stack, int max)
 
 int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
 {
-	int	size;
-	t_push_list *temp_b;
-	t_push_list *temp;
+	int			size;
+	t_push_list	*temp_b;
+	t_push_list	*temp;
 
 	temp_b = *stack_b;
 	temp = *stack;
@@ -69,7 +69,7 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
 			temp_b = *stack_b;
 			if (temp_b->index == (max - 1))
 				send(stack_b, stack, 'a');
-			else if(temp_b->index == (max - 2))
+			else if (temp_b->index == (max - 2))
 			{
 				send(stack_b, stack, 'a');
 				if (ft_push_lstsize(*stack) > 1)
@@ -111,13 +111,11 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
 	return (0);
 }
 
-
-
 void	sort_b(t_push_list **stack, t_push_list **stack_b,
 			t_push_list	*temp_b, t_push_list *temp)
 {
 	int	max;
-	int cont;
+	int	cont;
 
 	cont = 0;
 	max = 0;
@@ -135,7 +133,7 @@ void	sort_b(t_push_list **stack, t_push_list **stack_b,
 
 void	ft_checka(t_push_list **stack)
 {
-	t_push_list *temp;
+	t_push_list	*temp;
 
 	temp = *stack;
 	while (temp->index < 4)
