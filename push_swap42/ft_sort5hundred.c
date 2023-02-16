@@ -14,15 +14,10 @@
 
 void    range_sort(t_push_list **stack, t_push_list **stack_b, int len)
 {
-    int end;
-    int size_b;
-
-    end = 0;
-    size_b = 0;
     if (len <= 100)
-        range_chunk(stack, stack_b, end, size_b);
+        range_chunk(stack, stack_b, 0, 0);
     else
-        range_chunk500(stack, stack_b, end, size_b);
+        range_chunk500(stack, stack_b, 0, 0);
 }
 
 void    range_chunk500(t_push_list **stack, t_push_list **stack_b,

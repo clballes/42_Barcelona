@@ -31,34 +31,21 @@ int	cont_stackb(t_push_list **stack_b, int max)
 
 void	ft_reduce_moves(t_push_list **stack, int max)
 {
-	int	size_a;
 	t_push_list *temp;
 
 	temp = *stack;
-	size_a = 0;
-	if (temp)
+	if (!temp->next)
+		return ;
+	if(temp->index > temp->next->index)
 	{
+		swap(stack, 'a');
 		temp = *stack;
-		size_a = findmax(stack);
-		if (temp->next->index == (max - 1))
-		{
-			swap(stack, 'a');
-			temp = *stack;
-		}
-		while(temp)
-		{
-			if (temp->index == size_a)
-			{
-				if(temp->next == NULL)
-					break;
-				else
-					bottom_rotate(stack, 'a');
-			}
-			temp = temp->next;
-		}
 	}
+	while(temp->next)
+		temp = temp->next;
+	if (temp->index < max)
+		bottom_rotate(stack, 'a');
 }
-
 
 int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
 {
@@ -70,7 +57,10 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
 	temp = *stack;
 	size = ft_push_lstsize(*stack_b);
 	if (cont == 0)
+	{
 		send(stack_b, stack, 'a');
+		ft_reduce_moves(stack, max);
+	}
 	else if (cont >= (size / 2))
 	{
 		cont = size - cont;
@@ -82,10 +72,14 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
 			else if(temp_b->index == (max - 2))
 			{
 				send(stack_b, stack, 'a');
-				if (ft_push_lstsize(*stack) >= 1)
+				if (ft_push_lstsize(*stack) > 1)
+				{
 					top_rotate(stack, 'a');
+				}
 			}
-			bottom_rotate(stack_b, 'b');
+			else
+				bottom_rotate(stack_b, 'b');
+			cont = cont_stackb(stack_b, max);
 		}
 		send(stack_b, stack, 'a');
 		temp = *stack;
@@ -96,23 +90,21 @@ int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
 	{
 		while (cont--)
 		{
-			printf("el cont es: %d\n", cont);
 			temp_b = *stack_b;
 			if (temp_b->index == (max - 1))
 				send(stack_b, stack, 'a');
 			else if (temp_b->index == (max - 2))
 			{
 				send(stack_b, stack, 'a');
-				if (ft_push_lstsize(*stack) >= 1)
+				if (ft_push_lstsize(*stack) > 1)
 					top_rotate(stack, 'a');
-				print_list(stack, stack_b);
 			}
 			else
 				top_rotate(stack_b, 'b');
 			cont = cont_stackb(stack_b, max);
 		}
-		send(stack_b, stack, 'a');
 		temp = *stack;
+		send(stack_b, stack, 'a');
 		if (ft_push_lstsize(*stack) >= 2)
 			ft_reduce_moves(stack, max);
 	}
@@ -125,79 +117,20 @@ void	sort_b(t_push_list **stack, t_push_list **stack_b,
 			t_push_list	*temp_b, t_push_list *temp)
 {
 	int	max;
-	int	size;
 	int cont;
 
 	cont = 0;
 	max = 0;
 	max = findmax(stack_b);
 	temp_b = *stack_b;
-	// while (temp_b && max > 4)
-	// {
-		max = findmax(stack_b);
-		// if (max >= 0 && max <= 4)
-		// 	break;
-		cont = cont_stackb(stack_b, max);
-		rotate_b(stack, stack_b, cont, max);
-		print_list(stack, stack_b);
-		temp_b = *stack_b;
-		temp = *stack;
-		max = findmax(stack_b);
-		printf("el max es %d\n", max);
-		// if (max >= 0 && max <= 4)
-		// 	break;
-		cont = cont_stackb(stack_b, max);
-		rotate_b(stack, stack_b, cont, max);
-		print_list(stack, stack_b);
-		temp_b = *stack_b;
-		temp = *stack;
-		max = findmax(stack_b);
-		printf("el max es %d\n", max);
-		// if (max >= 0 && max <= 4)
-		// 	break;
-		cont = cont_stackb(stack_b, max);
-		rotate_b(stack, stack_b, cont, max);
-		print_list(stack, stack_b);
-		temp_b = *stack_b;
-		temp = *stack;
-	// }
-	max = findmax(stack);
-	size = ft_push_lstsize(*stack_b);
-	if (size <= 4)
-		sort_two(stack, stack_b, size, max);	//em falta nomes els tres ultims numeros
-}
-
-void	sort_two(t_push_list **stack, t_push_list **stack_b, int size, int max)
-{
-	t_push_list *temp;
-	t_push_list *temp_b;
-
-	temp_b = *stack_b;
-	temp = *stack;
-	max = 0;
-	if(temp->index > temp->next->index)
-		swap(stack, 'a');
-	if (size == 2)
+	while (temp_b && max >= 1)
 	{
-		if (temp_b->index > temp_b->next->index)
-		{
-			send(stack_b, stack, 'b');
-			send(stack_b, stack, 'b');
-		}
-		if (temp_b->index < temp_b->next->index)
-			swap(stack, 'a');
+		max = findmax(stack_b);
+		cont = cont_stackb(stack_b, max);
+		rotate_b(stack, stack_b, cont, max);
+		temp_b = *stack_b;
+		temp = *stack;
 	}
-	else if (size == 1)
-		send(stack_b, stack, 'a');
-	else if(size == 3)
-	{
-		send(stack_b, stack, 'a'); //3 1 
-		ft_checka(stack);
-		send(stack_b, stack, 'a'); //3 1 
-		ft_checka(stack);
-		send(stack_b, stack, 'a'); //3 1 
-	}
-	ft_checka(stack);
 }
 
 void	ft_checka(t_push_list **stack)

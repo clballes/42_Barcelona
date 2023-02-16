@@ -37,7 +37,7 @@ void	ft_setindex(t_push_list **stack)
 			i++;
 		if (tmp2->next == NULL)
 		{
-			tmp->index = (size_list - i);
+			tmp->index = (size_list - i -1);
 			tmp = tmp->next;
 			tmp2 = *stack;
 			i = 0;
