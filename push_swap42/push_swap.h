@@ -78,6 +78,8 @@ void		range_chunk500(t_push_list **stack, t_push_list **stack_b, int end, int si
 void		range_sort(t_push_list **stack, t_push_list **stack_b, int len);
 void		sort_5hundred(t_push_list **stack, t_push_list **stack_b, int end);
 void		ft_reduce_moves(t_push_list **stack, int max);
+void		ft_checka(t_push_list **stack);
+
 
 
 #endif
