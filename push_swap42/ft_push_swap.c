@@ -43,10 +43,10 @@ int	main(int argc, char **argv)
 		}
 		ft_setindex(&stack);
 		if (ft_sort(&stack) == 0)
-			return (0);
+			exit(0);
 	}
 	len = len - 1;
 	if (ft_checkindex(&stack) == 0)
 		sort(stack, stack_b, len);
-	return (0);
+	exit(0);
 }

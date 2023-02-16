@@ -68,10 +68,10 @@ int	ft_checkindex(t_push_list **stack)
 	int			i;
 
 	temp = *stack;
-	i = 1;
-	while (temp->index)
+	i = 0;
+	while (temp)
 	{
-		if (temp->index == 1)
+		if (temp->index == 0)
 		{
 			i++;
 			temp = temp->next;
@@ -80,7 +80,7 @@ int	ft_checkindex(t_push_list **stack)
 				i++;
 				temp = temp->next;
 				if (temp->next == NULL)
-					return (1);
+					exit (1);
 			}
 		}
 		else

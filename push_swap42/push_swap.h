@@ -62,7 +62,6 @@ int			ft_sort_chunk_rra(t_push_list **stack,
 				t_push_list **stack_b, int cont, int end);
 void		range_chunk(t_push_list **stack, t_push_list **stack_b,
 				int end, int size_b);
-// int			findmax(t_push_list **stack, t_push_list **stack_b);
 void		sort_b(t_push_list **stack, t_push_list **stack_b,
 				t_push_list	*temp_b, t_push_list *temp);
 int			check_cont(t_push_list **stack, t_push_list **stack_b, int max);
@@ -78,7 +77,4 @@ void		range_sort(t_push_list **stack, t_push_list **stack_b, int len);
 void		sort_5hundred(t_push_list **stack, t_push_list **stack_b, int end);
 void		ft_reduce_moves(t_push_list **stack, int max);
 void		ft_checka(t_push_list **stack);
-
-
-
 #endif
