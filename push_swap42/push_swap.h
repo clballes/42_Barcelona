@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:12:39 by clballes          #+#    #+#             */
-/*   Updated: 2023/01/30 10:15:38 by clballes         ###   ########.fr       */
+/*   Updated: 2023/02/16 13:54:06 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,9 @@ void		range_sort(t_push_list **stack, t_push_list **stack_b, int len);
 void		sort_5hundred(t_push_list **stack, t_push_list **stack_b, int end);
 void		ft_reduce_moves(t_push_list **stack, int max);
 void		ft_checka(t_push_list **stack);
+void		rotate_op(t_push_list **stack, t_push_list **stack_b, int max);
+void		rotate_op2(t_push_list **stack, t_push_list **stack_b, int max);
+void		rotate_op_send(t_push_list **stack, t_push_list **stack_b, int max);
+void		cont_rotate(t_push_list **stack, t_push_list **stack_b,
+				int cont, int max);
 #endif

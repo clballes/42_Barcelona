@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//
+
 void	sort(t_push_list *stack, t_push_list *stack_b, int len)
 {
 	if (len == 3)
-		sort_three(&stack, 'a');
+		sort_three(&stack);
 	if (len == 5 || len == 4)
 		sort_five(&stack, &stack_b, len);
 	if (len > 5)

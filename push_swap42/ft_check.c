@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:33:29 by clballes          #+#    #+#             */
-/*   Updated: 2023/02/16 13:17:41 by clballes         ###   ########.fr       */
+/*   Updated: 2023/02/16 13:57:00 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,15 @@ void	write_error(void)
 {
 	write (2, "Error\n", 6);
 	exit (1);
+}
+
+void	cont_rotate(t_push_list **stack, t_push_list **stack_b,
+		int cont, int max)
+{
+	while (cont--)
+	{
+		rotate_op2(stack, stack_b, max);
+		cont = cont_stackb(stack_b, max);
+	}
+	rotate_op_send(stack, stack_b, max);
 }

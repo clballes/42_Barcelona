@@ -29,88 +29,6 @@ int	cont_stackb(t_push_list **stack_b, int max)
 	return (0);
 }
 
-void	ft_reduce_moves(t_push_list **stack, int max)
-{
-	t_push_list	*temp;
-
-	temp = *stack;
-	if (!temp->next)
-		return ;
-	if (temp->index > temp->next->index)
-	{
-		swap(stack, 'a');
-		temp = *stack;
-	}
-	while (temp->next)
-		temp = temp->next;
-	if (temp->index < max)
-		bottom_rotate(stack, 'a');
-}
-
-int	rotate_b(t_push_list **stack, t_push_list **stack_b, int cont, int max)
-{
-	int			size;
-	t_push_list	*temp_b;
-	t_push_list	*temp;
-
-	temp_b = *stack_b;
-	temp = *stack;
-	size = ft_push_lstsize(*stack_b);
-	if (cont == 0)
-	{
-		send(stack_b, stack, 'a');
-		ft_reduce_moves(stack, max);
-	}
-	else if (cont >= (size / 2))
-	{
-		cont = size - cont;
-		while (cont--)
-		{
-			temp_b = *stack_b;
-			if (temp_b->index == (max - 1))
-				send(stack_b, stack, 'a');
-			else if (temp_b->index == (max - 2))
-			{
-				send(stack_b, stack, 'a');
-				if (ft_push_lstsize(*stack) > 1)
-				{
-					top_rotate(stack, 'a');
-				}
-			}
-			else
-				bottom_rotate(stack_b, 'b');
-			cont = cont_stackb(stack_b, max);
-		}
-		send(stack_b, stack, 'a');
-		temp = *stack;
-		if (ft_push_lstsize(*stack) >= 2)
-			ft_reduce_moves(stack, max);
-	}
-	else if (cont < (size / 2))
-	{
-		while (cont--)
-		{
-			temp_b = *stack_b;
-			if (temp_b->index == (max - 1))
-				send(stack_b, stack, 'a');
-			else if (temp_b->index == (max - 2))
-			{
-				send(stack_b, stack, 'a');
-				if (ft_push_lstsize(*stack) > 1)
-					top_rotate(stack, 'a');
-			}
-			else
-				top_rotate(stack_b, 'b');
-			cont = cont_stackb(stack_b, max);
-		}
-		temp = *stack;
-		send(stack_b, stack, 'a');
-		if (ft_push_lstsize(*stack) >= 2)
-			ft_reduce_moves(stack, max);
-	}
-	return (0);
-}
-
 void	sort_b(t_push_list **stack, t_push_list **stack_b,
 			t_push_list	*temp_b, t_push_list *temp)
 {
@@ -142,6 +60,24 @@ void	ft_checka(t_push_list **stack)
 			swap(stack, 'a');
 		temp = temp->next;
 	}
+}
+
+void	ft_reduce_moves(t_push_list **stack, int max)
+{
+	t_push_list	*temp;
+
+	temp = *stack;
+	if (!temp->next)
+		return ;
+	if (temp->index > temp->next->index)
+	{
+		swap(stack, 'a');
+		temp = *stack;
+	}
+	while (temp->next)
+		temp = temp->next;
+	if (temp->index < max)
+		bottom_rotate(stack, 'a');
 }
 
 int	findmax(t_push_list **stack_b)
