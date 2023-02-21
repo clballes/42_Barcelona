@@ -95,3 +95,14 @@ int	chunk500(t_push_list **stack, t_push_list **stack_b, int cont, int end)
 	}
 	return (cont);
 }
+
+void	cont_rotate(t_push_list **stack, t_push_list **stack_b,
+		int cont, int max)
+{
+	while (cont--)
+	{
+		rotate_op2(stack, stack_b, max);
+		cont = cont_stackb(stack_b, max);
+	}
+	rotate_op_send(stack, stack_b, max);
+}

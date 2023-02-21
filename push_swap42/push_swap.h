@@ -85,4 +85,5 @@ void		rotate_op2(t_push_list **stack, t_push_list **stack_b, int max);
 void		rotate_op_send(t_push_list **stack, t_push_list **stack_b, int max);
 void		cont_rotate(t_push_list **stack, t_push_list **stack_b,
 				int cont, int max);
+void		check2(char **argv, int i, int j);
 #endif

@@ -23,27 +23,36 @@ void	ft_check(int argc, char **argv)
 		i = 0;
 		if (argv[j][i] == '\0')
 			write_error();
+		if (argv[j][i] == '0' && (argv[j][1] >= '0' && argv[j][1] <= '9'))
+			write_error();
 		while (argv[j][i])
-		{	
-			if ((argv[j][i] == '-' && argv[j][i + 1] == '-')
-					|| (argv[j][i] == '+' && argv[j][i + 1] == '+'))
-				write_error();
-			else if ((argv[j][i] >= 48 && argv[j][i] <= 57
-						&& ((argv[j][i + 1]) == '-'))
-					|| (argv[j][i] >= 48 && argv[j][i] <= 57
-						&& ((argv[j][i + 1]) == '+')))
-				write_error();
-			if ((argv[j][i] >= 48 && argv[j][i] <= 57)
-					|| ((argv[j][i] == '-') && argv[j][i + 1] != '\0'))
-				i++;
-			else
-				write_error();
+		{
+			check2(argv, i, j);
+			i++;
 		}
 		j++;
 	}
 	j = 1;
 	ft_comparedigit(argv, argc, j);
 	ft_maxmin_int(argv, argc, j);
+}
+
+void	check2(char **argv, int i, int j)
+{
+	if (argv[j][i] == '-')
+	{
+		i++;
+		if (argv[j][i] == '-' || argv[j][i] == '0' || argv[j][i] == '\0')
+			write_error();
+	}
+	else if (argv[j][i] >= '0' && argv[j][i] <= '9')
+	{
+		i++;
+		if (argv[j][i] == '-')
+			write_error();
+	}
+	else
+		write_error();
 }
 
 void	ft_comparedigit(char **argv, int argc, int j)
@@ -94,15 +103,4 @@ void	write_error(void)
 {
 	write (2, "Error\n", 6);
 	exit (1);
-}
-
-void	cont_rotate(t_push_list **stack, t_push_list **stack_b,
-		int cont, int max)
-{
-	while (cont--)
-	{
-		rotate_op2(stack, stack_b, max);
-		cont = cont_stackb(stack_b, max);
-	}
-	rotate_op_send(stack, stack_b, max);
 }
