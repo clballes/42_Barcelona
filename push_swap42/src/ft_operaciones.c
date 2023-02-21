@@ -28,7 +28,7 @@ void	swap(t_push_list **stack, char c)
 	second->next = first;
 	second->previous = NULL;
 	*stack = second;
-	printf("s%c\n", c);
+	ft_printf("s%c\n", c);
 }
 
 void	top_rotate(t_push_list **stack, char c)
@@ -45,7 +45,7 @@ void	top_rotate(t_push_list **stack, char c)
 	top->next = NULL;
 	top->previous = bottom;
 	bottom->next = top;
-	printf("r%c\n", c);
+	ft_printf("r%c\n", c);
 }
 
 void	bottom_rotate(t_push_list **stack, char c)
@@ -60,7 +60,7 @@ void	bottom_rotate(t_push_list **stack, char c)
 	*stack = bottom;
 	bottom->next = top;
 	top->previous = bottom;
-	printf("rr%c\n", c);
+	ft_printf("rr%c\n", c);
 }
 
 void	send(t_push_list **stack_a, t_push_list **stack_b, char c)
@@ -84,5 +84,5 @@ void	send(t_push_list **stack_a, t_push_list **stack_b, char c)
 			top_a->next = top_b;
 		}
 	}
-	printf("p%c\n", c);
+	ft_printf("p%c\n", c);
 }

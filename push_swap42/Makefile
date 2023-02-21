@@ -18,43 +18,47 @@ RM = /bin/rm -f
 # Path
 LIBFT_DIR = LIBFT/
 LIBFT = ${LIBFT_DIR}/libft.a
+
 PRINTF_DIR = PRINTF/
 PRINTF = ${PRINTF_DIR}/libftprintf.a
-SRCS_DIR = SRCS/
-# LIBFT_DIR = LIBFT/
-# LIBFT = ${LIBFT_DIR}/libft.a
-# INC_DIR = inc/
-# OBJ_DIR = obj/
-# SRC_DIR = src/
+INC_DIR = inc/
+
+LIB = ${INC_DIR}/push_swap.h
+SRCS_DIR = src/
 
 # Sources
-SRCS = ft_check.c ft_funciones_list.c ft_push_swap.c ft_utils_list.c ft_operaciones.c ft_sort_short.c ft_op_sort_b.c ft_sortlong.c ft_sortb.c ft_sort5hundred.c
-# OBJS = $(SRCS:%.c=%.o)
-LIB = push_swap.h
+SRCS = $(SRCS_DIR)ft_check.c $(SRCS_DIR)ft_funciones_list.c $(SRCS_DIR)ft_push_swap.c $(SRCS_DIR)ft_utils_list.c $(SRCS_DIR)ft_operaciones.c $(SRCS_DIR)ft_sort_short.c $(SRCS_DIR)ft_op_sort_b.c $(SRCS_DIR)ft_sortlong.c $(SRCS_DIR)ft_sortb.c $(SRCS_DIR)ft_sort5hundred.c
 
-# Comandos
-# %.o: %.c
-# 	@$(CC) $(CFLAGS) -I./ -c $< -o $@
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-		mkdir -p $(OBJ_DIR)
-		$(CC) -I $(INC_DIR)  -c $(CFLAGS) -MMD $< -o $@
+DEPS = $(SRCS:%.c=%.d)
+OBJ = $(SRCS:%.c=%.o)
 
-all: $(NAME)
+$(NAME): $(OBJ) $(LIB) $(LIBFT) $(PRINTF) $(DEPS)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
+	@echo "\n🤠💫 You are ready to sort lists 🤠💫\n"
 
-libs:
-	make -C $(LIBFT_DIR)
+# gcc -flags _i incs -LPRINTF_DIR -LIBFT_DIR -lftprintf -lft
+$(LIBFT): 
+		@make -sC $(LIBFT_DIR)
 
-$(NAME): $(OBJS) $(LIB)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)/libft.a -o $(NAME)
+$(PRINTF): 
+		@make -sC $(PRINTF_DIR)
+
+%.o: %.c
+	@echo "Compiling...[$<]"
+	@$(CC) -I$(INC_DIR) -I$(LIBFT_DIR) -I$(PRINTF_DIR)/INC -c $(CFLAGS) -MMD $< -o $@
 
 clean:
-	$(RM) -r $(OBJ_DIR) $(DEPS)
-	$(RM) $(LIBFT_DIR)/libft.a
-	@make clean -C $(LIBFT_DIR)
+	@$(RM) $(NAME)
+	@$(RM) $(OBJ)
+	@$(RM) $(DEPS)
+	@make clean -sC $(LIBFT_DIR)
+	@make clean -sC $(PRINTF_DIR)
+	@echo "\n🌼 It is all safe and clean 🌼\n"
 
 fclean: clean
-	$(RM) $(NAME)	
 
 re: fclean all
+
+all: $(NAME)
 
 .PHONY: all clean fclean re

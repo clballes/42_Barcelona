@@ -12,12 +12,10 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <unistd.h>
 # include <stddef.h>
 # include <stdlib.h>
-# include <unistd.h>
-# include "LIBFT/libft.h"
-# include <stdio.h>
+# include "libft.h"
+# include "ft_printf.h"
 
 typedef struct s_push_list
 {
