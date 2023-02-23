@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+
 void	sort_three(t_push_list **stack)
 {
 	int			index3;

@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+
 void	take_numbers(t_push_list **stack, int num)
 {
 	t_push_list	*tmp;

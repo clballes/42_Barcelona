@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+# include "libft.h"
+
 
 void	ft_check(int argc, char **argv)
 {

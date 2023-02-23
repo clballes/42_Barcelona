@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+# include "ft_printf.h"
 
 void	swap(t_push_list **stack, char c)
 {

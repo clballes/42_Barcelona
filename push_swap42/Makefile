@@ -32,33 +32,38 @@ SRCS = $(SRCS_DIR)ft_check.c $(SRCS_DIR)ft_funciones_list.c $(SRCS_DIR)ft_push_s
 DEPS = $(SRCS:%.c=%.d)
 OBJ = $(SRCS:%.c=%.o)
 
-$(NAME): $(OBJ) $(LIB) $(LIBFT) $(PRINTF) $(DEPS)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
-	@echo "\n🤠💫 You are ready to sort lists 🤠💫\n"
-
-# gcc -flags _i incs -LPRINTF_DIR -LIBFT_DIR -lftprintf -lft
+$(NAME): $(OBJ) $(LIB) $(LIBFT) $(PRINTF)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
+	echo "\n🤠💫 You are ready to sort lists 🤠💫\n"
+	
 $(LIBFT): 
-		@make -sC $(LIBFT_DIR)
+		@make -C $(LIBFT_DIR)
 
 $(PRINTF): 
-		@make -sC $(PRINTF_DIR)
+		@make -C $(PRINTF_DIR)
+
 
 %.o: %.c
-	@echo "Compiling...[$<]"
-	@$(CC) -I$(INC_DIR) -I$(LIBFT_DIR) -I$(PRINTF_DIR)/INC -c $(CFLAGS) -MMD $< -o $@
+	echo "Compiling...[$<]"
+	$(CC) -I$(INC_DIR) -I$(LIBFT_DIR) -I$(PRINTF_DIR)/INC -c $(CFLAGS) -MMD $< -o $@
 
 clean:
-	@$(RM) $(NAME)
-	@$(RM) $(OBJ)
-	@$(RM) $(DEPS)
-	@make clean -sC $(LIBFT_DIR)
-	@make clean -sC $(PRINTF_DIR)
-	@echo "\n🌼 It is all safe and clean 🌼\n"
+	$(RM) $(NAME)
+	$(RM) $(OBJ)
+	$(RM) $(DEPS)
+	make clean -sC $(LIBFT_DIR)
+	make clean -sC $(PRINTF_DIR)
+	echo "\n🌼 It is all safe and clean 🌼\n"
 
 fclean: clean
+	 make fclean -sC $(LIBFT_DIR)
+	 make fclean -sC $(PRINTF_DIR)
 
 re: fclean all
 
 all: $(NAME)
 
+-include ${DEPS}
+
 .PHONY: all clean fclean re
+# gcc -flags _i incs -LPRINTF_DIR -LIBFT_DIR -lftprintf -lft
