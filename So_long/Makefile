@@ -13,9 +13,12 @@
 NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-RM = /bin/rm -f
+RM = /bin/rm -rf
 
 # Path
 LIBFT_DIR = LIBFT/
 LIBFT = ${LIBFT_DIR}/libft.a
 SRCS_DIR = srcs/
+
+# Gcc
+
