@@ -33,7 +33,22 @@ void    ft_checkber(char **argv)
     }
 }
 
-void    ft_openmap(char **argv)
+int    ft_openmap(char **argv) //USAR GETNEXT LINE
 {
-         
+    int fd;
+    char *buf;
+    size_t num_bytes;
+
+    fd = open("/Users/clballes/Desktop/42Barcelona/So_long/maps", O_RDONLY);
+    if (fd == -1)
+        printf("ERRROR OPENINNG\n");
+    else
+    {
+        num_bytes = read(fd, buf, 5);
+        if (num_bytes == 0)
+            printf("Archivo vacio\n");
+        else
+            printf("el num de bytes es: %zu\n", num_bytes);
+    }
+        
 }

@@ -16,7 +16,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+
 void    ft_checkber(char **argv);
 void    ft_openmap(char **argv);
+int     open(const char *pathname, int flags);
+ssize_t read(int fd, void *buf, size_t count);
+
 
 #endif
