@@ -19,18 +19,20 @@ RM = /bin/rm -rf
 LIBFT_DIR = LIBFT/
 LIBFT = ${LIBFT_DIR}/libft.a
 SRCS_DIR = srcs/
+GET_DIR = srcs/get_next_line/
 INC_DIR = inc/
 LIB = ${INC_DIR}/so_long.h
+LIB_GET = ${INC_DIR}/get_next_line.h
 
 #Objects & dependencies falten dependencies !!
 
-SRCS = $(SRCS_DIR)so_long.c $(SRCS_DIR)map_errors.c
+SRCS = $(SRCS_DIR)so_long.c $(SRCS_DIR)map_errors.c $(GET_DIR)get_next_line_utils.c $(GET_DIR)get_next_line.c
 
 OBJ = $(SRCS:%.c=%.o)
 
 # Gcc
 
-$(NAME): $(OBJ) $(LIB) $(LIBFT)
+$(NAME): $(OBJ) $(LIB) $(LIBFT) $(LIB_GET)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(LIBFT): 

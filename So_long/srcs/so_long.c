@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+#include "../inc/get_next_line.h"
 
 int main(int argc, char **argv)
 {
@@ -18,4 +19,19 @@ int main(int argc, char **argv)
         ft_checkber(argv);
     else
         printf("missing map!\n");
+}
+
+void    ft_openmap(char **argv)
+{
+	char *line;
+	int fd;
+
+	fd = open(argv[1], O_RDONLY);
+    if (fd == -1)
+        printf("ERRROR OPENINNG\n");
+    else
+    {
+        line = get_next_line(fd);
+        printf("la line es: %s\n", line);
+    }
 }

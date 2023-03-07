@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 12:52:23 by clballes          #+#    #+#             */
-/*   Updated: 2023/03/02 12:52:25 by clballes         ###   ########.fr       */
+/*   Created: 2022/07/28 17:40:50 by clballes          #+#    #+#             */
+/*   Updated: 2022/09/05 12:47:24 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLONG_H
-# define SOLONG_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFFER_SIZE 2
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 # include <stdio.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-
-void    ft_checkber(char **argv);
-void    ft_openmap(char **argv);
-
-#endif
+#include <string.h>
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *str);
+char	*get_next_line(int fd);
+# endif
