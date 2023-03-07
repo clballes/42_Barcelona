@@ -9,7 +9,8 @@
 /*   Updated: 2022/10/04 17:43:36 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "../../inc/get_next_line.h"
+#include "libft.h"
 
 static char	*ft_fill_storage(char *storage, int fd)
 {
@@ -21,13 +22,13 @@ static char	*ft_fill_storage(char *storage, int fd)
 		return (NULL);
 	buffer[0] = '\0';
 	nbytes = 1;
-	while (nbytes > 0 && !ft_strchr(buffer, '\n'))
+	while (nbytes > 0 && !ft_strchr_get(buffer, '\n'))
 	{	
 		nbytes = read(fd, buffer, BUFFER_SIZE);
 		if (nbytes > 0)
 		{	
 			buffer[nbytes] = '\0';
-			storage = ft_strjoin(storage, buffer);
+			storage = ft_strjoin_get(storage, buffer);
 		}
 	}
 	free (buffer);
@@ -99,7 +100,7 @@ char	*get_next_line(int fd)
 	c = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!storage || (storage && !ft_strchr(storage, '\n')))
+	if (!storage || (storage && !ft_strchr_get(storage, '\n')))
 		storage = ft_fill_storage(storage, fd);
 	if (!storage)
 		return (NULL);

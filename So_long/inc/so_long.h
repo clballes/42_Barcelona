@@ -19,6 +19,11 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
+typedef struct s_list_game
+{
+    char                    *line;
+	struct s_list_game      *next;
+}                           t_game;
 void	ft_checkber(char **argv);
 void	ft_openmap(char **argv);
 #endif

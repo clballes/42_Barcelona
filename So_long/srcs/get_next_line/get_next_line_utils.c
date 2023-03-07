@@ -9,9 +9,10 @@
 /*   Updated: 2022/10/04 17:43:29 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "../../inc/get_next_line.h"
+#include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_get(char *s1, char *s2)
 {
 	char	*ptr;
 	int		i;
@@ -48,7 +49,7 @@ char	*ft_protect(char *s1)
 	return (s1);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr_get(char *s, int c)
 {
 	int	i;
 
@@ -63,14 +64,4 @@ char	*ft_strchr(char *s, int c)
 	s++;
 	}
 	return (0);
-}
-
-size_t	ft_strlen(char *str)
-{	
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
 }

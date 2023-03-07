@@ -12,6 +12,9 @@
 
 #include "../inc/so_long.h"
 #include "../inc/get_next_line.h"
+#include "../inc/get_next_line.h"
+#include "libft.h"
+
 
 void	ft_checkber(char **argv)
 {
@@ -37,7 +40,7 @@ void	ft_openmap(char **argv)
 {
 	char	*line;
 	int		fd;
-	char **map;
+	// t_game	map;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
@@ -45,12 +48,7 @@ void	ft_openmap(char **argv)
 	else
 	{
 			line = get_next_line(fd);
-			printf("el line es: %s\n", line);
-			map = &line;
-			line = get_next_line(fd);
-			printf("el line es: %s\n", line);
-			// printf("el map es: %s\n", map[0]);
-			// line = get_next_line(fd);
-			// printf("el map es: %s\n", map[0]);
+			printf("holaaaa la line es %s\n", line);
+			// map = ft_lstnew(line);
 	}
 }
