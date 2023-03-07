@@ -28,7 +28,6 @@ SRCS_DIR = SRCS/
 # Sources
 CLIENT_SRCS = ${SRCS_DIR}client.c
 SERVER_SRCS = ${SRCS_DIR}server.c
-
 OBJS_CLIENT = $(SRCS_DIR)client.o
 OBJS_SERVER = ${SRCS_DIR}server.o
 

@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:09:40 by clballes          #+#    #+#             */
-/*   Updated: 2022/10/04 17:43:36 by clballes         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:43:46 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_fill_storage(char *storage, int fd)
 {
@@ -32,7 +32,10 @@ static char	*ft_fill_storage(char *storage, int fd)
 	}
 	free (buffer);
 	if (nbytes == -1)
+	{
+		free (storage);
 		return (NULL);
+	}
 	return (storage);
 }
 
@@ -92,18 +95,18 @@ char	*ft_save_line(char *storage)
 
 char	*get_next_line(int fd)
 {
-	static char	*storage;
+	static char	*storage[256];
 	char		*line;
 	int			c;
 
 	c = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 255)
 		return (NULL);
-	if (!storage || (storage && !ft_strchr(storage, '\n')))
-		storage = ft_fill_storage(storage, fd);
-	if (!storage)
+	if (!storage[fd] || (storage[fd] && !ft_strchr(storage[fd], '\n')))
+		storage[fd] = ft_fill_storage(storage[fd], fd);
+	if (!storage[fd])
 		return (NULL);
-	line = ft_get_a_line(storage);
-	storage = ft_save_line(storage);
+	line = ft_get_a_line(storage[fd]);
+	storage[fd] = ft_save_line(storage[fd]);
 	return (line);
 }

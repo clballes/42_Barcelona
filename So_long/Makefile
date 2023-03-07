@@ -12,7 +12,7 @@
 
 NAME = so_long
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD
 RM = /bin/rm -rf
 
 # Path
@@ -29,6 +29,7 @@ LIB_GET = ${INC_DIR}/get_next_line.h
 SRCS = $(SRCS_DIR)so_long.c $(SRCS_DIR)map_errors.c $(GET_DIR)get_next_line_utils.c $(GET_DIR)get_next_line.c
 
 OBJ = $(SRCS:%.c=%.o)
+DEPS = $(SRCS:%.c=%.d)
 
 # Gcc
 
@@ -45,6 +46,7 @@ $(LIBFT):
 clean:
 	$(RM) $(NAME)
 	$(RM) $(OBJ)
+	rm -rf ${DEPS}
 	make clean -sC $(LIBFT_DIR)
 	echo "\n🌼 It is all safe and clean 🌼\n"
 
@@ -54,5 +56,7 @@ fclean: clean
 re: fclean all
 
 all: $(NAME)
+
+-include ${DEPS}
 
 .PHONY: all clean fclean re
