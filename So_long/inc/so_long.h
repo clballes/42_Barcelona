@@ -19,11 +19,22 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-typedef struct s_list_game
+typedef struct s_map
 {
     char                    *line;
-	struct s_list_game      *next;
-}                           t_game;
+	struct s_map            *next;
+}                           t_map;
 void	ft_checkber(char **argv);
 void	ft_openmap(char **argv);
+t_map   *ft_createmap(t_map *map, t_map *temp, int fd);
+void    ft_arraymap(t_map *map,  int cols, int rows);
+
+//list functions
+t_map	*ft_lstnew_long(void	*content);
+void	ft_lstadd_back_long(t_map **lst, t_map *new);
+t_map	*ft_lstlast_long(t_map *lst);
+//print functions
+void    print_list (t_map *map);
+int     ft_strcpy(char *dst, char *src);
+
 #endif

@@ -12,9 +12,7 @@
 
 #include "../inc/so_long.h"
 #include "../inc/get_next_line.h"
-#include "../inc/get_next_line.h"
 #include "libft.h"
-
 
 void	ft_checkber(char **argv)
 {
@@ -38,17 +36,88 @@ void	ft_checkber(char **argv)
 
 void	ft_openmap(char **argv)
 {
-	char	*line;
 	int		fd;
-	// t_game	map;
+	t_map	*map = NULL;
+	t_map	*temp = NULL;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		printf("ERRROR OPENINNG\n");
 	else
 	{
-			line = get_next_line(fd);
-			printf("holaaaa la line es %s\n", line);
-			// map = ft_lstnew(line);
+		map = ft_createmap(map, temp, fd);
+		if (map == 0)
+			printf("the map is empty!\n");
 	}
+	// print_list(map);
+}
+
+t_map	*ft_createmap(t_map *map, t_map *temp, int fd)
+{
+	char	*line;
+	int		rows;
+	int		cols;
+
+	rows = 0;
+	line = get_next_line(fd);
+	temp = ft_lstnew_long(line);
+	cols = ft_strlen(line); //si fos - 1 es le numero real, perq te en compte el null
+	rows++;
+	printf("la line number es: %d\n", cols);
+	if (line)
+	{
+		while (line != NULL)
+		{
+			ft_lstadd_back_long(&map, temp);
+			line = get_next_line(fd);
+			temp = ft_lstnew_long(line);
+			rows++;
+		}
+		printf("las rows son: %d\n", rows);
+		ft_arraymap(map, cols, rows);
+	}
+	else
+		return (0);
+	return (map);
+}
+
+void	ft_arraymap(t_map *map, int cols, int rows)
+{
+	char map_arr[rows][cols];
+	int i;
+	t_map *tmp;
+	int len_cols;
+	// int	len_rows;
+
+	len_cols = cols;
+	// len_rows = rows;
+	tmp = map;
+	rows = 0;
+	while(tmp && tmp->line && i <= len_cols)
+	{
+		i = 0;
+		cols = 0;
+		while (tmp && tmp->line[i] != '\0')
+		{
+			map_arr[rows][cols] = tmp->line[i];
+			printf("larray es %c\n", map_arr[rows][cols]);
+			i++;
+			cols++;
+		}
+		map_arr[rows][cols] = '\0';
+		tmp = tmp->next;
+		rows++;
+	}
+}
+
+void    print_list (t_map *map)
+{
+    t_map	*temp_a;
+    temp_a = map;
+    while (temp_a)
+    {
+        printf("valor en lista:%s\n", temp_a->line);
+        temp_a = temp_a->next;
+    }
+    printf("----------------------------------------\n");
 }
