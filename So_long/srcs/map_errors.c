@@ -14,6 +14,7 @@
 #include "../inc/get_next_line.h"
 #include "libft.h"
 
+static void	ft_arraymap(t_map *map, int rows);
 void	ft_checkber(char **argv)
 {
 	int	i;
@@ -37,9 +38,11 @@ void	ft_checkber(char **argv)
 void	ft_openmap(char **argv)
 {
 	int		fd;
-	t_map	*map = NULL;
-	t_map	*temp = NULL;
+	t_map	*map;
+	t_map	*temp;
 
+	map = NULL;
+	temp = NULL;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		printf("ERRROR OPENINNG\n");
@@ -49,7 +52,6 @@ void	ft_openmap(char **argv)
 		if (map == 0)
 			printf("the map is empty!\n");
 	}
-	// print_list(map);
 }
 
 t_map	*ft_createmap(t_map *map, t_map *temp, int fd)
@@ -61,9 +63,8 @@ t_map	*ft_createmap(t_map *map, t_map *temp, int fd)
 	rows = 0;
 	line = get_next_line(fd);
 	temp = ft_lstnew_long(line);
-	cols = ft_strlen(line); //si fos - 1 es le numero real, perq te en compte el null
+	cols = ft_strlen(line);
 	rows++;
-	printf("la line number es: %d\n", cols);
 	if (line)
 	{
 		while (line != NULL)
@@ -73,51 +74,41 @@ t_map	*ft_createmap(t_map *map, t_map *temp, int fd)
 			temp = ft_lstnew_long(line);
 			rows++;
 		}
-		printf("las rows son: %d\n", rows);
-		ft_arraymap(map, cols, rows);
+		ft_arraymap(map, rows);
 	}
 	else
 		return (0);
 	return (map);
 }
 
-void	ft_arraymap(t_map *map, int cols, int rows)
+static void	ft_arraymap(t_map *map, int rows)
 {
-	char map_arr[rows][cols];
-	int i;
-	t_map *tmp;
-	int len_cols;
-	// int	len_rows;
+	char	**map_arr;
+	int		i;
+	t_map	*tmp;
 
-	len_cols = cols;
-	// len_rows = rows;
+	i = 0;
 	tmp = map;
-	rows = 0;
-	while(tmp && tmp->line && i <= len_cols)
+	map_arr = malloc(sizeof(char *) * (rows));	
+	while(i < rows && tmp)
 	{
-		i = 0;
-		cols = 0;
-		while (tmp && tmp->line[i] != '\0')
-		{
-			map_arr[rows][cols] = tmp->line[i];
-			printf("larray es %c\n", map_arr[rows][cols]);
-			i++;
-			cols++;
-		}
-		map_arr[rows][cols] = '\0';
+		map_arr[i] = tmp->line;
+		// printf("el print del mpa arr es %s\n",  map_arr[i]);
+		i++;
 		tmp = tmp->next;
-		rows++;
 	}
 }
 
-void    print_list (t_map *map)
-{
-    t_map	*temp_a;
-    temp_a = map;
-    while (temp_a)
-    {
-        printf("valor en lista:%s\n", temp_a->line);
-        temp_a = temp_a->next;
-    }
-    printf("----------------------------------------\n");
-}
+
+
+// void    print_list (t_map *map)
+// {
+//     t_map	*temp_a;
+//     temp_a = map;
+//     while (temp_a)
+//     {
+//         printf("valor en lista:%s\n", temp_a->line);
+//         temp_a = temp_a->next;
+//     }
+//     printf("----------------------------------------\n");
+// }

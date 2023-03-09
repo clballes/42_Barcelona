@@ -59,9 +59,7 @@ int	ft_strcpy(char *dst, char *src)
 	while (src[i] != '\0')
 	{
 		dst[i] = src[i];
-		printf("el desti en el copy es: %c\n", dst[i]);
 		i++;
-
 	}	
 	dst[i] = '\0';
 	return (resultado);

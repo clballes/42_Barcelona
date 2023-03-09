@@ -27,7 +27,6 @@ typedef struct s_map
 void	ft_checkber(char **argv);
 void	ft_openmap(char **argv);
 t_map   *ft_createmap(t_map *map, t_map *temp, int fd);
-void    ft_arraymap(t_map *map,  int cols, int rows);
 
 //list functions
 t_map	*ft_lstnew_long(void	*content);
