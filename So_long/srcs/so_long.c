@@ -16,7 +16,7 @@
 int	main(int argc, char **argv)
 {
 	if (argc > 1 && *argv[1])
-		ft_checkber(argv);
+		ft_open_ber(argv);
 	else
-		printf("missing map!\n");
+		write_error();
 }

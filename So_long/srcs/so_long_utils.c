@@ -49,18 +49,8 @@ t_map	*ft_lstlast_long(t_map *lst)
 	return (tmp);
 }
 
-int	ft_strcpy(char *dst, char *src)
+void	write_error(void)
 {
-	int	i;
-	int	resultado;
-
-	i = 0;
-	resultado = ft_strlen(src);
-	while (src[i] != '\0')
-	{
-		dst[i] = src[i];
-		i++;
-	}	
-	dst[i] = '\0';
-	return (resultado);
+	write (2, "Error\n", 6);
+	exit (1);
 }

@@ -13,9 +13,10 @@
 #include "../inc/so_long.h"
 #include "../inc/get_next_line.h"
 #include "libft.h"
+static void	ft_openmap(char **argv);
+static t_map	*ft_map_list(t_map *map, t_map *temp, int fd);
 
-static void	ft_arraymap(t_map *map, int rows);
-void	ft_checkber(char **argv)
+void	ft_open_ber(char **argv)
 {
 	int	i;
 
@@ -29,13 +30,13 @@ void	ft_checkber(char **argv)
 					&& argv[1][i + 2] == 'r')
 				ft_openmap(argv);
 			else
-				printf("Not ber extension, try an other map!\n");
+				write_error();
 		}
 		i++;
 	}
 }
 
-void	ft_openmap(char **argv)
+static void	ft_openmap(char **argv)
 {
 	int		fd;
 	t_map	*map;
@@ -45,16 +46,16 @@ void	ft_openmap(char **argv)
 	temp = NULL;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		printf("ERRROR OPENINNG\n");
+		write_error();
 	else
 	{
-		map = ft_createmap(map, temp, fd);
+		map = ft_map_list(map, temp, fd);
 		if (map == 0)
-			printf("the map is empty!\n");
+			write_error();
 	}
 }
 
-t_map	*ft_createmap(t_map *map, t_map *temp, int fd)
+static t_map	*ft_map_list(t_map *map, t_map *temp, int fd)
 {
 	char	*line;
 	int		rows;
@@ -74,14 +75,14 @@ t_map	*ft_createmap(t_map *map, t_map *temp, int fd)
 			temp = ft_lstnew_long(line);
 			rows++;
 		}
-		ft_arraymap(map, rows);
+		ft_arraymap(map, rows, cols);
 	}
 	else
 		return (0);
 	return (map);
 }
 
-static void	ft_arraymap(t_map *map, int rows)
+void	ft_arraymap(t_map *map, int rows, int cols)
 {
 	char	**map_arr;
 	int		i;
@@ -89,17 +90,17 @@ static void	ft_arraymap(t_map *map, int rows)
 
 	i = 0;
 	tmp = map;
+	if (rows > cols) //check if the map is rectangular 
+		write_error();
 	map_arr = malloc(sizeof(char *) * (rows));	
 	while(i < rows && tmp)
 	{
 		map_arr[i] = tmp->line;
-		// printf("el print del mpa arr es %s\n",  map_arr[i]);
 		i++;
 		tmp = tmp->next;
 	}
+	check_map(map_arr, (rows - 2), (cols - 2));
 }
-
-
 
 // void    print_list (t_map *map)
 // {
