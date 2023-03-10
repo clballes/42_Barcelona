@@ -11,7 +11,10 @@ void	check_map(char **map_arr, int rows, int cols) //no acaba dentrar els 1 i 0 
 	while (map_arr[0][i] == '1' && map_arr[rows][i] == '1' && i <= cols) //row primera i row ultima
 	{
 		if (map_arr[0][i] != '1' || map_arr[rows][i] != '1')
+		{
+			
 			write_error();
+		}
 		else
 			i++;
 	}
