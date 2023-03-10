@@ -22,13 +22,14 @@
 typedef struct s_map
 {
     char                    *line;
+    int                     rows;
+    int                     cols;
 	struct s_map            *next;
 }                           t_map;
 void	ft_open_ber(char **argv);
-void	ft_arraymap(t_map *map, int rows, int cols);
-void	check_map_walls(char **map_arr, int rows, int cols); //no acaba dentrar dunnnow why
-
-
+void	ft_arraymap(t_map *map);
+void	check_map_walls(char **map_arr, int rows, int cols);
+int     ft_strncmp_long(char c, char *s2);
 //list functions
 t_map	*ft_lstnew_long(void	*content);
 void	ft_lstadd_back_long(t_map **lst, t_map *new);
