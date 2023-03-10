@@ -13,7 +13,8 @@
 #include "../inc/so_long.h"
 #include "../inc/get_next_line.h"
 #include "libft.h"
-static void	ft_openmap(char **argv);
+
+static void		ft_openmap(char **argv);
 static t_map	*ft_map_list(t_map *map, t_map *temp, int fd);
 
 void	ft_open_ber(char **argv)
@@ -90,16 +91,16 @@ void	ft_arraymap(t_map *map, int rows, int cols)
 
 	i = 0;
 	tmp = map;
-	if (rows > cols) //check if the map is rectangular 
+	if (rows == cols )
 		write_error();
-	map_arr = malloc(sizeof(char *) * (rows));	
-	while(i < rows && tmp)
+	map_arr = malloc(sizeof(char *) * rows);
+	while (i < rows && tmp)
 	{
 		map_arr[i] = tmp->line;
 		i++;
 		tmp = tmp->next;
 	}
-	check_map(map_arr, (rows - 2), (cols - 2));
+	check_map_walls(map_arr, (rows - 2), (cols - 2));
 }
 
 // void    print_list (t_map *map)

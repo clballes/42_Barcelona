@@ -26,7 +26,7 @@ typedef struct s_map
 }                           t_map;
 void	ft_open_ber(char **argv);
 void	ft_arraymap(t_map *map, int rows, int cols);
-void	check_map(char **map_arr, int rows, int cols); //no acaba dentrar dunnnow why
+void	check_map_walls(char **map_arr, int rows, int cols); //no acaba dentrar dunnnow why
 
 
 //list functions
