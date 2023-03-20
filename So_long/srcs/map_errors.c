@@ -13,7 +13,8 @@
 #include "../inc/so_long.h"
 #include "../inc/get_next_line.h"
 #include "libft.h"
-static void	ft_openmap(char **argv);
+
+static void		ft_openmap(char **argv);
 static t_map	*ft_map_list(t_map *map, t_map *temp, int fd);
 
 void	ft_open_ber(char **argv)
@@ -60,12 +61,12 @@ static t_map	*ft_map_list(t_map *map, t_map *temp, int fd)
 	char	*line;
 	int		rows;
 	int		cols;
+	int		colsnxt;
 
-	rows = 0;
+	rows = 1;
 	line = get_next_line(fd);
 	temp = ft_lstnew_long(line);
 	cols = ft_strlen(line);
-	rows++;
 	if (line)
 	{
 		while (line != NULL)
@@ -73,16 +74,23 @@ static t_map	*ft_map_list(t_map *map, t_map *temp, int fd)
 			ft_lstadd_back_long(&map, temp);
 			line = get_next_line(fd);
 			temp = ft_lstnew_long(line);
+			if (line == NULL)
+				break;
+			colsnxt = ft_strlen(line);
+			if (cols != colsnxt)
+				write_error();
 			rows++;
 		}
-		ft_arraymap(map, rows, cols);
+		map->rows = rows;
+		map->cols = cols;
+		ft_arraymap(map);
 	}
 	else
 		return (0);
 	return (map);
 }
 
-void	ft_arraymap(t_map *map, int rows, int cols)
+void	ft_arraymap(t_map *map)
 {
 	char	**map_arr;
 	int		i;
@@ -90,16 +98,17 @@ void	ft_arraymap(t_map *map, int rows, int cols)
 
 	i = 0;
 	tmp = map;
-	if (rows > cols) //check if the map is rectangular 
+	if (map->rows == map->cols)
 		write_error();
-	map_arr = malloc(sizeof(char *) * (rows));	
-	while(i < rows && tmp)
+	map_arr = malloc(sizeof(char *) * map->rows);
+	while (i < map->rows && tmp)
 	{
 		map_arr[i] = tmp->line;
 		i++;
 		tmp = tmp->next;
 	}
-	check_map(map_arr, (rows - 2), (cols - 2));
+	check_map_walls(map_arr, (map->rows - 1), (map->cols - 1));
+	has_valid_path(map_arr, map);
 }
 
 // void    print_list (t_map *map)

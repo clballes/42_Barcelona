@@ -59,9 +59,8 @@ char	*ft_get_a_line(char *storage)
 		line[i] = storage[i];
 		i++;
 	}
-	if (storage[i] == '\n')
-		line[i++] = '\n';
-	line [i] = '\0';
+	if (storage[i] == '\n' || storage[i] == '\0')
+		line [i] = '\0';
 	return (line);
 }
 

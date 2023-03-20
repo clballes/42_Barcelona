@@ -54,3 +54,20 @@ void	write_error(void)
 	write (2, "Error\n", 6);
 	exit (1);
 }
+
+int	ft_strncmp_long(char c, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (c != '\0' && s2[i] != '\0')
+	{
+		while (c != s2[i] && s2[i] != '\0')
+			i++;
+		if (c == s2[i])
+			return (0);
+		else
+			return (1);
+	}
+	return (1);
+}
