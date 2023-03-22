@@ -108,7 +108,7 @@ void	ft_arraymap(t_map *map)
 		tmp = tmp->next;
 	}
 	check_map_walls(map_arr, (map->rows - 1), (map->cols - 1));
-	has_valid_path(map_arr, map);
+	has_valid_path(map, map_arr)
 }
 
 // void    print_list (t_map *map)
