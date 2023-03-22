@@ -56,7 +56,7 @@ static void	ft_openmap(char **argv)
 	}
 }
 
-static t_map	*ft_map_list(t_map *map, t_map *temp, int fd)
+static t_map	*ft_map_list(t_map *map, t_map *temp, int fd) //more than 25 lines
 {
 	char	*line;
 	int		rows;
@@ -75,7 +75,7 @@ static t_map	*ft_map_list(t_map *map, t_map *temp, int fd)
 			line = get_next_line(fd);
 			temp = ft_lstnew_long(line);
 			if (line == NULL)
-				break;
+				break ;
 			colsnxt = ft_strlen(line);
 			if (cols != colsnxt)
 				write_error();
@@ -93,6 +93,7 @@ static t_map	*ft_map_list(t_map *map, t_map *temp, int fd)
 void	ft_arraymap(t_map *map)
 {
 	char	**map_arr;
+	char	**cy_map_arr;
 	int		i;
 	t_map	*tmp;
 
@@ -101,14 +102,16 @@ void	ft_arraymap(t_map *map)
 	if (map->rows == map->cols)
 		write_error();
 	map_arr = malloc(sizeof(char *) * map->rows);
+	cy_map_arr = malloc(sizeof(char *) * map->rows);
 	while (i < map->rows && tmp)
 	{
 		map_arr[i] = tmp->line;
+		cy_map_arr[i] = tmp->line;
 		i++;
 		tmp = tmp->next;
 	}
 	check_map_walls(map_arr, (map->rows - 1), (map->cols - 1));
-	has_valid_path(map, map_arr)
+	has_valid_path(map, cy_map_arr);
 }
 
 // void    print_list (t_map *map)

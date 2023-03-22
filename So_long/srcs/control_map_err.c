@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:29:31 by clballes          #+#    #+#             */
-/*   Updated: 2023/03/10 12:31:54 by clballes         ###   ########.fr       */
+/*   Updated: 2023/03/22 12:36:32 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ static void	check_coll(char **map_arr, int rows, int cols)
 
 static void	check_letter(char **map_arr, char letter, int rows, int cols)
 {
-	int i;
-	int j;
-	int c;
+	int	i;
+	int	j;
+	int	c;
 
 	i = 0;
 	c = 0;
@@ -91,7 +91,7 @@ static void	check_letter(char **map_arr, char letter, int rows, int cols)
 	}
 	if ((letter == 'P' || letter == 'E') && c != 1)
 		write_error();
-	else if(letter == 'C' && c == 0)
+	else if (letter == 'C' && c == 0)
 		write_error();
 	if (letter == 'C')
 		check_letter(map_arr, 'E', rows, cols);
