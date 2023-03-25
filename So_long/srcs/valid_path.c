@@ -41,11 +41,7 @@ static int	backtrack(char **cy_map_arr, int row, int col, t_map *map)
 	next_row = 0;
 	next_col = 0;
 	i = 0;
-    printf("el row es ------ %s\n", cy_map_arr[row]);
-    printf("el char es ------ %c\n", cy_map_arr[row][col]);
-    printf("les row son %d\n", row);
-    printf("els cols son %d\n", col);
-	if (cy_map_arr[row][col] == 'E')
+	if (cy_map_arr[row][col] == 'E' && map->coll == 0)
 		return (1);
 	if (cy_map_arr[row][col] == 'C')
 		map->coll--;
@@ -63,7 +59,6 @@ static int	backtrack(char **cy_map_arr, int row, int col, t_map *map)
 		}
 		i++;
 	}
-	cy_map_arr[row][col] = '0';
 	return (0);
 }
 
@@ -104,7 +99,10 @@ void	has_valid_path(t_map *map, char **cy_map_arr)
 	j = 0;
 	check_startpos(cy_map_arr, map, i, j);
 	if (backtrack(cy_map_arr, map->start, map->end, map) && map->coll == 0)
-        printf("Valid path exists!\n");
+    {
+	    printf("Valid path exists!\n");
+		window();
+	}
 	else
         printf("No valid path exists!\n");
 }

@@ -42,4 +42,7 @@ t_map	*ft_lstlast_long(t_map *lst);
 //print functions
 void	print_list(t_map *map);
 void	write_error(void);
+//windoelin
+int window(void);
+
 #endif
