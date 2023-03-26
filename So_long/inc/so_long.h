@@ -28,6 +28,8 @@ typedef struct s_map
 	int				start;
 	int				end;
 	struct s_map	*next;
+	void			*mlx_ptr;
+	void			*mlx_win_ptr;
 }					t_map;
 void	ft_open_ber(char **argv);
 void	ft_arraymap(t_map *map);
@@ -43,6 +45,6 @@ t_map	*ft_lstlast_long(t_map *lst);
 void	print_list(t_map *map);
 void	write_error(void);
 //windoelin
-int window(void);
+int open_window(t_map *map);
 
 #endif

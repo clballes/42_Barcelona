@@ -101,7 +101,7 @@ void	has_valid_path(t_map *map, char **cy_map_arr)
 	if (backtrack(cy_map_arr, map->start, map->end, map) && map->coll == 0)
     {
 	    printf("Valid path exists!\n");
-		window();
+		open_window(map);
 	}
 	else
         printf("No valid path exists!\n");
