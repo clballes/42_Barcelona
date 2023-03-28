@@ -16,6 +16,7 @@
 
 static void		ft_openmap(char **argv);
 static t_map	*ft_map_list(t_map *map, t_map *temp, int fd);
+static void create_copy(char **map_arr, t_map *map);
 
 void	ft_open_ber(char **argv)
 {
@@ -90,10 +91,35 @@ static t_map	*ft_map_list(t_map *map, t_map *temp, int fd) //more than 25 lines
 	return (map);
 }
 
+static void create_copy(char **map_arr, t_map *map)
+{
+	char **cy_map_arr;
+	int	i;
+	int	j;
+
+	i = 0;
+	cy_map_arr = malloc(sizeof(char *) * map->rows);
+	if (cy_map_arr == NULL)
+		return ;
+	while (i < map->rows)
+	{
+    	cy_map_arr[i] = malloc(sizeof(char) * map->cols);
+    	if (cy_map_arr[i] == NULL)
+        	return ;
+		j = 0;
+		while (j < map->cols)
+		{
+			cy_map_arr[i][j] = map_arr[i][j];
+			j++;
+		}
+		i++;
+	}
+	has_valid_path(map, cy_map_arr, map_arr);
+}
+
 void	ft_arraymap(t_map *map)
 {
 	char	**map_arr;
-	char	**cy_map_arr;
 	int		i;
 	t_map	*tmp;
 
@@ -102,26 +128,12 @@ void	ft_arraymap(t_map *map)
 	if (map->rows == map->cols)
 		write_error();
 	map_arr = malloc(sizeof(char *) * map->rows);
-	cy_map_arr = malloc(sizeof(char *) * map->rows);
 	while (i < map->rows && tmp)
 	{
 		map_arr[i] = tmp->line;
-		cy_map_arr[i] = tmp->line;
 		i++;
 		tmp = tmp->next;
 	}
 	check_map_walls(map_arr, (map->rows - 1), (map->cols - 1));
-	has_valid_path(map, cy_map_arr);
+	create_copy(map_arr, map);
 }
-
-// void    print_list (t_map *map)
-// {
-//     t_map	*temp_a;
-//     temp_a = map;
-//     while (temp_a)
-//     {
-//         printf("valor en lista:%s\n", temp_a->line);
-//         temp_a = temp_a->next;
-//     }
-//     printf("----------------------------------------\n");
-// }

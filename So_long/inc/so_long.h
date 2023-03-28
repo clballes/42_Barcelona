@@ -22,6 +22,7 @@
 typedef struct s_map
 {
 	char			*line;
+	char			*line2;
 	int				rows;
 	int				cols;
 	int				coll;
@@ -35,7 +36,7 @@ void	ft_open_ber(char **argv);
 void	ft_arraymap(t_map *map);
 void	check_map_walls(char **map_arr, int rows, int cols);
 int		ft_strncmp_long(char c, char *s2);
-void	has_valid_path(t_map *map, char **cy_map_arr);
+void	has_valid_path(t_map *map, char **cy_map_arr, char **map_arr);
 //list functions
 t_map	*ft_lstnew_long(void	*content);
 void	ft_lstadd_back_long(t_map **lst, t_map *new);
@@ -45,6 +46,6 @@ t_map	*ft_lstlast_long(t_map *lst);
 void	print_list(t_map *map);
 void	write_error(void);
 //windoelin
-int open_window(t_map *map);
+int open_window(t_map *map, char **map_arr);
 
 #endif

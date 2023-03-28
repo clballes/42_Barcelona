@@ -90,7 +90,7 @@ static void	check_startpos(char **cy_map_arr, t_map *map, int i, int j)
 	map->coll = coll;
 }
 
-void	has_valid_path(t_map *map, char **cy_map_arr)
+void	has_valid_path(t_map *map, char **cy_map_arr, char **map_arr)
 {
 	int	i;
 	int	j;
@@ -101,7 +101,7 @@ void	has_valid_path(t_map *map, char **cy_map_arr)
 	if (backtrack(cy_map_arr, map->start, map->end, map) && map->coll == 0)
     {
 	    printf("Valid path exists!\n");
-		open_window(map);
+		open_window(map, map_arr);
 	}
 	else
         printf("No valid path exists!\n");
