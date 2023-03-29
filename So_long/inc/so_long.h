@@ -31,6 +31,11 @@ typedef struct s_map
 	struct s_map	*next;
 	void			*mlx_ptr;
 	void			*mlx_win_ptr;
+	void			*img_player;
+	void			*img_exit;
+	void			*img_coll;
+	void			*img_1;
+	void			*img_0;
 }					t_map;
 void	ft_open_ber(char **argv);
 void	ft_arraymap(t_map *map);
@@ -46,6 +51,7 @@ t_map	*ft_lstlast_long(t_map *lst);
 void	print_list(t_map *map);
 void	write_error(void);
 //windoelin
-int open_window(t_map *map, char **map_arr);
-
+int		open_window(t_map *map, char **map_arr);
+void	init_image(t_map *map);
+void    printwind(t_map *map, char **map_arr);
 #endif
