@@ -2,44 +2,32 @@
 #include "so_long.h"
 
 static int close_click();
-static int	key_hook(int keycode, t_map *map, char **map_arr);
-// static void	ft_move_w(t_map *map, char **map_arr);
+static int	key_hook(int keycode, t_map *map);
+static void	ft_move_w(t_map *map);
 
 static int close_click()
 {
 		exit (0);
 }
 
-// static void	ft_move_w(t_map *map, char **map_arr)
-// {
-// 	int	i;
-// 	int j;
-// 	i = 4; //position of C
-// 	j = 1; //position of C
-// 	map_arr = NULL;
-// 	printf("holaaaaa\n");
-// 	mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-// 	// mlx_destroy_image(map->mlx_ptr, map->img_p);
-// }
-
-static int	key_hook(int keycode, t_map *map, char **map_arr)
+static void	ft_move_w(t_map *map)
 {
-	map_arr = NULL;
-	printf("mlx_ptr: %p\n", map->mlx_ptr);
-	printf("mlx_win_ptr: %p\n", map->mlx_win_ptr);
-	if (keycode == 13) //53 for esc
-	{
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);	
-		// exit (0);
-	}
-	// if (keycode == 13) //soy una W
-	// {
-	// 	printf("soy una W!\n"); //handle event perq el player vagi un cap adalt
-	// 	ft_move_w(map, map_arr);
-	// 	// ft_newimage(map, map_arr);
-	// 	printf("les cols son %d\n", map->cols);
+	int	x;
+	int y;
 
-	// }
+	x = 50; //position player on the map
+	y = 250; //position player on the map
+	mlx_destroy_image(map->mlx_ptr, map->img_player);
+	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_0, x, y);
+	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_player, x, (y - 50));
+}
+
+static int	key_hook(int keycode, t_map *map)
+{
+	if (keycode == 53)
+		exit (0);
+	if (keycode == 13) 
+		ft_move_w(map);
 	// else if (keycode == 2)
 	// 	printf("Soy una d!\n"); //soc una D
 	// else if (keycode == 1) //soc una S
@@ -62,11 +50,9 @@ int open_window(t_map *map, char **map_arr)
 		free(map->mlx_win_ptr);
 		return (0);
 	}
-	printf("mlx_ptr IN THE MAIN: %p\n", map->mlx_ptr);
-	printf("mlx_win_ptr IN THE MAIN: %p\n", map->mlx_win_ptr);
 	init_image(map);
 	printwind(map, map_arr);
-	mlx_key_hook(map->mlx_win_ptr, key_hook, &map); //keyhook esc and move player el pointer es una direccio diferent dunnowhy algun problema de memoria dec tenir
+	mlx_key_hook(map->mlx_win_ptr, key_hook, map); //keyhook esc and move player el pointer es una direccio diferent dunnowhy algun problema de memoria dec tenir
 	mlx_hook(map->mlx_win_ptr, 17,  1L << 0, close_click, NULL); //closing and exiting with the cros corrrect way
 	mlx_loop(map->mlx_ptr);
 	free(map->mlx_ptr);

@@ -22,7 +22,6 @@
 typedef struct s_map
 {
 	char			*line;
-	char			*line2;
 	int				rows;
 	int				cols;
 	int				coll;

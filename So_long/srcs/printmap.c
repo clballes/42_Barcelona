@@ -14,8 +14,6 @@ void    init_image(t_map *map)
     map->img_player = mlx_xpm_file_to_image(map->mlx_ptr, "./png/surfista.xpm", &w, &h);
     map->img_exit = mlx_xpm_file_to_image(map->mlx_ptr, "./png/palmtree.xpm", &w, &h);
     map->img_coll = mlx_xpm_file_to_image(map->mlx_ptr, "./png/van.xpm", &w, &h);
-    printf("mlx_ptr IN THE print: %p\n", map->mlx_ptr);
-	printf("mlx_win_ptr IN THE print: %p\n", map->mlx_win_ptr);
 }
 
 void    printwind(t_map *map, char **map_arr)
@@ -40,9 +38,6 @@ void    printwind(t_map *map, char **map_arr)
 		}
 		i++;
 	}
-    printf("mlx_ptr IN THE printWIND: %p\n", map->mlx_ptr);
-	printf("mlx_win_ptr IN THE printWIND: %p\n", map->mlx_win_ptr);
-
 }
 
 static void    print_img(t_map *map, char c, int x, int y)
