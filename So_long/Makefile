@@ -29,7 +29,6 @@ MINILIBXCC	= -I mlx -L $(MLX_DIR) -lmlx
 OPENGL = -framework OpenGL -framework AppKit
 
 #Objects & dependencies falten dependencies !!
-
 SRCS = $(SRCS_DIR)control_map_err.c $(SRCS_DIR)so_long.c $(SRCS_DIR)so_long_utils.c $(SRCS_DIR)map_errors.c $(GET_DIR)get_next_line_utils.c $(GET_DIR)get_next_line.c  $(SRCS_DIR)valid_path.c $(SRCS_DIR)initmap.c $(SRCS_DIR)printmap.c
 
 OBJ = $(SRCS:%.c=%.o)

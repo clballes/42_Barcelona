@@ -1,4 +1,4 @@
-#include <mlx.h>
+#include "../mlx/mlx.h"
 #include "so_long.h"
 
 static int close_click();
@@ -15,12 +15,20 @@ static void	ft_move_w(t_map *map)
 	int	x;
 	int y;
 
-	x = 50; //position player on the map
+	x = 32; //position player on the map
 	y = 250; //position player on the map
+	printf("el pointer --------- %p\n", map->img_player);
 	mlx_destroy_image(map->mlx_ptr, map->img_player);
 	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_0, x, y);
-	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_player, x, (y - 50));
+	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_player, x, (y - 32));
+	// mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
+	// printwind()
 }
+
+// static	void ft_checkwall(t_map *map)
+// {
+
+// }
 
 static int	key_hook(int keycode, t_map *map)
 {
@@ -37,13 +45,13 @@ static int	key_hook(int keycode, t_map *map)
 	return (0);
 }
 
-int open_window(t_map *map, char **map_arr)
+int open_window(t_map *map)
 {
 	map->mlx_ptr = mlx_init();
 	if (map->mlx_ptr == NULL)
 		return (0);
-	int x = (map->cols * 50);
-	int y = ((map->rows + 1) * 50);
+	int x = (map->cols * 32);
+	int y = ((map->rows + 1) * 32);
 	map->mlx_win_ptr = mlx_new_window(map->mlx_ptr, x, y, "So long!");
 	if (map->mlx_win_ptr == NULL)
 	{
@@ -51,7 +59,7 @@ int open_window(t_map *map, char **map_arr)
 		return (0);
 	}
 	init_image(map);
-	printwind(map, map_arr);
+	printwind(map);
 	mlx_key_hook(map->mlx_win_ptr, key_hook, map); //keyhook esc and move player el pointer es una direccio diferent dunnowhy algun problema de memoria dec tenir
 	mlx_hook(map->mlx_win_ptr, 17,  1L << 0, close_click, NULL); //closing and exiting with the cros corrrect way
 	mlx_loop(map->mlx_ptr);
