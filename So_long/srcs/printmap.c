@@ -47,7 +47,7 @@ void    init_image(t_map *map)
 
 	w = 32;
     map->img_1 = mlx_xpm_file_to_image(map->mlx_ptr, "./png/shark.xpm", &w, &h);
-    map->img_0 = mlx_xpm_file_to_image(map->mlx_ptr, "./png/wave.xpm", &w, &h);
+    map->img_0 = mlx_xpm_file_to_image(map->mlx_ptr, "./png/wave2.0.xpm", &w, &h);
 	map->img_player = mlx_xpm_file_to_image(map->mlx_ptr, "./png/surfista.xpm", &w, &h);
     map->img_exit = mlx_xpm_file_to_image(map->mlx_ptr, "./png/palmtree.xpm", &w, &h);
     map->img_coll = mlx_xpm_file_to_image(map->mlx_ptr, "./png/van.xpm", &w, &h);
