@@ -12,6 +12,12 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+#define WIDTH 640
+#define HEIGHT 480
+#define SPRITE_WIDTH 32
+#define SPRITE_HEIGHT 32
+#define NUM_FRAMES 2
+
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -26,6 +32,8 @@ typedef struct s_map
 	int				rows;
 	int				cols;
 	int				coll;
+	int				x;
+	int 			y;
 	int				start;
 	int				end;
 	struct s_map	*next;
@@ -35,7 +43,10 @@ typedef struct s_map
 	void			*img_exit;
 	void			*img_coll;
 	void			*img_1;
+	void			*sprites[NUM_FRAMES];
 	void			*img_0;
+	int				moves;
+	int				frame;
 }					t_map;
 void	ft_open_ber(char **argv);
 void	ft_arraymap(t_map *map);
@@ -54,4 +65,7 @@ void	write_error(void);
 int		open_window(t_map *map);
 void	init_image(t_map *map);
 void    printwind(t_map *map);
+int		key_hook(int keycode, t_map *map);
+int		close_click();
+int show_str(t_map *map);
 #endif

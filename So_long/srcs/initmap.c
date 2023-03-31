@@ -1,68 +1,116 @@
 #include "../mlx/mlx.h"
 #include "so_long.h"
+#include "libft.h"
 
-static int close_click();
-static int	key_hook(int keycode, t_map *map);
 static void	ft_move_w(t_map *map);
-
-static int close_click()
-{
-		exit (0);
-}
+static void	ft_move_d(t_map *map);
+static void	ft_move_a(t_map *map);
+static void	ft_move_s(t_map *map);
 
 static void	ft_move_w(t_map *map)
 {
-	int	x;
-	int y;
-
-	x = 32; //position player on the map
-	y = 250; //position player on the map
-	printf("el pointer --------- %p\n", map->img_player);
-	mlx_destroy_image(map->mlx_ptr, map->img_player);
-	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_0, x, y);
-	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_player, x, (y - 32));
-	// mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-	// printwind()
+	if (map->map_array[map->start][map->end] == 'E')
+	{
+		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
+		exit (0);
+	}
+	else if (map->map_array[map->start - 1][map->end] != '1')
+	{
+		mlx_destroy_image(map->mlx_ptr, map->img_player);
+		init_image(map);
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_0, map->x, (map->y));
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_player, map->x, (map->y - 32));
+		map->start -= 1;
+	}
+	else
+		printf("you cannot do thatttt W\n");
 }
 
-// static	void ft_checkwall(t_map *map)
-// {
-
-// }
-
-static int	key_hook(int keycode, t_map *map)
-{
-	if (keycode == 53)
+static void	ft_move_s(t_map *map)
+{	
+	if (map->map_array[map->start][map->end] == 'E')
+	{
+		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
 		exit (0);
+	}
+	else if (map->map_array[map->start + 1][map->end] != '1')
+	{
+		mlx_destroy_image(map->mlx_ptr, map->img_player);
+		init_image(map);
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_0, map->x, map->y);
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_player, map->x, (map->y + 32));
+		map->start += 1;
+	}
+	else
+		printf("you cannot do thatttt W\n");
+}
+
+static void	ft_move_d(t_map *map)
+{
+	if (map->map_array[map->start][map->end] == 'E')
+	{
+		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
+		exit (0);
+	}
+	else if (map->map_array[map->start][map->end + 1] != '1')
+	{
+		mlx_destroy_image(map->mlx_ptr, map->img_player);
+		init_image(map);
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_0, map->x, (map->y));
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_player, (map->x + 32), map->y);
+		map->end += 1;
+	}
+	else
+		printf("you cannot do thatttt en la D\n");
+}
+
+static void	ft_move_a(t_map *map)
+{
+	if (map->map_array[map->start][map->end] == 'E')
+	{
+		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
+		exit (0);
+	}
+	else if (map->map_array[map->start][map->end - 1] != '1')
+	{
+		mlx_destroy_image(map->mlx_ptr, map->img_player);
+		init_image(map);
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_0, map->x, (map->y));
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->img_player, (map->x - 32), map->y);
+		map->end -= 1;
+	}
+	else
+		printf("you cannot do thatttt en la D\n");
+}
+
+int	key_hook(int keycode, t_map *map)
+{
+	map->y = (map->start + 1) * 32;
+	map->x = (map->end) * 32;
+	if (keycode == 53)
+	{
+		mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
+		free(map);
+		exit (0);
+	}
 	if (keycode == 13) 
 		ft_move_w(map);
-	// else if (keycode == 2)
-	// 	printf("Soy una d!\n"); //soc una D
-	// else if (keycode == 1) //soc una S
-	// 	printf("Soy una S!\n");
-	// else if (keycode == 0) //soy una a
-	// 	printf("Soy una A!\n");
+	if (keycode == 2)
+		ft_move_d(map);
+	if (keycode == 0)
+		ft_move_a(map); 
+	if (keycode == 1)
+		ft_move_s(map);
+	char *moves; 
+	moves = ft_itoa(map->moves);
+	write(1, moves, ft_strlen(moves));
+	if (moves)
+		free(moves);
+	write(1, "\n", 1);
+	map->moves++;
 	return (0);
 }
-
-int open_window(t_map *map)
-{
-	map->mlx_ptr = mlx_init();
-	if (map->mlx_ptr == NULL)
-		return (0);
-	int x = (map->cols * 32);
-	int y = ((map->rows + 1) * 32);
-	map->mlx_win_ptr = mlx_new_window(map->mlx_ptr, x, y, "So long!");
-	if (map->mlx_win_ptr == NULL)
-	{
-		free(map->mlx_win_ptr);
-		return (0);
-	}
-	init_image(map);
-	printwind(map);
-	mlx_key_hook(map->mlx_win_ptr, key_hook, map); //keyhook esc and move player el pointer es una direccio diferent dunnowhy algun problema de memoria dec tenir
-	mlx_hook(map->mlx_win_ptr, 17,  1L << 0, close_click, NULL); //closing and exiting with the cros corrrect way
-	mlx_loop(map->mlx_ptr);
-	free(map->mlx_ptr);
-	return (0);
-}
+	// mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 10, 10, 0xFFFFFF, "Moves: "); // Display the label "Moves:"
+	// char *moves_str = ft_itoa(map->moves);
+	// mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 70, 10, 0xFFFFFF, moves_str); // Display the value of moves
+	// free(moves_str); // Free the memory allocated by ft_itoa()
