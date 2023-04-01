@@ -16,7 +16,7 @@
 #define HEIGHT 480
 #define SPRITE_WIDTH 32
 #define SPRITE_HEIGHT 32
-#define NUM_FRAMES 2
+#define NUM_FRAMES 3
 
 # include <stddef.h>
 # include <stdlib.h>
@@ -47,6 +47,9 @@ typedef struct s_map
 	void			*img_0;
 	int				moves;
 	int				frame;
+	int				put_x;
+	int				put_y;
+	int				stop;
 }					t_map;
 void	ft_open_ber(char **argv);
 void	ft_arraymap(t_map *map);
@@ -67,5 +70,7 @@ void	init_image(t_map *map);
 void    printwind(t_map *map);
 int		key_hook(int keycode, t_map *map);
 int		close_click();
-int show_str(t_map *map);
+int		show_str(t_map *map);
+void	update_image(t_map *map);
+
 #endif

@@ -1,18 +1,26 @@
 #include "../mlx/mlx.h"
 #include "so_long.h"
+#include <unistd.h>
 
 static void    print_img(t_map *map, char c, int x, int y);
-static void		update_image(t_map *map);
 
 int close_click()
 {
 	exit (0);
 }
 
-static void update_image(t_map *map)
+void update_image(t_map *map)
 {
-    map->frame = (map->frame + 1) % NUM_FRAMES;
-    mlx_put_image_to_window(map->mlx_ptr, map->mlx_win_ptr, map->sprites[map->frame],0, 0);
+	if (map->stop)
+	{
+		printf("entro en el mlx hook\n");
+		map->frame = (map->frame + 1) % NUM_FRAMES;
+		printf("map frame es %d\n", map->frame);
+		mlx_put_image_to_window(map->mlx_ptr, map->mlx_win_ptr, map->sprites[map->frame], map->x, map->y);
+		usleep(100000);
+	}
+	else
+		printf("K PASAAAAAAAAAA LOCO\n");
 }
 
 int open_window(t_map *map)
@@ -21,7 +29,7 @@ int open_window(t_map *map)
 	if (map->mlx_ptr == NULL)
 		return (0);
 	int x = (map->cols * 32);
-	int y = ((map->rows + 1) * 32);
+	int y = ((map->rows) * 32);
 	map->mlx_win_ptr = mlx_new_window(map->mlx_ptr, x, y, "So long!");
 	if (map->mlx_win_ptr == NULL)
 	{
@@ -32,7 +40,6 @@ int open_window(t_map *map)
 	printwind(map);
 	mlx_key_hook(map->mlx_win_ptr, key_hook, map); //keyhook esc and move player el pointer es una direccio diferent dunnowhy algun problema de memoria dec tenir
 	mlx_hook(map->mlx_win_ptr, 17, 1L << 0, close_click, NULL); //closing and exiting with the cros corrrect way
-	mlx_loop_hook(map->mlx_ptr, (void*)update_image, map);
 	mlx_loop(map->mlx_ptr);
 	free(map->mlx_ptr);
 	return (0);
@@ -47,12 +54,13 @@ void    init_image(t_map *map)
 
 	w = 32;
     map->img_1 = mlx_xpm_file_to_image(map->mlx_ptr, "./png/shark.xpm", &w, &h);
-    map->img_0 = mlx_xpm_file_to_image(map->mlx_ptr, "./png/wave2.0.xpm", &w, &h);
+    map->img_0 = mlx_xpm_file_to_image(map->mlx_ptr, "./png/wave.xpm", &w, &h);
 	map->img_player = mlx_xpm_file_to_image(map->mlx_ptr, "./png/surfista.xpm", &w, &h);
     map->img_exit = mlx_xpm_file_to_image(map->mlx_ptr, "./png/palmtree.xpm", &w, &h);
     map->img_coll = mlx_xpm_file_to_image(map->mlx_ptr, "./png/van.xpm", &w, &h);
-    map->sprites[0] = mlx_xpm_file_to_image(map->mlx_ptr, "./png/wave2.0.xpm", &w, &h);
-    map->sprites[1] = mlx_xpm_file_to_image(map->mlx_ptr, "./png/wave.xpm", &w, &h);
+    map->sprites[0] = mlx_xpm_file_to_image(map->mlx_ptr, "./png/wave_spr1.xpm", &w, &h);
+    map->sprites[1] = mlx_xpm_file_to_image(map->mlx_ptr, "./png/wave_spr2.xpm", &w, &h);
+    map->sprites[2] = mlx_xpm_file_to_image(map->mlx_ptr, "./png/wave_spr3.xpm", &w, &h);
 }
 
 void    printwind(t_map *map)
@@ -68,7 +76,6 @@ void    printwind(t_map *map)
 	{
 		j = 0;
 		x = 0;
-		y += 32;
 		while (j <= (map->cols - 1))
 		{
 			print_img(map, map->map_array[i][j], x, y);
@@ -76,6 +83,7 @@ void    printwind(t_map *map)
 			j++;
 		}
 		i++;
+		y += 32;
 	}
 }
 
@@ -87,7 +95,7 @@ static void    print_img(t_map *map, char c, int x, int y)
     if (c == '1')
         img = map->img_1;
     else if (c == '0')
-        img = map->img_0;
+		img = map->img_0;
     else if (c == 'C')
         img = map->img_coll;
     else if (c == 'P')
