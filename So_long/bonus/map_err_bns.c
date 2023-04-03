@@ -27,7 +27,7 @@ void	check_map_walls(t_map *map, int rows, int cols)
 		while (i <= cols)
 		{
 			if (map->map_array[0][i] != '1' || map->map_array[rows][i] != '1')
-				write_error();
+				write_error('4');
 			i++;
 		}
 	}
@@ -37,16 +37,16 @@ void	check_map_walls(t_map *map, int rows, int cols)
 		while (i <= rows)
 		{
 			if (map->map_array[i][0] != '1' || map->map_array[i][cols] != '1')
-				write_error();
+				write_error('4');
 			i++;
 		}
 	}
 	else
-		write_error();
+		write_error('4');
 	check_coll(map, rows, cols);
 }
 
-static void	check_coll(t_map *map,int rows, int cols)
+static void	check_coll(t_map *map, int rows, int cols)
 {
 	int		i;
 	char	*letter;
@@ -63,7 +63,7 @@ static void	check_coll(t_map *map,int rows, int cols)
 			if (ft_strncmp_long(map->map_array[i][j], letter) == 0)
 				j++;
 			else
-				write_error ();
+				write_error ('3');
 		}
 		i++;
 	}
@@ -90,11 +90,20 @@ static void	check_letter(t_map *map, char letter, int rows, int cols)
 		i++;
 	}
 	if ((letter == 'P' || letter == 'E') && c != 1)
-		write_error();
+		write_error('3');
 	else if (letter == 'C' && c == 0)
-		write_error();
+		write_error('3');
 	if (letter == 'C')
 		check_letter(map, 'E', rows, cols);
 	else if (letter == 'P')
 		check_letter(map, 'P', rows, cols);
+}
+
+void	check_len(int cols, char *line)
+{
+	int	colsnext;
+
+	colsnext = ft_strlen(line);
+	if (cols != colsnext)
+		write_error('2');
 }

@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME = so_long
+BONUS_NAME = so_long_bonus
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -MMD
 RM = /bin/rm -rf
@@ -19,7 +20,9 @@ RM = /bin/rm -rf
 LIBFT_DIR = LIBFT/
 LIBFT = ${LIBFT_DIR}libft.a
 SRCS_DIR = srcs/
+BONUS_DIR = bonus/
 GET_DIR = srcs/get_next_line/
+GET_DIR_BONUS = bonus/get_next_line/
 INC_DIR = inc/
 LIB = ${INC_DIR}/so_long.h
 LIB_GET = ${INC_DIR}/get_next_line.h
@@ -29,14 +32,21 @@ MINILIBXCC	= -I mlx -L $(MLX_DIR) -lmlx
 OPENGL = -framework OpenGL -framework AppKit
 
 #Objects & dependencies falten dependencies !!
-SRCS = $(SRCS_DIR)control_map_err.c $(SRCS_DIR)so_long.c $(SRCS_DIR)so_long_utils.c $(SRCS_DIR)map_errors.c $(GET_DIR)get_next_line_utils.c $(GET_DIR)get_next_line.c  $(SRCS_DIR)valid_path.c $(SRCS_DIR)initmap.c $(SRCS_DIR)printmap.c
+SRCS = $(SRCS_DIR)map_err.c $(SRCS_DIR)so_long.c $(SRCS_DIR)so_long_utils.c $(SRCS_DIR)create_map.c $(GET_DIR)get_next_line_utils.c $(GET_DIR)get_next_line.c  $(SRCS_DIR)valid_path.c $(SRCS_DIR)initmap.c $(SRCS_DIR)printmap.c
+
+BONUS =$(BONUS_DIR)map_err_bns.c $(BONUS_DIR)so_long_bns.c $(BONUS_DIR)so_long_utils_bns.c $(BONUS_DIR)create_map_bns.c $(GET_DIR_BONUS)get_next_line_utils_bns.c $(GET_DIR_BONUS)get_next_line_bns.c  $(BONUS_DIR)valid_path_bns.c $(BONUS_DIR)initmap_bns.c $(BONUS_DIR)printmap_bns.c
 
 OBJ = $(SRCS:%.c=%.o)
+BONUS_OBJ = $(BONUS:%.c=%.o)
 DEPS = $(SRCS:%.c=%.d)
+DEPS_BONUS = $(BONUS:%.c=%.d)
 
 # Gcc
 $(NAME): $(OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET) 
 	$(CC) $(CFLAGS) $(OBJ) $(MINILIBXCC) $(LIBFT) $(OPENGL) -o $(NAME)
+
+bonus: $(BONUS_OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET) 
+	$(CC) $(CFLAGS) $(BONUS_OBJ) $(MINILIBXCC) $(LIBFT) $(OPENGL) -o $(BONUS_NAME)
 
 $(LIBFT): 
 		@make -C $(LIBFT_DIR)
@@ -49,8 +59,8 @@ $(MLX):
 
 clean:
 	$(RM) $(NAME)
-	$(RM) $(OBJ)
-	rm -rf ${DEPS}
+	$(RM) $(OBJ) ${BONUS_OBJ}
+	rm -rf ${DEPS} ${DEPS_BONUS}
 	make clean -sC $(LIBFT_DIR)
 	make clean -sC $(MLX_DIR)
 	echo "\n🌼 It is all safe and clean 🌼\n"
@@ -63,6 +73,6 @@ re: fclean all
 
 all: $(NAME)
 
--include ${DEPS}
+-include ${DEPS} ${DEPS_BONUS}
 
 .PHONY: all clean fclean re
