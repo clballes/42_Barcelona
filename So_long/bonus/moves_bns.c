@@ -79,8 +79,9 @@ static void	ft_move_d(t_map *map)
 		init_image(map);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_0, map->x, (map->y));
-		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->img_player, (map->x + 32), map->y);
+		map->stop = 3;
+		mlx_loop_hook(map->mlx_ptr, spritehook, map);
+		map->stop = 4;
 		map->end += 1;
 	}
 	else

@@ -52,8 +52,9 @@ typedef struct s_map
 	int				delta_col[4];
 	int				moves;
 	int				frame;
-	int				put_x;
-	int				put_y;
+	int				*put_x;
+	int				*put_y;
+	int				i;
 	int				stop;
 }					t_map;
 //functions create check map
@@ -80,7 +81,7 @@ int		close_click();
 int		show_str(t_map *map);
 void	update_image(t_map *map);
 //bonus functions
-void	*spritehook(t_map *map);
+int		spritehook(void *param);
 void	put_string(t_map *map);
 
 #endif

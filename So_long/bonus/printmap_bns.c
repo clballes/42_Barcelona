@@ -44,7 +44,6 @@ int	open_window(t_map *map)
 		key_hook, map);
 	mlx_hook(map->mlx_win_ptr,
 		17, 1L << 0, close_click, NULL);
-	mlx_loop_hook(map->mlx_ptr, (void *)spritehook, map);
 	mlx_loop(map->mlx_ptr);
 	free(map->mlx_ptr);
 	return (0);
@@ -79,15 +78,32 @@ static void	print_img(t_map *map, char c, int x, int y)
 	void	*img;
 
 	img = NULL;
-	if (c == '1')
-		img = map->img_1;
-	else if (c == '0')
-		img = map->img_0;
-	else if (c == 'C')
-		img = map->img_coll;
-	else if (c == 'P')
-		img = map->img_player;
-	else if (c == 'E')
-		img = map->img_exit;
-	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, img, x, y);
+	if  (c == '1' || c == 'C' || c == 'P' || c == 'E' )
+	{
+		if (c == '1')
+			img = map->img_1;
+		else if (c == 'C')
+			img = map->img_coll;
+		else if (c == 'P')
+			img = map->img_player;
+		else if (c == 'E')
+			img = map->img_exit;
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, img, x, y);
+	}
+	if (c == '0')
+	{
+		if (x && y)
+		{
+			if (!map->put_x && !map->put_y)
+			{
+				map->put_x = malloc(sizeof(int) * (map->rows * map->cols));
+				map->put_y = malloc(sizeof(int) * (map->rows * map->cols));
+			}
+			map->put_x[map->i] = x;
+			map->put_y[map->i] = y;
+			map->i++;
+		}
+	}
+	map->stop = 1;
+	mlx_loop_hook(map->mlx_ptr, spritehook, map);
 }

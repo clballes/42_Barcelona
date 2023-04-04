@@ -77,21 +77,28 @@ void	init_delta(t_map *map)
 	}
 }
 
-void	*spritehook(t_map *map)
+int	spritehook(void *param)
 {
+	t_map *map;
 	int i;
-	int x = 0;
-	int y = 0;
-	i = 0;
+	map = (t_map *)param;
 
-	while(i <= 3)
+	i = 0;
+	map->frame = (map->frame + 1) % NUM_FRAMES;
+	
+	while (i <= map->i)
 	{
-		printf("holaaaaaa\n");
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->sprites[i], x, y);
-		usleep(1000000);
+			map->sprites[map->frame], map->put_x[i], map->put_y[i]);
 		i++;
 	}
+	if (map->stop == 3)
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+			map->sprites[map->frame], map->x, map->y);
+	if (map->stop == 4)
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+			map->img_player, (map->x + 32), map->y);
+	usleep(80000);
 	return (0);
 }
 
