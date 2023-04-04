@@ -58,7 +58,7 @@ $(MLX):
 	$(CC) -I$(INC_DIR) -I$(LIBFT_DIR) -c $(CFLAGS)  $< -o $@
 
 clean:
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS_NAME)
 	$(RM) $(OBJ) ${BONUS_OBJ}
 	rm -rf ${DEPS} ${DEPS_BONUS}
 	make clean -sC $(LIBFT_DIR)

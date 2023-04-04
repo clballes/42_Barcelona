@@ -73,3 +73,18 @@ void	init_delta(t_map *map)
 		i++;
 	}
 }
+
+// void	*spritehook(t_map *map)
+// {
+// 	int i;
+// 	int x = 0;
+// 	int y = 0;
+// 	i = 0;
+// 	while(i <= 3)
+// 	{
+// 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->sprites[i], x, y);
+// 		i++;
+// 	}
+// 	usleep(1000000);
+// 	return (0);
+// }

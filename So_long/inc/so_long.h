@@ -68,7 +68,6 @@ void	init_delta(t_map *map);
 t_map	*ft_lstnew_long(void	*content);
 void	ft_lstadd_back_long(t_map **lst, t_map *new);
 t_map	*ft_lstlast_long(t_map *lst);
-
 //print functions
 void	write_error(char error);
 //minilibx functions handle
@@ -79,5 +78,6 @@ int		key_hook(int keycode, t_map *map);
 int		close_click();
 int		show_str(t_map *map);
 void	update_image(t_map *map);
-
+//bonus functions
+void	*spritehook(t_map *map);
 #endif

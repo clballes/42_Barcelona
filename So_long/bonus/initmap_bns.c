@@ -97,9 +97,9 @@ static void	ft_move_a(t_map *map)
 
 int	key_hook(int keycode, t_map *map)
 {
-	char	*moves;
+	char	*moves_str;
 
-	moves = ft_itoa(map->moves);
+	moves_str = ft_itoa(map->moves);
 	map->y = (map->start) * 32;
 	map->x = (map->end) * 32;
 	if (keycode == 53)
@@ -116,10 +116,14 @@ int	key_hook(int keycode, t_map *map)
 		ft_move_a(map);
 	if (keycode == 1)
 		ft_move_s(map);
-	write(1, moves, ft_strlen(moves));
-	if (moves)
-		free(moves);
-	write(1, "\n", 1);
+	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 10, 10, 0xFFFFFF, "Moves: ");
+	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 70, 10, 0xFFFFFF, moves_str);
+	mlx_pixel_put(map->mlx_ptr, map->mlx_win_ptr, 70, 10, 0xFF0000);
+	// write(1, moves_str, ft_strlen(moves_str));
+	// if (moves_str)
+	// 	free(moves_str);
+	// write(1, "\n", 1);
 	map->moves++;
+	free(moves_str);
 	return (0);
 }

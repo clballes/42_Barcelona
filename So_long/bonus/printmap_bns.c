@@ -1,5 +1,6 @@
 #include "../mlx/mlx.h"
 #include "so_long.h"
+#include "libft.h"
 
 static void	print_img(t_map *map, char c, int x, int y);
 
@@ -32,6 +33,7 @@ int	open_window(t_map *map)
 		17, 1L << 0, close_click, NULL);
 	mlx_loop(map->mlx_ptr);
 	free(map->mlx_ptr);
+	// mlx_loop_hook(map->mlx_ptr, (void *)spritehook, map);
 	return (0);
 }
 
