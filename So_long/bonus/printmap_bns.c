@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printmap_bns.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/04 15:10:00 by clballes          #+#    #+#             */
+/*   Updated: 2023/04/04 15:10:12 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../mlx/mlx.h"
 #include "so_long.h"
 #include "libft.h"
@@ -32,9 +44,9 @@ int	open_window(t_map *map)
 		key_hook, map);
 	mlx_hook(map->mlx_win_ptr,
 		17, 1L << 0, close_click, NULL);
+	mlx_loop_hook(map->mlx_ptr, (void *)spritehook, map);
 	mlx_loop(map->mlx_ptr);
 	free(map->mlx_ptr);
-	// mlx_loop_hook(map->mlx_ptr, (void *)spritehook, map);
 	return (0);
 }
 

@@ -6,12 +6,13 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:52:14 by clballes          #+#    #+#             */
-/*   Updated: 2023/03/07 12:11:46 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:10:32 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 #include "../mlx/mlx.h"
+#include "libft.h"
 
 int	main(int argc, char **argv)
 {
@@ -76,17 +77,35 @@ void	init_delta(t_map *map)
 	}
 }
 
-// void	*spritehook(t_map *map)
-// {
-// 	int i;
-// 	int x = 0;
-// 	int y = 0;
-// 	i = 0;
-// 	while(i <= 3)
-// 	{
-// 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, map->sprites[i], x, y);
-// 		i++;
-// 	}
-// 	usleep(1000000);
-// 	return (0);
-// }
+void	*spritehook(t_map *map)
+{
+	int i;
+	int x = 0;
+	int y = 0;
+	i = 0;
+
+	while(i <= 3)
+	{
+		printf("holaaaaaa\n");
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+			map->sprites[i], x, y);
+		usleep(1000000);
+		i++;
+	}
+	return (0);
+}
+
+void	put_string(t_map *map)
+{
+	char	*moves_str;
+
+	moves_str = ft_itoa(map->moves);
+	map->moves++;
+	mlx_put_image_to_window (map->mlx_ptr,
+		map->mlx_win_ptr, map->img_black, 0, 196);
+	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr,
+		20, 210, 0xFFFFFF, "Moves: ");
+	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr,
+		80, 210, 0xFFFFFF, moves_str);
+	free(moves_str);
+}

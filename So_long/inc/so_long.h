@@ -81,4 +81,6 @@ int		show_str(t_map *map);
 void	update_image(t_map *map);
 //bonus functions
 void	*spritehook(t_map *map);
+void	put_string(t_map *map);
+
 #endif

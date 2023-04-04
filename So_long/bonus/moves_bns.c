@@ -1,12 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_bns.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/04 15:08:30 by clballes          #+#    #+#             */
+/*   Updated: 2023/04/04 15:09:51 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../mlx/mlx.h"
 #include "so_long.h"
-#include "libft.h"
 
 static void	ft_move_w(t_map *map);
 static void	ft_move_d(t_map *map);
 static void	ft_move_a(t_map *map);
 static void	ft_move_s(t_map *map);
-static void	put_string(t_map *map);
 
 static void	ft_move_w(t_map *map)
 {
@@ -118,22 +128,5 @@ int	key_hook(int keycode, t_map *map)
 		ft_move_a(map);
 	if (keycode == 1)
 		ft_move_s(map);
-	// write(1, moves_str, ft_strlen(moves_str));
-	// if (moves_str)
-	// 	free(moves_str);
-	// write(1, "\n", 1);
-	// free(moves_str);
 	return (0);
-}
-
-static void	put_string(t_map *map)
-{
-	char	*moves_str;
-
-	moves_str = ft_itoa(map->moves);
-	map->moves++;
-	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,map->img_black, 0, 196);
-	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 20, 210, 0xFFFFFF, "Moves: ");
-	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 80, 210, 0xFFFFFF, moves_str);
-	free(moves_str);
 }
