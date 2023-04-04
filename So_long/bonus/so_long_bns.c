@@ -49,6 +49,8 @@ void	init_image(t_map *map)
 			"./png/wave_spr2.xpm", &w, &h);
 	map->sprites[2] = mlx_xpm_file_to_image(map->mlx_ptr,
 			"./png/wave_spr3.xpm", &w, &h);
+	map->img_black = mlx_xpm_file_to_image(map->mlx_ptr,
+			"./png/black.xpm", &w, &h);
 }
 
 void	init_delta(t_map *map)

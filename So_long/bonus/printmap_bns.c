@@ -6,6 +6,7 @@ static void	print_img(t_map *map, char c, int x, int y);
 
 int	close_click(void)
 {
+	system("leaks so_long_bonus");
 	exit (0);
 }
 
@@ -15,7 +16,7 @@ int	open_window(t_map *map)
 	int	y;
 
 	x = (map->cols * 32);
-	y = ((map->rows) * 32);
+	y = ((map->rows + 1) * 32);
 	map->mlx_ptr = mlx_init();
 	if (map->mlx_ptr == NULL)
 		return (0);

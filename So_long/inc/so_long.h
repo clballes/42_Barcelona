@@ -42,6 +42,7 @@ typedef struct s_map
 	void			*mlx_ptr;
 	void			*mlx_win_ptr;
 	void			*img_player;
+	void			*img_black;
 	void			*img_exit;
 	void			*img_coll;
 	void			*img_1;

@@ -6,17 +6,19 @@ static void	ft_move_w(t_map *map);
 static void	ft_move_d(t_map *map);
 static void	ft_move_a(t_map *map);
 static void	ft_move_s(t_map *map);
+static void	put_string(t_map *map);
 
 static void	ft_move_w(t_map *map)
 {
 	if (map->map_array[map->start][map->end] == 'E')
 	{
+		put_string(map);
 		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
 		exit (0);
 	}
 	else if (map->map_array[map->start - 1][map->end] != '1')
 	{
-		map->stop = 1;
+		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
@@ -33,12 +35,13 @@ static void	ft_move_s(t_map *map)
 {	
 	if (map->map_array[map->start][map->end] == 'E')
 	{
+		put_string(map);
 		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
 		exit (0);
 	}
 	else if (map->map_array[map->start + 1][map->end] != '1')
 	{
-		map->stop = 1;
+		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
@@ -55,12 +58,13 @@ static void	ft_move_d(t_map *map)
 {
 	if (map->map_array[map->start][map->end] == 'E')
 	{
+		put_string(map);
 		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
 		exit (0);
 	}
 	else if (map->map_array[map->start][map->end + 1] != '1')
 	{
-		map->stop = 1;
+		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
@@ -77,12 +81,13 @@ static void	ft_move_a(t_map *map)
 {
 	if (map->map_array[map->start][map->end] == 'E')
 	{
+		put_string(map);
 		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
 		exit (0);
 	}
 	else if (map->map_array[map->start][map->end - 1] != '1')
 	{
-		map->stop = 1;
+		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
@@ -97,9 +102,6 @@ static void	ft_move_a(t_map *map)
 
 int	key_hook(int keycode, t_map *map)
 {
-	char	*moves_str;
-
-	moves_str = ft_itoa(map->moves);
 	map->y = (map->start) * 32;
 	map->x = (map->end) * 32;
 	if (keycode == 53)
@@ -116,14 +118,22 @@ int	key_hook(int keycode, t_map *map)
 		ft_move_a(map);
 	if (keycode == 1)
 		ft_move_s(map);
-	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 10, 10, 0xFFFFFF, "Moves: ");
-	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 70, 10, 0xFFFFFF, moves_str);
-	mlx_pixel_put(map->mlx_ptr, map->mlx_win_ptr, 70, 10, 0xFF0000);
 	// write(1, moves_str, ft_strlen(moves_str));
 	// if (moves_str)
 	// 	free(moves_str);
 	// write(1, "\n", 1);
-	map->moves++;
-	free(moves_str);
+	// free(moves_str);
 	return (0);
+}
+
+static void	put_string(t_map *map)
+{
+	char	*moves_str;
+
+	moves_str = ft_itoa(map->moves);
+	map->moves++;
+	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,map->img_black, 0, 196);
+	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 20, 210, 0xFFFFFF, "Moves: ");
+	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr, 80, 210, 0xFFFFFF, moves_str);
+	free(moves_str);
 }
