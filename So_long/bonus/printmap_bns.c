@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:10:00 by clballes          #+#    #+#             */
-/*   Updated: 2023/04/04 15:10:12 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:14:06 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 
 static void	print_img(t_map *map, char c, int x, int y);
+static void	ft_loop(t_map *map, int x, int y);
 
 int	close_click(void)
 {
@@ -78,7 +79,7 @@ static void	print_img(t_map *map, char c, int x, int y)
 	void	*img;
 
 	img = NULL;
-	if (c == '1' || c == 'C' || c == 'P' || c == 'E' )
+	if (c != '0')
 	{
 		if (c == '1')
 			img = map->img_1;
@@ -90,31 +91,23 @@ static void	print_img(t_map *map, char c, int x, int y)
 			img = map->img_exit;
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, img, x, y);
 	}
-	if (c == '0')
+	else
+		ft_loop(map, x, y);
+}
+
+static void	ft_loop(t_map *map, int x, int y)
+{
+	if (x && y)
 	{
-		if (x && y)
+		if (!map->put_x && !map->put_y)
 		{
-			if (!map->put_x && !map->put_y)
-			{
-				map->put_x = malloc(sizeof(int) * (map->rows * map->cols));
-				map->put_y = malloc(sizeof(int) * (map->rows * map->cols));
-			}
-			map->put_x[map->i] = x;
-			map->put_y[map->i] = y;
-			map->i++;
+			map->put_x = malloc(sizeof(int) * (map->rows * map->cols));
+			map->put_y = malloc(sizeof(int) * (map->rows * map->cols));
 		}
+		map->put_x[map->i] = x;
+		map->put_y[map->i] = y;
+		map->i++;
 	}
 	map->stop = 1;
 	mlx_loop_hook(map->mlx_ptr, spritehook, map);
-}
-
-void	print_x(t_map *map)
-{
-	int i = 0;
-	while (i <= map->i)
-	{
-		printf("array de x es %d\n", map->put_x[i]);
-		printf("array de y es %d\n", map->put_y[i]);
-		i++;
-	}
 }

@@ -99,11 +99,11 @@ static void	check_letter(t_map *map, char letter, int rows, int cols)
 		check_letter(map, 'P', rows, cols);
 }
 
-void	check_len(int cols, char *line)
+void	check_len(int cols, t_line *temp)
 {
 	int	colsnext;
 
-	colsnext = ft_strlen(line);
+	colsnext = ft_strlen(temp->line);
 	if (cols != colsnext)
 		write_error('2');
 }

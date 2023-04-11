@@ -87,5 +87,5 @@ void	update_image(t_map *map);
 //bonus functions
 int		spritehook(void *param);
 void	put_string(t_map *map);
-void	print_x(t_map *map);
+void	check_move_collec(t_map *map);
 #endif

@@ -20,13 +20,8 @@ static void	ft_move_s(t_map *map);
 
 static void	ft_move_w(t_map *map)
 {
-	if (map->map_array[map->start][map->end] == 'E')
-	{
-		put_string(map);
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
-	}
-	else if (map->map_array[map->start - 1][map->end] != '1')
+	check_move_collec(map);
+	if (map->map_array[map->start - 1][map->end] != '1')
 	{
 		map->stop = 6;
 		put_string(map);
@@ -43,13 +38,8 @@ static void	ft_move_w(t_map *map)
 
 static void	ft_move_s(t_map *map)
 {	
-	if (map->map_array[map->start][map->end] == 'E')
-	{
-		put_string(map);
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
-	}
-	else if (map->map_array[map->start + 1][map->end] != '1')
+	check_move_collec(map);
+	if (map->map_array[map->start + 1][map->end] != '1')
 	{
 		map->stop = 5;
 		put_string(map);
@@ -66,13 +56,8 @@ static void	ft_move_s(t_map *map)
 
 static void	ft_move_d(t_map *map)
 {
-	if (map->map_array[map->start][map->end] == 'E')
-	{
-		put_string(map);
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
-	}
-	else if (map->map_array[map->start][map->end + 1] != '1')
+	check_move_collec(map);
+	if (map->map_array[map->start][map->end + 1] != '1')
 	{
 		map->stop = 3;
 		put_string(map);
@@ -89,13 +74,8 @@ static void	ft_move_d(t_map *map)
 
 static void	ft_move_a(t_map *map)
 {
-	if (map->map_array[map->start][map->end] == 'E')
-	{
-		put_string(map);
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
-	}
-	else if (map->map_array[map->start][map->end - 1] != '1')
+	check_move_collec(map);
+	if (map->map_array[map->start][map->end - 1] != '1')
 	{
 		map->stop = 4;
 		put_string(map);
