@@ -27,7 +27,6 @@
 
 typedef struct s_map
 {
-	char			*line;
 	char			**map_array;
 	int				rows;
 	int				cols;
@@ -38,7 +37,6 @@ typedef struct s_map
 	int 			y;
 	int				start;
 	int				end;
-	struct s_map	*next;
 	void			*mlx_ptr;
 	void			*mlx_win_ptr;
 	void			*img_player;
@@ -57,6 +55,12 @@ typedef struct s_map
 	int				i;
 	int				stop;
 }					t_map;
+
+typedef struct s_line
+{
+	char			*line;
+	struct s_map	*next;
+}					t_line;
 //functions create check map
 int		ft_open_ber(char **argv);
 void	ft_openmap(char **argv);

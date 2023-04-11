@@ -14,6 +14,8 @@
 #include "../mlx/mlx.h"
 #include "libft.h"
 
+static void	put_img_player(t_map *map);
+
 int	main(int argc, char **argv)
 {
 	if (argc > 1 && *argv[1])
@@ -60,6 +62,7 @@ void	init_delta(t_map *map)
 	int	delta_col[4];
 	int	i;
 
+	map->moves = 1;
 	delta_row[0] = -1;
 	delta_row[1] = 0;
 	delta_row[2] = 1;
@@ -85,21 +88,42 @@ int	spritehook(void *param)
 
 	i = 0;
 	map->frame = (map->frame + 1) % NUM_FRAMES;
-	
 	while (i <= map->i)
 	{
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->sprites[map->frame], map->put_x[i], map->put_y[i]);
 		i++;
 	}
+	put_img_player(map);
+	usleep(100000);
+	return (0);
+}
+
+static void	put_img_player(t_map *map)
+{
 	if (map->stop == 3)
-		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->sprites[map->frame], map->x, map->y);
-	if (map->stop == 4)
+	{
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_player, (map->x + 32), map->y);
-	usleep(80000);
-	return (0);
+	}
+	else if(map->stop == 4)
+	{
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+			map->img_player, (map->x - 32), map->y);
+	}
+	else if(map->stop == 5)
+	{
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+			map->img_player, map->x, (map->y + 32));
+	}
+	else if(map->stop == 6)
+	{
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+			map->img_player, map->x, (map->y - 32));
+	}
+	else if (map->stop == 8)
+		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+			map->img_player, (map->x), map->y);
 }
 
 void	put_string(t_map *map)

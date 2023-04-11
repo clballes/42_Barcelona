@@ -28,17 +28,17 @@ static void	ft_move_w(t_map *map)
 	}
 	else if (map->map_array[map->start - 1][map->end] != '1')
 	{
+		map->stop = 6;
 		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
-		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->img_0, map->x, map->y);
-		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->img_player, map->x, (map->y - 32));
 		map->start -= 1;
 	}
 	else
+	{
 		write(1, "You hit a wall\n", 15);
+		map->stop = 8;
+	}
 }
 
 static void	ft_move_s(t_map *map)
@@ -51,17 +51,17 @@ static void	ft_move_s(t_map *map)
 	}
 	else if (map->map_array[map->start + 1][map->end] != '1')
 	{
+		map->stop = 5;
 		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
-		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->img_0, map->x, map->y);
-		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->img_player, map->x, (map->y + 32));
 		map->start += 1;
 	}
 	else
+	{
 		write(1, "You hit a wall\n", 15);
+		map->stop = 8;
+	}
 }
 
 static void	ft_move_d(t_map *map)
@@ -74,18 +74,17 @@ static void	ft_move_d(t_map *map)
 	}
 	else if (map->map_array[map->start][map->end + 1] != '1')
 	{
+		map->stop = 3;
 		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
-		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->img_0, map->x, (map->y));
-		map->stop = 3;
-		mlx_loop_hook(map->mlx_ptr, spritehook, map);
-		map->stop = 4;
 		map->end += 1;
 	}
 	else
+	{
 		write(1, "You hit a wall\n", 15);
+		map->stop = 8;
+	}
 }
 
 static void	ft_move_a(t_map *map)
@@ -98,23 +97,24 @@ static void	ft_move_a(t_map *map)
 	}
 	else if (map->map_array[map->start][map->end - 1] != '1')
 	{
+		map->stop = 4;
 		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
-		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->img_0, map->x, (map->y));
-		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
-			map->img_player, (map->x - 32), map->y);
 		map->end -= 1;
 	}
 	else
+	{
 		write(1, "You hit a wall\n", 15);
+		map->stop = 8;
+	}
 }
 
 int	key_hook(int keycode, t_map *map)
 {
 	map->y = (map->start) * 32;
 	map->x = (map->end) * 32;
+	map->stop = 1;
 	if (keycode == 53)
 	{
 		mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);

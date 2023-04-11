@@ -78,7 +78,7 @@ static void	print_img(t_map *map, char c, int x, int y)
 	void	*img;
 
 	img = NULL;
-	if  (c == '1' || c == 'C' || c == 'P' || c == 'E' )
+	if (c == '1' || c == 'C' || c == 'P' || c == 'E' )
 	{
 		if (c == '1')
 			img = map->img_1;
