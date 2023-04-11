@@ -55,25 +55,25 @@ typedef struct s_map
 	int				i;
 	int				stop;
 }					t_map;
-
 typedef struct s_line
 {
 	char			*line;
-	struct s_map	*next;
+	struct s_line	*next;
 }					t_line;
+
 //functions create check map
 int		ft_open_ber(char **argv);
 void	ft_openmap(char **argv);
-void	ft_arraymap(t_map *map);
+void	ft_arraymap(t_map *map, t_line *temp);
 void	check_map_walls(t_map *map, int rows, int cols);
 int		ft_strncmp_long(char c, char *s2);
 void	has_valid_path(t_map *map, char **cy_map_arr);
-void	check_len(int cols, char *line);
+void	check_len(int cols, t_line *temp);
 void	init_delta(t_map *map);
 //list functions
-t_map	*ft_lstnew_long(void	*content);
-void	ft_lstadd_back_long(t_map **lst, t_map *new);
-t_map	*ft_lstlast_long(t_map *lst);
+t_line	*ft_lstnew_long(void	*content);
+void	ft_lstadd_back_long(t_line **lst, t_line *new);
+t_line	*ft_lstlast_long(t_line *lst);
 //print functions
 void	write_error(char error);
 //minilibx functions handle
@@ -87,5 +87,5 @@ void	update_image(t_map *map);
 //bonus functions
 int		spritehook(void *param);
 void	put_string(t_map *map);
-
+void	print_x(t_map *map);
 #endif

@@ -12,11 +12,11 @@
 #include "../inc/so_long.h"
 #include "libft.h"
 
-t_map	*ft_lstnew_long(void	*content)
+t_line	*ft_lstnew_long(void	*content)
 {
-	t_map	*list;
+	t_line	*list;
 
-	list = malloc(sizeof(t_map));
+	list = malloc(sizeof(t_line));
 	if (!list)
 		return (NULL);
 	list->line = content;
@@ -24,9 +24,9 @@ t_map	*ft_lstnew_long(void	*content)
 	return (list);
 }
 
-void	ft_lstadd_back_long(t_map **lst, t_map *new)
+void	ft_lstadd_back_long(t_line **lst, t_line *new)
 {
-	t_map	*last;
+	t_line	*last;
 
 	if (*lst && new)
 	{
@@ -37,9 +37,9 @@ void	ft_lstadd_back_long(t_map **lst, t_map *new)
 		*lst = new;
 }
 
-t_map	*ft_lstlast_long(t_map *lst)
+t_line	*ft_lstlast_long(t_line *lst)
 {
-	t_map	*tmp;
+	t_line	*tmp;
 
 	if (!lst)
 		return (NULL);

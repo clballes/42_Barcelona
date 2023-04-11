@@ -82,16 +82,19 @@ void	init_delta(t_map *map)
 
 int	spritehook(void *param)
 {
-	t_map *map;
-	int i;
-	map = (t_map *)param;
+	t_map	*map;
+	int		i;
 
+	map = (t_map *)param;
 	i = 0;
 	map->frame = (map->frame + 1) % NUM_FRAMES;
 	while (i <= map->i)
 	{
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->sprites[map->frame], map->put_x[i], map->put_y[i]);
+		printf("el map i es %d\n", map->i);
+		// printf("array de x es %d\n", map->put_x[i]);
+		// printf("array de y es %d\n", map->put_y[i]);
 		i++;
 	}
 	put_img_player(map);
@@ -101,22 +104,29 @@ int	spritehook(void *param)
 
 static void	put_img_player(t_map *map)
 {
-	if (map->stop == 3)
+	if (map->stop == 3) //move D
 	{
+
+		if (map->map_array[map->start][map->end - 1] == 'C' || map->map_array[map->start][map->end - 1] == 'P')
+		{
+			map->i++;
+			map->put_x[map->i] = map->x;
+			map->put_y[map->i] = map->y;
+		}
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_player, (map->x + 32), map->y);
 	}
-	else if(map->stop == 4)
+	else if (map->stop == 4)
 	{
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_player, (map->x - 32), map->y);
 	}
-	else if(map->stop == 5)
+	else if (map->stop == 5)
 	{
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_player, map->x, (map->y + 32));
 	}
-	else if(map->stop == 6)
+	else if (map->stop == 6)
 	{
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_player, map->x, (map->y - 32));

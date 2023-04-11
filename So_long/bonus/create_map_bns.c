@@ -14,7 +14,7 @@
 #include "../inc/get_next_line.h"
 #include "libft.h"
 
-static void		ft_map_list(t_map *map, t_map *temp, int fd, char *line);
+static void		ft_map_list(t_map *map, t_line *temp, int fd);
 static void		create_copy(t_map *map);
 
 int	ft_open_ber(char **argv)
@@ -42,65 +42,60 @@ void	ft_openmap(char **argv)
 {
 	int		fd;
 	t_map	*map;
-	t_map	*temp;
-	char	*line;
+	t_line	*temp;
 
-	line = NULL;
-	map = NULL;
-	temp = NULL;
+	temp = malloc(sizeof(t_line));
+	map = malloc(sizeof(t_map));
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		write_error('1');
 	else
 	{
-		ft_map_list(map, temp, fd, line);
+		ft_map_list(map, temp, fd);
 		if (map == NULL)
 			write_error('1');
 	}
 }
 
-static	void	ft_map_list(t_map *map, t_map *temp, int fd, char *line)
+static	void	ft_map_list(t_map *map, t_line *temp, int fd)
 {
 	int		rows;
 	int		cols;
+	t_line	*list;
 
 	rows = 1;
-	line = get_next_line(fd);
-	temp = ft_lstnew_long(line);
-	cols = ft_strlen(line);
-	if (line)
+	temp->line = get_next_line(fd);
+	cols = ft_strlen(temp->line);
+	if (temp->line)
 	{
-		while (line != NULL)
+		while (1)
 		{
-			ft_lstadd_back_long(&map, temp);
-			line = get_next_line(fd);
-			temp = ft_lstnew_long(line);
-			if (line == NULL)
+			list = ft_lstnew_long(get_next_line(fd));
+			if (list->line == NULL)
 				break ;
-			check_len(cols, line);
+			ft_lstadd_back_long(&temp, list);
+			check_len(cols, temp);
 			rows++;
 		}
 		map->rows = rows;
 		map->cols = cols;
-		ft_arraymap(map);
+		ft_arraymap(map, temp);
 	}
 }
 
-void	ft_arraymap(t_map *map)
+void	ft_arraymap(t_map *map, t_line *temp)
 {
 	int		i;
-	t_map	*tmp;
 
 	i = 0;
-	tmp = map;
 	if (map->rows == map->cols)
 		write_error('2');
 	map->map_array = malloc(sizeof(char *) * map->rows);
-	while (i < map->rows && tmp)
+	while (i < map->rows)
 	{
-		map->map_array[i] = tmp->line;
+		map->map_array[i] = temp->line;
 		i++;
-		tmp = tmp->next;
+		temp = temp->next;
 	}
 	check_map_walls(map, (map->rows - 1), (map->cols - 1));
 	create_copy(map);

@@ -107,3 +107,14 @@ static void	print_img(t_map *map, char c, int x, int y)
 	map->stop = 1;
 	mlx_loop_hook(map->mlx_ptr, spritehook, map);
 }
+
+void	print_x(t_map *map)
+{
+	int i = 0;
+	while (i <= map->i)
+	{
+		printf("array de x es %d\n", map->put_x[i]);
+		printf("array de y es %d\n", map->put_y[i]);
+		i++;
+	}
+}
