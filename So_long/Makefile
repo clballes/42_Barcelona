@@ -34,7 +34,7 @@ OPENGL = -framework OpenGL -framework AppKit
 
 SRCS = $(SRCS_DIR)map_err.c $(SRCS_DIR)so_long.c $(SRCS_DIR)so_long_utils.c $(SRCS_DIR)create_map.c $(GET_DIR)get_next_line_utils.c $(GET_DIR)get_next_line.c  $(SRCS_DIR)valid_path.c $(SRCS_DIR)moves.c $(SRCS_DIR)printmap.c
 
-BONUS =$(BONUS_DIR)map_err_bns.c $(BONUS_DIR)so_long_bns.c $(BONUS_DIR)so_long_utils_bns.c $(BONUS_DIR)create_map_bns.c $(GET_DIR_BONUS)get_next_line_utils_bns.c $(GET_DIR_BONUS)get_next_line_bns.c  $(BONUS_DIR)valid_path_bns.c $(BONUS_DIR)moves_bns.c $(BONUS_DIR)printmap_bns.c $(BONUS_DIR)init_bns.c 
+BONUS =$(BONUS_DIR)map_err_bonus.c $(BONUS_DIR)so_long_bonus.c $(BONUS_DIR)so_long_utils_bonus.c $(BONUS_DIR)create_map_bonus.c $(GET_DIR_BONUS)get_next_line_utils_bonus.c $(GET_DIR_BONUS)get_next_line_bonus.c  $(BONUS_DIR)valid_path_bonus.c $(BONUS_DIR)moves_bonus.c $(BONUS_DIR)printmap_bonus.c $(BONUS_DIR)init_bonus.c 
 
 OBJ = $(SRCS:%.c=%.o)
 BONUS_OBJ = $(BONUS:%.c=%.o)
