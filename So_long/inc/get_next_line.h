@@ -15,7 +15,6 @@
 # define BUFFER_SIZE 2
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <fcntl.h>
 
 char	*ft_strjoin_get(char *s1, char *s2);

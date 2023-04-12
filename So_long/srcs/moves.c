@@ -21,6 +21,9 @@ static void	ft_move_s(t_map *map);
 
 static void	ft_move_w(t_map *map)
 {
+	char	*moves;
+
+	moves = ft_itoa(map->moves);
 	if (map->map_array[map->start][map->end] == 'E')
 	{
 		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
@@ -28,6 +31,9 @@ static void	ft_move_w(t_map *map)
 	}
 	else if (map->map_array[map->start - 1][map->end] != '1')
 	{
+		write(1, moves, ft_strlen(moves));
+		write(1, "\n", 1);
+		map->moves++;
 		map->stop = 1;
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
@@ -43,6 +49,9 @@ static void	ft_move_w(t_map *map)
 
 static void	ft_move_s(t_map *map)
 {	
+	char	*moves;
+
+	moves = ft_itoa(map->moves);
 	if (map->map_array[map->start][map->end] == 'E')
 	{
 		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
@@ -50,6 +59,9 @@ static void	ft_move_s(t_map *map)
 	}
 	else if (map->map_array[map->start + 1][map->end] != '1')
 	{
+		write(1, moves, ft_strlen(moves));
+		write(1, "\n", 1);
+		map->moves++;
 		map->stop = 1;
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
@@ -65,6 +77,9 @@ static void	ft_move_s(t_map *map)
 
 static void	ft_move_d(t_map *map)
 {
+	char	*moves;
+
+	moves = ft_itoa(map->moves);
 	if (map->map_array[map->start][map->end] == 'E')
 	{
 		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
@@ -72,6 +87,9 @@ static void	ft_move_d(t_map *map)
 	}
 	else if (map->map_array[map->start][map->end + 1] != '1')
 	{
+		write(1, moves, ft_strlen(moves));
+		write(1, "\n", 1);
+		map->moves++;
 		map->stop = 1;
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
@@ -87,6 +105,9 @@ static void	ft_move_d(t_map *map)
 
 static void	ft_move_a(t_map *map)
 {
+	char	*moves;
+
+	moves = ft_itoa(map->moves);
 	if (map->map_array[map->start][map->end] == 'E')
 	{
 		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
@@ -94,6 +115,9 @@ static void	ft_move_a(t_map *map)
 	}
 	else if (map->map_array[map->start][map->end - 1] != '1')
 	{
+		write(1, moves, ft_strlen(moves));
+		write(1, "\n", 1);
+		map->moves++;
 		map->stop = 1;
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
@@ -128,10 +152,7 @@ int	key_hook(int keycode, t_map *map)
 		ft_move_a(map);
 	if (keycode == 1)
 		ft_move_s(map);
-	write(1, moves, ft_strlen(moves));
 	if (moves)
 		free(moves);
-	write(1, "\n", 1);
-	map->moves++;
 	return (0);
 }

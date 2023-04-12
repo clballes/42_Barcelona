@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 static int	is_valid(int row, int col, t_map *map);
 static int	is_move_valid(char **cy_map_arr, int row, int col);
@@ -30,25 +31,33 @@ static int	is_move_valid(char **cy_map_arr, int row, int col)
 static int	backtrack(char **cy_map_arr, int row, int col, t_map *map)
 {
 	int	i;
+	static char	c = 'V';
 
 	i = 0;
 	if (cy_map_arr[row][col] == 'E' && map->coll == 0)
 		return (1);
 	if (cy_map_arr[row][col] == 'C')
 		map->coll--;
-	cy_map_arr[row][col] = 'V';
+	if (cy_map_arr[row][col] != 'E')
+		cy_map_arr[row][col] = c;
 	while (i < 4)
 	{
 		map->next_row = row + map->delta_row[i];
 		map->next_col = col + map->delta_col[i];
 		if (is_valid(map->next_row, map->next_col, map)
 			&& is_move_valid(cy_map_arr, map->next_row, map->next_col)
-			&& cy_map_arr[map->next_row][map->next_col] != 'V')
+			&& cy_map_arr[map->next_row][map->next_col] != c)
 		{
 			if (backtrack(cy_map_arr, map->next_row, map->next_col, map))
 				return (1);
 		}
 		i++;
+	}
+	if (map->coll == 0)
+	{
+		c = 'X';
+		if (backtrack(cy_map_arr, map->next_row, map->next_col, map))
+			return (1);
 	}
 	return (0);
 }
@@ -96,5 +105,8 @@ void	has_valid_path(t_map *map, char **cy_map_arr)
 		open_window(map);
 	}
 	else
+	{
+		printf("les colls son %d\n", map->coll);
 		write(1, "No valid path exists! \n", 22);
+	}
 }

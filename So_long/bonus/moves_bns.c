@@ -101,13 +101,18 @@ int	key_hook(int keycode, t_map *map)
 		free(map);
 		exit (0);
 	}
-	if (keycode == 13)
+	else if (keycode == 13)
 		ft_move_w(map);
-	if (keycode == 2)
+	else if (keycode == 2)
 		ft_move_d(map);
-	if (keycode == 0)
+	else if (keycode == 0)
 		ft_move_a(map);
-	if (keycode == 1)
+	else if (keycode == 1)
 		ft_move_s(map);
+	else
+	{
+		write(1, "Hit WASD!\n", 10);
+		map->stop = 8;
+	}
 	return (0);
 }

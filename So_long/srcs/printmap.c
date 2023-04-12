@@ -56,6 +56,7 @@ void	printwind(t_map *map)
 
 	i = 0;
 	y = 0;
+	map->moves = 1;
 	while (map->map_array && i <= (map->rows - 1))
 	{
 		j = 0;

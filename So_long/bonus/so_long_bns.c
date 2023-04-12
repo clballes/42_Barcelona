@@ -44,7 +44,7 @@ int	spritehook(void *param)
 		i++;
 	}
 	put_img_player(map);
-	usleep(100000);
+	usleep(150000);
 	return (0);
 }
 
