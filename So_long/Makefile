@@ -42,16 +42,16 @@ DEPS = $(SRCS:%.c=%.d)
 DEPS_BONUS = $(BONUS:%.c=%.d)
 
 # Gcc
-$(NAME): $(OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET) 
+$(NAME): $(OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET)
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) $(LINK) $(OBJ) $(MINILIBXCC) $(OPENGL) -o $(NAME)
 
 bonus: $(BONUS_OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET) 
 	$(CC) $(CFLAGS) $(BONUS_OBJ) $(MINILIBXCC) $(LIBFT) $(OPENGL) -o $(BONUS_NAME)
 
 $(LIBFT): 
-		@make -C $(LIBFT_DIR)
+		@make -sC $(LIBFT_DIR)
 $(MLX): 
-		@make -C $(MLX_DIR)
+		@make -sC $(MLX_DIR)
 
 %.o: %.c
 	echo "Compiling...[$<]"
