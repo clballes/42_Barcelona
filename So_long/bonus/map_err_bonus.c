@@ -111,13 +111,17 @@ void	check_len(int cols, t_line *temp)
 
 void	check_move_collec(t_map *map)
 {
-	if (map->map_array[map->start][map->end] == 'E')
+	if (map->map_array[map->start][map->end] == 'E' && map->collective <= 0)
 	{
 		put_string(map);
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
+		close_click(map);
 	}
-	else if (map->map_array[map->start][map->end] == 'C'
+	if (map->map_array[map->start][map->end] == 'C')
+	{
+		map->collective--;
+		// map->map_array[map->start][map->end] = '0';
+	}
+	if (map->map_array[map->start][map->end] == 'C'
 		|| map->map_array[map->start][map->end] == 'P')
 	{
 		map->put_x[map->i] = map->x;

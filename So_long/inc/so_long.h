@@ -31,6 +31,7 @@ typedef struct s_map
 	char			**map_array;
 	int				rows;
 	int				cols;
+	int				weight;
 	int				next_row;
 	int				next_col;
 	int				coll;

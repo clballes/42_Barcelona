@@ -75,4 +75,4 @@ all: $(NAME)
 
 -include ${DEPS} ${DEPS_BONUS}
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

@@ -16,9 +16,10 @@ static int	is_move_valid(char **cy_map_arr, int row, int col);
 static int	backtrack(char **cy_map_arr, int row, int col, t_map *map);
 static void	check_startpos(char **cy_map_arr, t_map *map, int i, int j);
 
+
 static int	is_move_valid(char **cy_map_arr, int row, int col)
 {
-	return (cy_map_arr[row][col] != '1');
+	return (cy_map_arr[row][col] != '1' && (row >= 0) && (col >= 0));
 }
 
 static int	backtrack(char **cy_map_arr, int row, int col, t_map *map)
@@ -76,6 +77,7 @@ static void	check_startpos(char **cy_map_arr, t_map *map, int i, int j)
 		i++;
 	}
 	map->coll = coll;
+	map->collective = coll;
 }
 
 void	has_valid_path(t_map *map, char **cy_map_arr)

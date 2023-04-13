@@ -82,10 +82,14 @@ void	put_string(t_map *map)
 	moves_str = ft_itoa(map->moves);
 	map->moves++;
 	mlx_put_image_to_window (map->mlx_ptr,
-		map->mlx_win_ptr, map->img_black, 0, 196);
+		map->mlx_win_ptr, map->img_black, 32, (map->rows * 32));
+	mlx_put_image_to_window (map->mlx_ptr,
+		map->mlx_win_ptr, map->img_black, 64, (map->rows * 32));
+	mlx_put_image_to_window (map->mlx_ptr,
+		map->mlx_win_ptr, map->img_black, 0, (map->rows * 32));
 	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr,
-		20, 210, 0xFFFFFF, "Moves: ");
+		20, (map->weight - 15), 0xFFFFFF, "Moves: ");
 	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr,
-		80, 210, 0xFFFFFF, moves_str);
+		80, (map->weight - 15), 0xFFFFFF, moves_str);
 	free(moves_str);
 }

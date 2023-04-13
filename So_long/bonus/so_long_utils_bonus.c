@@ -51,7 +51,7 @@ t_line	*ft_lstlast_long(t_line *lst)
 
 void	write_error(char error)
 {
-	write (2, "Error ", 6);
+	write (2, "Error: ", 7);
 	if (error == '0')
 		write (2, "Not ber extension\n", 18);
 	else if (error == '1')
@@ -59,11 +59,17 @@ void	write_error(char error)
 	else if (error == '2')
 		write (2, "Map not rectangular\n", 20);
 	else if (error == '3')
-		write (2, "Map not minimum elements\n", 25);
+		write (2, "Map not minimum elements or letters accepted\n", 45);
 	else if (error == '4')
 		write (2, "Map not sourrounded by walls\n", 29);
-	else if (error == '0')
+	else if (error == '5')
+		write (2, "Empty map\n", 10);
+	else if (error == '6')
+		write (2, "Different lenght\n", 17);
+	else if (error == '7')
 		write (2, "Not enough arguments\n", 21);
+	else if (error == '8')
+		write (2, "Impossible Exit\n", 16);
 	exit (1);
 }
 

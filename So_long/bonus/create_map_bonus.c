@@ -31,7 +31,7 @@ int	ft_open_ber(char **argv)
 					&& argv[1][i + 2] == 'r')
 				return (1);
 			else
-				write_error('1');
+				write_error('0');
 		}
 		i++;
 	}
@@ -76,7 +76,7 @@ static	void	ft_map_list(t_map *map, t_line *temp, int fd)
 			if (list->line == NULL)
 				break ;
 			ft_lstadd_back_long(&temp, list);
-			check_len(cols, temp);
+			check_len(cols, list);
 			rows++;
 		}
 		map->rows = rows;
@@ -99,6 +99,7 @@ void	ft_arraymap(t_map *map, t_line *temp)
 		i++;
 		temp = temp->next;
 	}
+	free(temp);
 	check_map_walls(map, (map->rows - 1), (map->cols - 1));
 	create_copy(map);
 }

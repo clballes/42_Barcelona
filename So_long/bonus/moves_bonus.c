@@ -27,6 +27,9 @@ static void	ft_move_w(t_map *map)
 		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
+		if (map->map_array[map->start][map->end] == 'E')
+			mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+				map->img_exit, map->x, map->y);
 		map->start -= 1;
 	}
 	else
@@ -45,6 +48,9 @@ static void	ft_move_s(t_map *map)
 		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
+		if (map->map_array[map->start][map->end] == 'E')
+			mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+				map->img_exit, map->x, map->y);
 		map->start += 1;
 	}
 	else
@@ -63,6 +69,9 @@ static void	ft_move_d(t_map *map)
 		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
+		if (map->map_array[map->start][map->end] == 'E')
+			mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+				map->img_exit, map->x, map->y);
 		map->end += 1;
 	}
 	else
@@ -81,6 +90,9 @@ static void	ft_move_a(t_map *map)
 		put_string(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
+		if (map->map_array[map->start][map->end] == 'E')
+			mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+				map->img_exit, map->x, map->y);
 		map->end -= 1;
 	}
 	else
