@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 			write_error('0');
 	}
 	else
-		write_error('5');
+		write_error('7');
 }
 
 void	init_image(t_map *map)
@@ -43,12 +43,6 @@ void	init_image(t_map *map)
 			"./png/palmtree.xpm", &w, &h);
 	map->img_coll = mlx_xpm_file_to_image(map->mlx_ptr,
 			"./png/van.xpm", &w, &h);
-	map->sprites[0] = mlx_xpm_file_to_image(map->mlx_ptr,
-			"./png/wave_spr1.xpm", &w, &h);
-	map->sprites[1] = mlx_xpm_file_to_image(map->mlx_ptr,
-			"./png/wave_spr2.xpm", &w, &h);
-	map->sprites[2] = mlx_xpm_file_to_image(map->mlx_ptr,
-			"./png/wave_spr3.xpm", &w, &h);
 }
 
 void	init_delta(t_map *map)

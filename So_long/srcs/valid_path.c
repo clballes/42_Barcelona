@@ -6,20 +6,16 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:36:39 by clballes          #+#    #+#             */
-/*   Updated: 2023/03/22 12:48:35 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:52:03 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
-
-static int	is_move_valid(char **cy_map_arr, int row, int col);
-static int	backtrack(char **cy_map_arr, int row, int col, t_map *map);
-static void	check_startpos(char **cy_map_arr, t_map *map, int i, int j);
+#include "libft.h"
 
 static int	is_move_valid(char **cy_map_arr, int row, int col)
 {
-	return (cy_map_arr[row][col] != '1');
+	return (cy_map_arr[row][col] != '1' && (row >= 0) && (col >= 0));
 }
 
 static int	backtrack(char **cy_map_arr, int row, int col, t_map *map)
@@ -77,6 +73,7 @@ static void	check_startpos(char **cy_map_arr, t_map *map, int i, int j)
 		i++;
 	}
 	map->coll = coll;
+	map->collective = coll;
 }
 
 void	has_valid_path(t_map *map, char **cy_map_arr)
@@ -94,8 +91,5 @@ void	has_valid_path(t_map *map, char **cy_map_arr)
 		open_window(map);
 	}
 	else
-	{
-		printf("les colls son %d\n", map->coll);
 		write(1, "No valid path exists! \n", 22);
-	}
 }

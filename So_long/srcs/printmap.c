@@ -6,17 +6,22 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:07:10 by clballes          #+#    #+#             */
-/*   Updated: 2023/04/04 15:07:12 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:51:32 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "so_long.h"
+#include "libft.h"
 
 static void	print_img(t_map *map, char c, int x, int y);
 
-int	close_click(void)
+int	close_click(t_map *map)
 {
+	free(map->map_array);
+	free(map);
+	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
+	system("leaks so_long");
 	exit (0);
 }
 
@@ -88,4 +93,16 @@ static void	print_img(t_map *map, char c, int x, int y)
 	else if (c == 'E')
 		img = map->img_exit;
 	mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr, img, x, y);
+}
+
+void	ft_moves(t_map *map)
+{
+	char	*moves;
+
+	moves = ft_itoa(map->moves);
+	write(1, moves, ft_strlen(moves));
+	write(1, "\n", 1);
+	map->moves++;
+	if (moves)
+		free(moves);
 }

@@ -65,6 +65,8 @@ static	void	ft_map_list(t_map *map, t_line *temp, int fd)
 
 	rows = 1;
 	temp->line = get_next_line(fd);
+	if (temp->line == NULL)
+		write_error('5');
 	cols = ft_strlen(temp->line);
 	if (temp->line)
 	{

@@ -21,26 +21,25 @@ static void	ft_move_s(t_map *map);
 
 static void	ft_move_w(t_map *map)
 {
-	char	*moves;
-
-	moves = ft_itoa(map->moves);
-	if (map->map_array[map->start][map->end] == 'E')
+	if (map->map_array[map->start][map->end] == 'E' && map->collective == 0)
+		close_click(map);
+	if (map->map_array[map->start][map->end] == 'C')
 	{
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
+		map->collective--;
+		map->map_array[map->start][map->end] = '0';
 	}
-	else if (map->map_array[map->start - 1][map->end] != '1')
+	if (map->map_array[map->start - 1][map->end] != '1')
 	{
-		write(1, moves, ft_strlen(moves));
-		write(1, "\n", 1);
-		map->moves++;
-		map->stop = 1;
+		ft_moves(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_0, map->x, map->y);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_player, map->x, (map->y - 32));
+		if (map->map_array[map->start][map->end] == 'E')
+			mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+				map->img_exit, map->x, map->y);
 		map->start -= 1;
 	}
 	else
@@ -48,27 +47,26 @@ static void	ft_move_w(t_map *map)
 }
 
 static void	ft_move_s(t_map *map)
-{	
-	char	*moves;
-
-	moves = ft_itoa(map->moves);
-	if (map->map_array[map->start][map->end] == 'E')
+{
+	if (map->map_array[map->start][map->end] == 'E' && map->collective == 0)
+		close_click(map);
+	if (map->map_array[map->start][map->end] == 'C')
 	{
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
+		map->collective--;
+		map->map_array[map->start][map->end] = '0';
 	}
-	else if (map->map_array[map->start + 1][map->end] != '1')
+	if (map->map_array[map->start + 1][map->end] != '1')
 	{
-		write(1, moves, ft_strlen(moves));
-		write(1, "\n", 1);
-		map->moves++;
-		map->stop = 1;
+		ft_moves(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_0, map->x, map->y);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_player, map->x, (map->y + 32));
+		if (map->map_array[map->start][map->end] == 'E')
+			mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+				map->img_exit, map->x, map->y);
 		map->start += 1;
 	}
 	else
@@ -77,26 +75,25 @@ static void	ft_move_s(t_map *map)
 
 static void	ft_move_d(t_map *map)
 {
-	char	*moves;
-
-	moves = ft_itoa(map->moves);
-	if (map->map_array[map->start][map->end] == 'E')
+	if (map->map_array[map->start][map->end] == 'E' && map->collective == 0)
+		close_click(map);
+	if (map->map_array[map->start][map->end] == 'C')
 	{
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
+		map->collective--;
+		map->map_array[map->start][map->end] = '0';
 	}
-	else if (map->map_array[map->start][map->end + 1] != '1')
+	if (map->map_array[map->start][map->end + 1] != '1')
 	{
-		write(1, moves, ft_strlen(moves));
-		write(1, "\n", 1);
-		map->moves++;
-		map->stop = 1;
+		ft_moves(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_0, map->x, (map->y));
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_player, (map->x + 32), map->y);
+		if (map->map_array[map->start][map->end] == 'E')
+			mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+				map->img_exit, map->x, map->y);
 		map->end += 1;
 	}
 	else
@@ -105,26 +102,25 @@ static void	ft_move_d(t_map *map)
 
 static void	ft_move_a(t_map *map)
 {
-	char	*moves;
-
-	moves = ft_itoa(map->moves);
-	if (map->map_array[map->start][map->end] == 'E')
+	if (map->map_array[map->start][map->end] == 'E' && map->collective == 0)
+		close_click(map);
+	if (map->map_array[map->start][map->end] == 'C')
 	{
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
+		map->collective--;
+		map->map_array[map->start][map->end] = '0';
 	}
-	else if (map->map_array[map->start][map->end - 1] != '1')
+	if (map->map_array[map->start][map->end - 1] != '1')
 	{
-		write(1, moves, ft_strlen(moves));
-		write(1, "\n", 1);
-		map->moves++;
-		map->stop = 1;
+		ft_moves(map);
 		mlx_destroy_image(map->mlx_ptr, map->img_player);
 		init_image(map);
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_0, map->x, (map->y));
 		mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
 			map->img_player, (map->x - 32), map->y);
+		if (map->map_array[map->start][map->end] == 'E')
+			mlx_put_image_to_window (map->mlx_ptr, map->mlx_win_ptr,
+				map->img_exit, map->x, map->y);
 		map->end -= 1;
 	}
 	else
@@ -133,15 +129,14 @@ static void	ft_move_a(t_map *map)
 
 int	key_hook(int keycode, t_map *map)
 {
-	char	*moves;
-
-	moves = ft_itoa(map->moves);
 	map->y = (map->start) * 32;
 	map->x = (map->end) * 32;
 	if (keycode == 53)
 	{
 		mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
+		free(map->map_array);
 		free(map);
+		system("leaks so_long");
 		exit (0);
 	}
 	if (keycode == 13)
@@ -152,7 +147,5 @@ int	key_hook(int keycode, t_map *map)
 		ft_move_a(map);
 	if (keycode == 1)
 		ft_move_s(map);
-	if (moves)
-		free(moves);
 	return (0);
 }

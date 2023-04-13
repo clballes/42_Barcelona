@@ -21,6 +21,8 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+
 # include <sys/stat.h>
 # include <fcntl.h>
 
@@ -32,6 +34,7 @@ typedef struct s_map
 	int				next_row;
 	int				next_col;
 	int				coll;
+	int				collective;
 	int				x;
 	int 			y;
 	int				start;
@@ -67,7 +70,7 @@ void	ft_arraymap(t_map *map, t_line *temp);
 void	check_map_walls(t_map *map, int rows, int cols);
 int		ft_strncmp_long(char c, char *s2);
 void	has_valid_path(t_map *map, char **cy_map_arr);
-void	check_len(int cols, t_line *temp);
+void	check_len(int cols, t_line *line);
 void	init_delta(t_map *map);
 //list functions
 t_line	*ft_lstnew_long(void	*content);
@@ -80,9 +83,10 @@ int		open_window(t_map *map);
 void	init_image(t_map *map);
 void    printwind(t_map *map);
 int		key_hook(int keycode, t_map *map);
-int		close_click();
+int		close_click(t_map *map);
 int		show_str(t_map *map);
 void	update_image(t_map *map);
+void	ft_moves(t_map *map);
 //bonus functions
 int		spritehook(void *param);
 void	put_string(t_map *map);

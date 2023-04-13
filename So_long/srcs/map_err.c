@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:29:31 by clballes          #+#    #+#             */
-/*   Updated: 2023/04/12 11:43:08 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:51:17 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ static void	check_letter(t_map *map, char letter, int rows, int cols)
 		check_letter(map, 'P', rows, cols);
 }
 
-void	check_len(int cols, t_line *temp)
+void	check_len(int cols, t_line *list)
 {
 	int	colsnext;
 
-	colsnext = ft_strlen(temp->line);
+	colsnext = ft_strlen(list->line);
 	if (cols != colsnext)
-		write_error('2');
+		write_error('6');
 }
