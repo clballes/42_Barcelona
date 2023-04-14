@@ -45,6 +45,10 @@ void	ft_openmap(char **argv)
 	t_line	*temp;
 
 	temp = malloc(sizeof(t_line));
+	if (!temp)
+		return ;
+	temp->line = NULL;
+	temp->next = NULL;
 	map = malloc(sizeof(t_map));
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
