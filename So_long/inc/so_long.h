@@ -12,15 +12,9 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-// #define WIDTH 640
-// #define HEIGHT 480
-// #define SPRITE_WIDTH 32
-// #define SPRITE_HEIGHT 32
-
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 

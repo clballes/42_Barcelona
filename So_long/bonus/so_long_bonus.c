@@ -90,9 +90,9 @@ void	put_string(t_map *map)
 	mlx_put_image_to_window (map->mlx_ptr,
 		map->mlx_win_ptr, map->img_black, 0, (map->rows * 32));
 	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr,
-		20, (map->weight - 25), 0xFFFFFF, "Moves: ");
+		20, (map->weight - 15), 0xFFFFFF, "Moves: ");
 	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr,
-		80, (map->weight - 25), 0xFFFFFF, moves_str);
+		80, (map->weight - 15), 0xFFFFFF, moves_str);
 	free(moves_str);
 }
 
@@ -103,6 +103,5 @@ int	close_cross(t_map *map)
 	free(map->put_x);
 	free(map->put_y);
 	free(map);
-	system("leaks so_long_bonus");
 	exit (0);
 }

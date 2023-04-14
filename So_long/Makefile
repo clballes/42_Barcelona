@@ -15,6 +15,7 @@ BONUS_NAME = so_long_bonus
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -MMD
 RM = /bin/rm -rf
+OLD_MAKE = /usr/bin/make3.81
 
 # Path
 LIBFT_DIR = ./libft/
@@ -52,9 +53,9 @@ $(BONUS_NAME) : $(BONUS_OBJ) $(LIB_BONUS) $(MLX) $(LIBFT) $(LIB_GET) Makefile
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) $(BONUS_OBJ) $(MINILIBXCC) $(LINK) $(OPENGL) -o $(BONUS_NAME)
 
 $(LIBFT): 
-		@make -sC $(LIBFT_DIR)
+		@${OLD_MAKE} -sC $(LIBFT_DIR)
 $(MLX): 
-		@make -sC $(MLX_DIR)
+		@${OLD_MAKE} -sC $(MLX_DIR)
 
 %.o: %.c
 	echo "Compiling...[$<]"
@@ -64,13 +65,13 @@ clean:
 	$(RM) $(NAME) $(BONUS_NAME)
 	$(RM) $(OBJ) ${BONUS_OBJ}
 	rm -rf ${DEPS} ${DEPS_BONUS}
-	make clean -sC $(LIBFT_DIR)
-	make clean -sC $(MLX_DIR)
+	${OLD_MAKE} clean -sC $(LIBFT_DIR)
+	${OLD_MAKE} clean -sC $(MLX_DIR)
 	echo "\n🌼 It is all safe and clean 🌼\n"
 
 fclean: clean
-	 make fclean -sC $(LIBFT_DIR)
-	 make fclean -sC $(MLX_DIR)
+	 ${OLD_MAKE} fclean -sC $(LIBFT_DIR)
+	 ${OLD_MAKE} fclean -sC $(MLX_DIR)
 
 re: fclean all
 

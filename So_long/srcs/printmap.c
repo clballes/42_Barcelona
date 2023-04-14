@@ -21,7 +21,6 @@ int	close_click(t_map *map)
 	free(map->map_array);
 	free(map);
 	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
-	system("leaks so_long");
 	exit (0);
 }
 

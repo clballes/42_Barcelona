@@ -136,7 +136,6 @@ int	key_hook(int keycode, t_map *map)
 		mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
 		free(map->map_array);
 		free(map);
-		system("leaks so_long");
 		exit (0);
 	}
 	if (keycode == 13)
