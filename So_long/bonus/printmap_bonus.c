@@ -20,9 +20,10 @@ static void	ft_loop(t_map *map, int x, int y);
 int	close_click(t_map *map)
 {
 	free(map->map_array);
+	free(map->put_x);
+	free(map->put_y);
 	free(map);
 	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
-	system("leaks so_long_bonus");
 	exit (0);
 }
 
@@ -37,7 +38,7 @@ int	open_window(t_map *map)
 	map->mlx_ptr = mlx_init();
 	if (map->mlx_ptr == NULL)
 		return (0);
-	map->mlx_win_ptr = mlx_new_window(map->mlx_ptr, x, y, "So long!");
+	map->mlx_win_ptr = mlx_new_window(map->mlx_ptr, x, y, "So long Bonus!");
 	if (map->mlx_win_ptr == NULL)
 	{
 		free(map->mlx_win_ptr);
@@ -48,7 +49,7 @@ int	open_window(t_map *map)
 	mlx_key_hook(map->mlx_win_ptr,
 		key_hook, map);
 	mlx_hook(map->mlx_win_ptr,
-		17, 1L << 0, close_click, NULL);
+		17, 0, close_cross, map);
 	mlx_loop(map->mlx_ptr);
 	free(map->mlx_ptr);
 	return (0);

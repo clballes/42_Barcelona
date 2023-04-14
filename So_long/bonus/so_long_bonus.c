@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:52:14 by clballes          #+#    #+#             */
-/*   Updated: 2023/04/11 16:11:03 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/14 12:08:00 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,23 @@ void	put_string(t_map *map)
 	mlx_put_image_to_window (map->mlx_ptr,
 		map->mlx_win_ptr, map->img_black, 64, (map->rows * 32));
 	mlx_put_image_to_window (map->mlx_ptr,
+		map->mlx_win_ptr, map->img_black, 96, (map->rows * 32));
+	mlx_put_image_to_window (map->mlx_ptr,
 		map->mlx_win_ptr, map->img_black, 0, (map->rows * 32));
 	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr,
-		20, (map->weight - 15), 0xFFFFFF, "Moves: ");
+		20, (map->weight - 25), 0xFFFFFF, "Moves: ");
 	mlx_string_put(map->mlx_ptr, map->mlx_win_ptr,
-		80, (map->weight - 15), 0xFFFFFF, moves_str);
+		80, (map->weight - 25), 0xFFFFFF, moves_str);
 	free(moves_str);
+}
+
+int	close_cross(t_map *map)
+{
+	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
+	free(map->map_array);
+	free(map->put_x);
+	free(map->put_y);
+	free(map);
+	system("leaks so_long_bonus");
+	exit (0);
 }

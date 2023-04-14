@@ -13,6 +13,7 @@
 #include "../inc/so_long.h"
 #include "../inc/get_next_line.h"
 #include "libft.h"
+#include "../mlx/mlx.h"
 
 static void	check_coll(t_map *map, int rows, int cols);
 static void	check_letter(t_map *map, char letter, int rows, int cols);
@@ -106,21 +107,4 @@ void	check_len(int cols, t_line *temp)
 	colsnext = ft_strlen(temp->line);
 	if (cols != colsnext)
 		write_error('2');
-}
-
-void	check_move_collec(t_map *map)
-{
-	if (map->map_array[map->start][map->end] == 'E')
-	{
-		put_string(map);
-		mlx_clear_window(map->mlx_ptr, map->mlx_win_ptr);
-		exit (0);
-	}
-	else if (map->map_array[map->start][map->end] == 'C'
-		|| map->map_array[map->start][map->end] == 'P')
-	{
-		map->put_x[map->i] = map->x;
-		map->put_y[map->i] = map->y;
-		map->i++;
-	}
 }
