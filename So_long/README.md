@@ -2,7 +2,12 @@
 
 Create 2D games with the minilibx library.
 
-### BONUS PART
+#### MANDATORY PART
+- Check map errors
+- 
+
+
+#### BONUS PART
  - Put string moves displaying on the screen window.
  - Create some animation using sprite images.
  
