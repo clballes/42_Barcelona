@@ -111,7 +111,6 @@ void	check_len(int cols, t_line *temp)
 
 void	check_move_collec(t_map *map)
 {
-	// printf("el map collectiveeee es %d\n", map->collective);
 	if (map->map_array[map->start][map->end] == 'E' && map->collective == 0)
 	{
 		put_string(map);
