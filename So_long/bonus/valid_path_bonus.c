@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static int	is_move_valid(char **cy_map_arr, int row, int col);
 static int	backtrack(char **cy_map_arr, int row, int col, t_map *map);

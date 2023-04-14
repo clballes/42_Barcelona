@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 12:52:23 by clballes          #+#    #+#             */
-/*   Updated: 2023/03/22 12:32:53 by clballes         ###   ########.fr       */
+/*   Created: 2023/04/14 12:41:11 by clballes          #+#    #+#             */
+/*   Updated: 2023/04/14 12:41:13 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-// #define WIDTH 640
-// #define HEIGHT 480
-// #define SPRITE_WIDTH 32
-// #define SPRITE_HEIGHT 32
-
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
+# define NUM_FRAMES 3
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -45,10 +41,14 @@ typedef struct s_map
 	void			*img_exit;
 	void			*img_coll;
 	void			*img_1;
+	void			*sprites[NUM_FRAMES];
 	void			*img_0;
 	int				delta_row[4];
 	int				delta_col[4];
 	int				moves;
+	int				frame;
+	int				*put_x;
+	int				*put_y;
 	int				i;
 	int				stop;
 }					t_map;
@@ -83,4 +83,9 @@ int		show_str(t_map *map);
 void	update_image(t_map *map);
 void	ft_moves(t_map *map);
 int		close_cross(t_map *map);
+
+//bonus functions
+int		spritehook(void *param);
+void	put_string(t_map *map);
+void	check_move_collec(t_map *map);
 #endif

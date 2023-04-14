@@ -56,4 +56,4 @@ re: fclean
 
 -include ${DEPS}
 
-.PHONY: fclean, all, clean, re
+.PHONY: fclean, all, clean, re, bonus

@@ -26,6 +26,7 @@ GET_DIR = srcs/get_next_line/
 GET_DIR_BONUS = bonus/get_next_line/
 INC_DIR = inc/
 LIB = ${INC_DIR}/so_long.h
+LIB_BONUS = ${INC_DIR}/so_long_bonus.h
 LIB_GET = ${INC_DIR}/get_next_line.h
 MLX_DIR = mlx/
 MLX = ${MLX_DIR}libmlx.a
@@ -42,10 +43,12 @@ DEPS = $(SRCS:%.c=%.d)
 DEPS_BONUS = $(BONUS:%.c=%.d)
 
 # Gcc
-$(NAME): $(OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET)
+$(NAME): $(OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET) Makefile
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) $(LINK) $(OBJ) $(MINILIBXCC) $(OPENGL) -o $(NAME)
 
-bonus: $(BONUS_OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET) 
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME) : $(BONUS_OBJ) $(LIB_BONUS) $(MLX) $(LIBFT) $(LIB_GET) Makefile
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) $(BONUS_OBJ) $(MINILIBXCC) $(LINK) $(OPENGL) -o $(BONUS_NAME)
 
 $(LIBFT): 
@@ -71,7 +74,7 @@ fclean: clean
 
 re: fclean all
 
-all: $(NAME)
+all: $(NAME) $(BONUS_NAME)
 
 -include ${DEPS} ${DEPS_BONUS}
 

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	ft_move_w(t_map *map);
 static void	ft_move_d(t_map *map);

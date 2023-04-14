@@ -9,7 +9,8 @@
 /*   Updated: 2023/03/07 17:11:59 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/so_long.h"
+
+#include "so_long_bonus.h"
 #include "libft.h"
 
 t_line	*ft_lstnew_long(void	*content)

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
-#include "../inc/get_next_line.h"
+#include "so_long_bonus.h"
+#include "get_next_line.h"
 #include "libft.h"
 
 static void		ft_map_list(t_map *map, t_line *temp, int fd);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long_bonus.h"
 #include "../mlx/mlx.h"
 #include "libft.h"
 

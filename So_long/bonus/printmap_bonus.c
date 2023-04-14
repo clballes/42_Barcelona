@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include "libft.h"
 
 static void	print_img(t_map *map, char c, int x, int y);
