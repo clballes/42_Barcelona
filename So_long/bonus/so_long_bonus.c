@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:52:14 by clballes          #+#    #+#             */
-/*   Updated: 2023/04/14 12:08:00 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:24:51 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,15 @@ void	put_string(t_map *map)
 
 int	close_cross(t_map *map)
 {
+	int	i;
+
+	i = 0;
 	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
+	while (i < map->rows)
+	{
+		free(map->map_array[i]);
+		i++;
+	}
 	free(map->map_array);
 	free(map->put_x);
 	free(map->put_y);

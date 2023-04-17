@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:29:31 by clballes          #+#    #+#             */
-/*   Updated: 2023/04/11 16:11:16 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:23:14 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,11 @@ static void	check_letter(t_map *map, char letter, int rows, int cols)
 		check_letter(map, 'P', rows, cols);
 }
 
-void	check_len(int cols, t_line *temp)
+void	check_len(int cols, char *line)
 {
 	int	colsnext;
 
-	colsnext = ft_strlen(temp->line);
+	colsnext = ft_strlen(line);
 	if (cols != colsnext)
 		write_error('2');
 }
@@ -121,12 +121,12 @@ void	check_move_collec(t_map *map)
 		map->collective--;
 		map->map_array[map->start][map->end] = 'X';
 	}
-	if (map->map_array[map->start][map->end] == 'C'
-		|| map->map_array[map->start][map->end] == 'P'
+	if (map->map_array[map->start][map->end] == 'P'
 		|| map->map_array[map->start][map->end] == 'X')
 	{
 		map->put_x[map->i] = map->x;
 		map->put_y[map->i] = map->y;
 		map->i++;
+		map->map_array[map->start][map->end] = '0';
 	}
 }

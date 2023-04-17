@@ -13,7 +13,7 @@
 NAME = so_long
 BONUS_NAME = so_long_bonus
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -MMD # -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -MMD -fsanitize=address -g3
 RM = /bin/rm -rf
 OLD_MAKE = /usr/bin/make3.81
 

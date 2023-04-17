@@ -108,14 +108,7 @@ int	key_hook(int keycode, t_map *map)
 	map->x = (map->end) * 32;
 	map->stop = 1;
 	if (keycode == 53)
-	{
-		mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
-		free(map->map_array);
-		free(map->put_x);
-		free(map->put_y);
-		free(map);
-		exit (0);
-	}
+		close_click(map);
 	else if (keycode == 13)
 		ft_move_w(map);
 	else if (keycode == 2)

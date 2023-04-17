@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:07:10 by clballes          #+#    #+#             */
-/*   Updated: 2023/04/13 14:51:32 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:16:00 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,17 @@ static void	print_img(t_map *map, char c, int x, int y);
 
 int	close_click(t_map *map)
 {
+	int	i;
+
+	i = 0;
+	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
+	while (i < map->rows)
+	{
+		free(map->map_array[i]);
+		i++;
+	}
 	free(map->map_array);
 	free(map);
-	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
 	exit (0);
 }
 
@@ -45,7 +53,7 @@ int	open_window(t_map *map)
 	mlx_key_hook(map->mlx_win_ptr,
 		key_hook, map);
 	mlx_hook(map->mlx_win_ptr,
-		17, 1L << 0, close_click, NULL);
+		17, 1L << 0, close_click, map);
 	mlx_loop(map->mlx_ptr);
 	free(map->mlx_ptr);
 	return (0);

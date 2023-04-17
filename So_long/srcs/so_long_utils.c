@@ -12,43 +12,6 @@
 #include "../inc/so_long.h"
 #include "libft.h"
 
-t_line	*ft_lstnew_long(void	*content)
-{
-	t_line	*list;
-
-	list = malloc(sizeof(t_line));
-	if (!list)
-		return (NULL);
-	list->line = content;
-	list->next = NULL;
-	return (list);
-}
-
-void	ft_lstadd_back_long(t_line **lst, t_line *new)
-{
-	t_line	*last;
-
-	if (*lst && new)
-	{
-		last = ft_lstlast_long(*lst);
-		last->next = new;
-	}
-	else
-		*lst = new;
-}
-
-t_line	*ft_lstlast_long(t_line *lst)
-{
-	t_line	*tmp;
-
-	if (!lst)
-		return (NULL);
-	tmp = lst;
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp);
-}
-
 void	write_error(char error)
 {
 	write (2, "Error: ", 7);

@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:10:00 by clballes          #+#    #+#             */
-/*   Updated: 2023/04/11 16:14:06 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:24:15 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,19 @@ static void	ft_loop(t_map *map, int x, int y);
 
 int	close_click(t_map *map)
 {
+	int	i;
+
+	i = 0;
+	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
+	while (i < map->rows)
+	{
+		free(map->map_array[i]);
+		i++;
+	}
 	free(map->map_array);
 	free(map->put_x);
 	free(map->put_y);
 	free(map);
-	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
 	exit (0);
 }
 
@@ -64,6 +72,9 @@ void	printwind(t_map *map)
 
 	i = 0;
 	y = 0;
+	map->i = 0;
+	map->put_x = NULL;
+	map->put_y = NULL;
 	while (map->map_array && i <= (map->rows - 1))
 	{
 		j = 0;
@@ -102,17 +113,14 @@ static void	print_img(t_map *map, char c, int x, int y)
 
 static void	ft_loop(t_map *map, int x, int y)
 {
-	if (x && y)
+	if (!map->put_x && !map->put_y)
 	{
-		if (!map->put_x && !map->put_y)
-		{
-			map->put_x = malloc(sizeof(int) * (map->rows * map->cols));
-			map->put_y = malloc(sizeof(int) * (map->rows * map->cols));
-		}
-		map->put_x[map->i] = x;
-		map->put_y[map->i] = y;
-		map->i++;
+		map->put_x = malloc(sizeof(int) * (map->sea + 1));
+		map->put_y = malloc(sizeof(int) * (map->sea + 1));
 	}
+	map->put_x[map->i] = x;
+	map->put_y[map->i] = y;
+	map->i++;
 	map->stop = 1;
 	mlx_loop_hook(map->mlx_ptr, spritehook, map);
 }

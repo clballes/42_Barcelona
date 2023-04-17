@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:36:39 by clballes          #+#    #+#             */
-/*   Updated: 2023/03/22 12:48:35 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:25:52 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,28 @@ static void	check_startpos(char **cy_map_arr, t_map *map, int i, int j)
 	map->collective = coll;
 }
 
+static void	check_0(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	map->sea = 0;
+	while (map->map_array && i < map->rows)
+	{
+		j = 0;
+		while (j <= map->cols)
+		{
+			if (map->map_array[i][j] == '0')
+				map->sea++;
+			j++;
+		}
+		i++;
+	}
+	map->sea = map->sea + map->collective;
+}
+
 void	has_valid_path(t_map *map, char **cy_map_arr)
 {
 	int	i;
@@ -91,6 +113,7 @@ void	has_valid_path(t_map *map, char **cy_map_arr)
 	if (backtrack(cy_map_arr, map->start, map->end, map) && map->coll == 0)
 	{
 		write(1, "Valid path exists! \n", 20);
+		check_0(map);
 		open_window(map);
 	}
 	else
