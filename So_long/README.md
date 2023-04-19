@@ -4,7 +4,8 @@ Create 2D games with the minilibx library.
 
 #### MANDATORY PART
 - Check map errors
-- 
+- Use minilibx for the graphic managment of the window
+- Smooth and reliability using the program
 
 
 #### BONUS PART
