@@ -42,7 +42,7 @@ static int	backtrack(char **cy_map_arr, int row, int col, t_map *map)
 			if (backtrack(cy_map_arr, map->next_row, map->next_col, map))
 				return (1);
 	}
-	if (map->coll == 0)
+	if (map->coll == 0 && c != 'X')
 	{
 		c = 'X';
 		return (backtrack(cy_map_arr, map->next_row, map->next_col, map));
@@ -103,14 +103,20 @@ static void	check_0(t_map *map)
 
 void	has_valid_path(t_map *map, char **cy_map_arr)
 {
+	int	res;
 	int	i;
-	int	j;
 
-	j = 0;
 	i = 0;
 	init_delta(map);
-	check_startpos(cy_map_arr, map, i, j);
-	if (backtrack(cy_map_arr, map->start, map->end, map) && map->coll == 0)
+	check_startpos(cy_map_arr, map, 0, 0);
+	res = backtrack(cy_map_arr, map->start, map->end, map);
+	while (i < map->rows)
+	{
+		free(cy_map_arr[i]);
+		i++;
+	}
+	free(cy_map_arr);
+	if (res && map->coll == 0)
 	{
 		write(1, "Valid path exists! \n", 20);
 		check_0(map);

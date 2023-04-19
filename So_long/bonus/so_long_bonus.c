@@ -95,21 +95,3 @@ void	put_string(t_map *map)
 		80, (map->weight - 15), 0xFFFFFF, moves_str);
 	free(moves_str);
 }
-
-int	close_cross(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
-	while (i < map->rows)
-	{
-		free(map->map_array[i]);
-		i++;
-	}
-	free(map->map_array);
-	free(map->put_x);
-	free(map->put_y);
-	free(map);
-	exit (0);
-}

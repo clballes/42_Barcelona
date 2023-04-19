@@ -6,7 +6,7 @@
 /*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:29:31 by clballes          #+#    #+#             */
-/*   Updated: 2023/04/14 12:42:26 by clballes         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:41:07 by clballes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,14 @@ void	check_len(int cols, char *line)
 	colsnext = ft_strlen(line);
 	if (cols != colsnext)
 		write_error('2');
+}
+
+char	*free_var(char *src, char *dest)
+{
+	char	*tmp;
+
+	tmp = src;
+	src = ft_strjoin(src, dest);
+	free(tmp);
+	return (src);
 }

@@ -124,9 +124,14 @@ void	check_move_collec(t_map *map)
 	if (map->map_array[map->start][map->end] == 'P'
 		|| map->map_array[map->start][map->end] == 'X')
 	{
-		map->put_x[map->i] = map->x;
-		map->put_y[map->i] = map->y;
-		map->i++;
+		if (map->i == 0)
+			ft_loop(map, map->x, map->y);
+		else
+		{
+			map->put_x[map->i] = map->x;
+			map->put_y[map->i] = map->y;
+			map->i++;
+		}
 		map->map_array[map->start][map->end] = '0';
 	}
 }

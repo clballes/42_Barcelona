@@ -21,13 +21,14 @@ int	close_click(t_map *map)
 	int	i;
 
 	i = 0;
-	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
 	while (i < map->rows)
 	{
 		free(map->map_array[i]);
 		i++;
 	}
 	free(map->map_array);
+	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
+	free(map->map_unid);
 	free(map);
 	exit (0);
 }

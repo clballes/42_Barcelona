@@ -13,7 +13,7 @@
 NAME = so_long
 BONUS_NAME = so_long_bonus
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -MMD -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -MMD
 RM = /bin/rm -rf
 OLD_MAKE = /usr/bin/make3.81
 
@@ -31,10 +31,10 @@ LIB_BONUS = ${INC_DIR}/so_long_bonus.h
 LIB_GET = ${INC_DIR}/get_next_line.h
 MLX_DIR = mlx/
 MLX = ${MLX_DIR}libmlx.a
-MINILIBXCC	= -I mlx -L $(MLX_DIR) -lmlx
+MINILIBXCC	=  -L $(MLX_DIR) -lmlx
 OPENGL = -framework OpenGL -framework AppKit
 
-SRCS = $(SRCS_DIR)map_err.c $(SRCS_DIR)so_long.c $(SRCS_DIR)so_long_utils.c $(SRCS_DIR)create_map.c $(GET_DIR)get_next_line_utils.c $(GET_DIR)get_next_line.c  $(SRCS_DIR)valid_path.c $(SRCS_DIR)moves.c $(SRCS_DIR)printmap.c
+SRCS = $(SRCS_DIR)map_err.c $(SRCS_DIR)so_long.c $(SRCS_DIR)so_long_utils.c $(SRCS_DIR)create_map.c $(GET_DIR)get_next_line_utils.c $(GET_DIR)get_next_line.c  $(SRCS_DIR)valid_path.c $(SRCS_DIR)moves.c $(SRCS_DIR)map_func.c
 
 BONUS =$(BONUS_DIR)map_err_bonus.c $(BONUS_DIR)so_long_bonus.c $(BONUS_DIR)so_long_utils_bonus.c $(BONUS_DIR)create_map_bonus.c $(GET_DIR_BONUS)get_next_line_utils_bonus.c $(GET_DIR_BONUS)get_next_line_bonus.c  $(BONUS_DIR)valid_path_bonus.c $(BONUS_DIR)moves_bonus.c $(BONUS_DIR)printmap_bonus.c $(BONUS_DIR)init_bonus.c 
 
@@ -44,12 +44,12 @@ DEPS = $(SRCS:%.c=%.d)
 DEPS_BONUS = $(BONUS:%.c=%.d)
 
 # Gcc
-$(NAME): $(OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET) Makefile
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR) $(LINK) $(OBJ) $(MINILIBXCC) $(OPENGL) -o $(NAME)
+$(NAME): $(OBJ) $(LIB) $(MLX) $(LIBFT) $(LIB_GET)
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR)  $(OBJ) $(MINILIBXCC) $(LINK) $(OPENGL) -o $(NAME)
 
 bonus: $(BONUS_NAME)
 
-$(BONUS_NAME) : $(BONUS_OBJ) $(LIB_BONUS) $(MLX) $(LIBFT) $(LIB_GET) Makefile
+$(BONUS_NAME) : $(BONUS_OBJ) $(LIB_BONUS) $(MLX) $(LIBFT) $(LIB_GET) 
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) $(BONUS_OBJ) $(MINILIBXCC) $(LINK) $(OPENGL) -o $(BONUS_NAME)
 
 $(LIBFT): 
@@ -57,9 +57,9 @@ $(LIBFT):
 $(MLX): 
 		@${OLD_MAKE} -sC $(MLX_DIR)
 
-%.o: %.c
+%.o: %.c Makefile
 	echo "Compiling...[$<]"
-	$(CC) -I$(INC_DIR) -I$(LIBFT_DIR) -c $(CFLAGS)  $< -o $@
+	$(CC) -I$(INC_DIR) -I mlx -I$(LIBFT_DIR) -c $(CFLAGS)  $< -o $@
 
 clean:
 	$(RM) $(NAME) $(BONUS_NAME)

@@ -39,7 +39,7 @@ static int	backtrack(char **cy_map_arr, int row, int col, t_map *map)
 			if (backtrack(cy_map_arr, map->next_row, map->next_col, map))
 				return (1);
 	}
-	if (map->coll == 0)
+	if (map->coll == 0 && c != 'X')
 	{
 		c = 'X';
 		return (backtrack(cy_map_arr, map->next_row, map->next_col, map));

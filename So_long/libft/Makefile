@@ -36,11 +36,11 @@ LIB = libft.h
 all: ${NAME}
 
 bonus: $(OBJS_BONUS) 
-	@ar -rcs ${NAME} ${OBJS_BONUS}
+	ar -rcs ${NAME} ${OBJS_BONUS}
 	@touch $@
 
 ${NAME} : ${OBJS} ${LIB} $(OBJS_BONUS) 
-	@ar -rcs ${NAME} ${OBJS} $(OBJS_BONUS) 
+	ar -rcs ${NAME} ${OBJS} $(OBJS_BONUS) 
 
 clean:
 	rm -rf ${OBJS_BONUS}

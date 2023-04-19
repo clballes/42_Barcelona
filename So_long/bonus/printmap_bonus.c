@@ -15,20 +15,20 @@
 #include "libft.h"
 
 static void	print_img(t_map *map, char c, int x, int y);
-static void	ft_loop(t_map *map, int x, int y);
 
 int	close_click(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
 	while (i < map->rows)
 	{
 		free(map->map_array[i]);
 		i++;
 	}
 	free(map->map_array);
+	mlx_destroy_window(map->mlx_ptr, map->mlx_win_ptr);
+	free(map->map_unid);
 	free(map->put_x);
 	free(map->put_y);
 	free(map);
@@ -57,7 +57,7 @@ int	open_window(t_map *map)
 	mlx_key_hook(map->mlx_win_ptr,
 		key_hook, map);
 	mlx_hook(map->mlx_win_ptr,
-		17, 0, close_cross, map);
+		17, 0, close_click, map);
 	mlx_loop(map->mlx_ptr);
 	free(map->mlx_ptr);
 	return (0);
@@ -111,7 +111,7 @@ static void	print_img(t_map *map, char c, int x, int y)
 		ft_loop(map, x, y);
 }
 
-static void	ft_loop(t_map *map, int x, int y)
+void	ft_loop(t_map *map, int x, int y)
 {
 	if (!map->put_x && !map->put_y)
 	{

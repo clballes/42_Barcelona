@@ -14,6 +14,7 @@
 # define SO_LONG_H
 # include <stddef.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -69,5 +70,6 @@ int		close_click(t_map *map);
 int		show_str(t_map *map);
 void	update_image(t_map *map);
 void	ft_moves(t_map *map);
-int		close_cross(t_map *map);
+char	*free_var(char *src, char *dest);
+
 #endif

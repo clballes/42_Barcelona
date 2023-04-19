@@ -17,6 +17,7 @@
 static void		ft_map_list(t_map *map, int fd);
 static void		create_copy(t_map *map);
 
+
 int	ft_open_ber(char **argv)
 {
 	int	i;
@@ -65,16 +66,16 @@ static	void	ft_map_list(t_map *map, int fd)
 	cols = 0;
 	map->map_unid = NULL;
 	line = get_next_line(fd);
-	cols = ft_strlen(line);
 	if (!line)
 		write_error('5');
+	cols = ft_strlen(line);
 	while (line)
 	{
 		if (!map->map_unid)
 			map->map_unid = ft_strdup(line);
 		else
-			map->map_unid = ft_strjoin(map->map_unid, line);
-		map->map_unid = ft_strjoin(map->map_unid, "\n");
+			map->map_unid = free_var(map->map_unid, line);
+		map->map_unid = free_var(map->map_unid, "\n");
 		free(line);
 		line = get_next_line(fd);
 		rows++;

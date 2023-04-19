@@ -64,3 +64,13 @@ void	init_delta(t_map *map)
 		i++;
 	}
 }
+
+char	*free_var(char *src, char *dest)
+{
+	char	*tmp;
+
+	tmp = src;
+	src = ft_strjoin(src, dest);
+	free(tmp);
+	return (src);
+}

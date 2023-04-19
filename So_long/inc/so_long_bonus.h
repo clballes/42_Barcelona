@@ -74,9 +74,10 @@ int		close_click(t_map *map);
 int		show_str(t_map *map);
 void	update_image(t_map *map);
 void	ft_moves(t_map *map);
-int		close_cross(t_map *map);
+char	*free_var(char *src, char *dest);
 //bonus functions
 int		spritehook(void *param);
 void	put_string(t_map *map);
 void	check_move_collec(t_map *map);
+void	ft_loop(t_map *map, int x, int y);
 #endif
