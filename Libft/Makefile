@@ -26,7 +26,7 @@ OBJS_BONUS = $(BONUS:%.c=%.o)
 
 LIB = libft.h
 
-#Comandos
+#Comandoos
 
 %.o : %.c
 	${CC} ${CFLAGS} -I./ -c $< -o $@
