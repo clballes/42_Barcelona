@@ -36,3 +36,12 @@ int	ft_atoi(const char *str)
 	}
 	return (res * sign);
 }
+
+void	get_time(t_all *all)
+{
+	struct timeval	current_time;
+
+	gettimeofday(&current_time, NULL);
+	all->get_time = current_time.tv_sec * 1000;
+	printf("Current time: %ld\n", all->get_time);
+}

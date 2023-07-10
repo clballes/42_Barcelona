@@ -9,7 +9,7 @@ SRCS_DIR = src/
 
 # Sources
 LIB = ${INC_DIR}/philosophers.h
-SRCS = $(SRCS_DIR)main.c $(SRCS_DIR)philo_utils.c 
+SRCS = $(SRCS_DIR)main.c $(SRCS_DIR)philo_utils.c $(SRCS_DIR)functions.c
 
 DEPS = $(SRCS:%.c=%.d)
 OBJ = $(SRCS:%.c=%.o)
@@ -37,3 +37,5 @@ all: $(NAME)
 -include ${DEPS}
 
 .PHONY: all clean fclean re
+
+# 4 410 200 200

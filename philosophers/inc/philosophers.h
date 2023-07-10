@@ -20,18 +20,25 @@
 
 typedef struct s_philo
 {
+	int	num;
 	int	r_fork;
 	int	l_fork;
 }				t_philo;
 
 typedef struct s_all
 {
-	t_philo	*philo;
-	int		num_philo;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
+	t_philo				*philo;
+	long int			num_philo;
+	long int			time_to_die;
+	long int			time_to_eat;
+	long int			time_to_sleep;
+	long int			get_time;
+	long int			death;
+	pthread_mutex_t		mutex;
 }				t_all;
 
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
+void	to_sleep(t_all *all);
+void	to_think(t_all *all);
+void	get_time(t_all *all);
 #endif
