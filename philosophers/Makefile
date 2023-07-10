@@ -37,4 +37,3 @@ all: $(NAME)
 -include ${DEPS}
 
 .PHONY: all clean fclean re
-# gcc -flags _i incs -LPRINTF_DIR -LIBFT_DIR -lftprintf -lft
