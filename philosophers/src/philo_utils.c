@@ -37,11 +37,25 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
-void	get_time(t_all *all)
+long long int	get_time()
 {
-	struct timeval	current_time;
+	struct timeval	time;
+	long long int current_time;
 
-	gettimeofday(&current_time, NULL);
-	all->get_time = current_time.tv_sec * 1000;
-	printf("Current time: %ld\n", all->get_time);
+	gettimeofday(&time, NULL);
+	current_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	return (current_time);
+}
+
+void	usleep_time(int time)
+{
+	long long int	current_time;
+
+	current_time = get_time();
+	while (time > get_time() - current_time)
+	{
+		if (usleep(1) == -1)
+			return ;
+	}
+	return ;
 }
