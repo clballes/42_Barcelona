@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/12 11:49:28 by clballes          #+#    #+#             */
+/*   Updated: 2023/07/12 11:49:29 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 void	init_philo(t_all *all)
@@ -8,12 +20,13 @@ void	init_philo(t_all *all)
 	while (i < all->num_philo)
 	{
 		all->philo[i].num = i + 1;
-		all->philo[i].l_fork = i;
-		all->philo[i].r_fork = i + 1;
-		if (pthread_mutex_init(&all->philo[i].fork, NULL) != 0)
+		if (pthread_mutex_init(&all->philo[i].r_fork, NULL) != 0)
 			return ;
+		if (i != 0)
+			all->philo[i].l_fork = &all->philo[i - 1].r_fork;
 		i++;
 	}
+	all->philo[0].l_fork =  &all->philo[i - 1].r_fork;
 }
 
 void	init(char **argv, t_all *all)

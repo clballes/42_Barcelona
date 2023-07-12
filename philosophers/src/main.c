@@ -47,10 +47,10 @@ void	start_philo(t_all *all)
 	if (!id)
 		return ;
 	pthread_mutex_init(&all->mutex, NULL);
-	get_time(all);
+	get_time();
 	while (i < all->num_philo)
 	{
-		if (pthread_create(&id[i], NULL, thread_routine, (void *)all) != 0)
+		if (pthread_create(&id[i], NULL, thread_routine, &all->philo[i]) != 0)
 		{
 			free(id);
 			return ;

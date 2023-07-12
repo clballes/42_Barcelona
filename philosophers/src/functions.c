@@ -23,14 +23,7 @@ void	print(t_all *all, int idx, t_philo *philo)
 
 void	to_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo[philo->l_fork].fork);
-	printf("left fork taken num philo:%d\n", philo->num);
-	pthread_mutex_lock(&philo[philo->r_fork].fork);
-	// printf("right fork taken num philo:%d\n", philo[0].num);
-	printf("philo eating num philo:%d\n", philo[0].num);
-	// usleep();
-	pthread_mutex_unlock(&philo[philo->l_fork].fork);
-	pthread_mutex_unlock(&philo[philo->r_fork].fork);
+	(void)philo;
 }
 
 void	to_sleep(t_all *all, t_philo *philo)

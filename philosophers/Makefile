@@ -1,6 +1,6 @@
 NAME = philosophers
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize="thread"
 RM = /bin/rm -f
 
 # Path
@@ -16,7 +16,7 @@ OBJ = $(SRCS:%.c=%.o)
 
 $(NAME): $(OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\n💫 You are ready to start philosopers 💫\n"
+	@echo "\n👀 You are ready to start philosopers 👀\n"
 
 %.o: %.c
 	echo "Compiling...[$<]"
