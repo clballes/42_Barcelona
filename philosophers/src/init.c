@@ -17,8 +17,11 @@ void	init_philo(t_all *all)
 	int		i;
 
 	i = 0;
-	while (i < all->num_philo)
+	while (i < all->n_philo)
 	{
+		all->philo[i].all = all;
+		all->philo[i].last_meal = get_time();
+		all->philo[i].times_eat = 0;
 		all->philo[i].num = i + 1;
 		if (pthread_mutex_init(&all->philo[i].r_fork, NULL) != 0)
 			return ;
@@ -26,12 +29,12 @@ void	init_philo(t_all *all)
 			all->philo[i].l_fork = &all->philo[i - 1].r_fork;
 		i++;
 	}
-	all->philo[0].l_fork =  &all->philo[i - 1].r_fork;
+	all->philo[0].l_fork = &all->philo[i - 1].r_fork;
 }
 
 void	init(char **argv, t_all *all)
 {
-	all->num_philo = ft_atoi(argv[1]);
+	all->n_philo = ft_atoi(argv[1]);
 	all->time_to_die = ft_atoi(argv[2]);
 	all->time_to_sleep = ft_atoi(argv[3]);
 	all->time_to_eat = ft_atoi(argv[4]);

@@ -18,31 +18,36 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+typedef struct s_all	t_all;
+
 typedef struct s_philo
 {
 	int				num;
+	int				times_eat;
+	long long int	last_meal;
 	pthread_mutex_t	r_fork;
 	pthread_mutex_t	*l_fork;
+	t_all			*all;
 }				t_philo;
 
 typedef struct s_all
 {
 	t_philo				*philo;
-	long int			num_philo;
+	long int			n_philo;
 	long int			time_to_die;
 	long int			time_to_eat;
 	long int			time_to_sleep;
 	long int			get_time;
 	long long int		time_start;
 	long int			death;
-	pthread_mutex_t		mutex;
+	pthread_mutex_t		print;
 }				t_all;
 
 void			init(char **argv, t_all *all);
 void			init_philo(t_all *all);
 int				ft_atoi(const char *str);
-void			to_sleep(t_all *all, t_philo *philo);
-void			to_think(t_all *all);
+void			to_sleep(t_philo *philo);
+void			to_think(t_philo *philo);
 void			usleep_time(int time);
 long long int	get_time(void);
 void			to_eat(t_philo *philo);

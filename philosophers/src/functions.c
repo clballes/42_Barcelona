@@ -12,27 +12,45 @@
 
 #include "philosophers.h"
 
-void	print(t_all *all, int idx, t_philo *philo)
+void	print(int idx, t_philo *philo)
 {
 	long long int	time;
 
-	time = get_time() - all->time_start;
-	if (idx == 0) //sleeping
-		printf("[%lld] num philo:%d is sleeping\n", time, philo->num);
+	time = get_time() - philo->all->time_start;
+	pthread_mutex_lock(&philo->all->print);
+	if (idx == 0)
+		printf("[%lld] num philo:{%d} is sleeping\n", time, philo->num);
+	else if (idx == 1)
+		printf("[%lld] num philo:{%d} is eating\n", time, philo->num);
+	else if (idx == 2)
+		printf("[%lld] num philo:{%d} has taken left fork\n", time, philo->num);
+	else if (idx == 3)
+		printf("[%lld] num philo:{%d} has taken right fork\n", time, philo->num);
+	else if (idx == 4)
+		printf("[%lld] num philo:{%d} is thinking\n", time, philo->num);
+	pthread_mutex_unlock(&philo->all->print);
 }
 
 void	to_eat(t_philo *philo)
 {
-	(void)philo;
+	pthread_mutex_lock(philo->l_fork);
+	print(2, philo);
+	pthread_mutex_lock(&philo->r_fork);
+	print(3, philo);
+	philo->times_eat++;
+	print(1, philo);
+	usleep_time(philo->all->time_to_eat);
+	pthread_mutex_unlock(philo->l_fork);
+	pthread_mutex_unlock(&philo->r_fork);
 }
 
-void	to_sleep(t_all *all, t_philo *philo)
+void	to_sleep(t_philo *philo)
 {
-	print(all, 0, philo);
-	usleep_time(all->time_to_sleep);
+	print(0, philo);
+	usleep_time(philo->all->time_to_sleep);
 }
 
-void	to_think(t_all *all)
+void	to_think(t_philo *philo)
 {
-	printf("[%ld] %d is thinking\n", all->get_time, all->philo[0].num);
+	print(4, philo);
 }

@@ -1,6 +1,7 @@
 NAME = philosophers
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize="thread"
+CFLAGS = -Wall -Wextra -Werror -pthread
+# -fsanitize="thread"
 RM = /bin/rm -f
 
 # Path
