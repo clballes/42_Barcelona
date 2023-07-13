@@ -12,34 +12,77 @@
 
 #include "philosophers.h"
 
-void	print(t_all *all, int idx, t_philo *philo)
+void	print(int idx, t_philo *philo)
 {
 	long long int	time;
 
-	time = get_time() - all->time_start;
-	if (idx == 0) //sleeping
-		printf("[%lld] num philo:%d is sleeping\n", time, philo->num);
+	time = get_time() - philo->all->time_start;
+	pthread_mutex_lock(&philo->all->print);
+	if (idx == 0 && !philo->all->dead)
+		printf("[%lld] %sphilo %d%s %sis sleeping%s\n", time, CYAN, philo->num, RESET, BLUE, RESET);
+	else if (idx == 1 && !philo->all->dead)
+		printf("[%lld] %sphilo %d%s %sis eating%s\n", time, CYAN, philo->num, RESET, GREEN, RESET);
+	else if (idx == 2 && !philo->all->dead)
+		printf("[%lld] %sphilo %d%s %shas taken left fork%s\n", time, CYAN, philo->num, RESET, MAGENTA, RESET);
+	else if (idx == 3 && !philo->all->dead)
+		printf("[%lld] %sphilo %d%s %shas taken right fork%s\n", time, CYAN, philo->num, RESET, MAGENTA, RESET);
+	else if (idx == 4 && !philo->all->dead)
+		printf("[%lld] %sphilo %d%s %sis thinking%s\n", time, CYAN, philo->num, RESET, YELLOW, RESET);
+	else if (idx == 5 && !philo->all->dead)
+		printf("[%lld] %sphilo %d%s %sdied%s\n", time, CYAN, philo->num, RESET, RED, RESET);
+	pthread_mutex_unlock(&philo->all->print);
 }
 
-void	to_eat(t_philo *philo)
+int	is_dead(t_philo *philo)
 {
-	pthread_mutex_lock(&philo[philo->l_fork].fork);
-	printf("left fork taken num philo:%d\n", philo->num);
-	pthread_mutex_lock(&philo[philo->r_fork].fork);
-	// printf("right fork taken num philo:%d\n", philo[0].num);
-	printf("philo eating num philo:%d\n", philo[0].num);
-	// usleep();
-	pthread_mutex_unlock(&philo[philo->l_fork].fork);
-	pthread_mutex_unlock(&philo[philo->r_fork].fork);
+	long long int time;
+
+	time = get_time() - philo->all->time_start - philo->all->time_to_die;
+	if (time > 0)
+	{
+		print(5, philo);
+		pthread_mutex_lock(&philo->all->died);
+		philo->all->dead = 1;
+		pthread_mutex_unlock(&philo->all->died);
+		return (1);
+	}
+	else
+	{
+		pthread_mutex_unlock(&philo->all->died);
+		return (0);
+	}
 }
 
-void	to_sleep(t_all *all, t_philo *philo)
+int	to_eat(t_philo *philo)
 {
-	print(all, 0, philo);
-	usleep_time(all->time_to_sleep);
+	if (philo->all->dead == 1)
+		return (1);
+	pthread_mutex_lock(philo->l_fork);
+	print(2, philo);
+	pthread_mutex_lock(&philo->r_fork);
+	print(3, philo);
+	philo->finish_meal = get_time() - philo->all->time_start;
+	philo->times_eat++;
+	print(1, philo);
+	usleep_time(philo->all->time_to_eat);
+	pthread_mutex_unlock(philo->l_fork);
+	pthread_mutex_unlock(&philo->r_fork);
+	return (0);
 }
 
-void	to_think(t_all *all)
+int	to_sleep(t_philo *philo)
 {
-	printf("[%ld] %d is thinking\n", all->get_time, all->philo[0].num);
+	if (philo->all->dead == 1)
+		return (1);
+	print(0, philo);
+	usleep_time(philo->all->time_to_sleep);
+	return (0);
+}
+
+int	to_think(t_philo *philo)
+{
+	if (philo->all->dead == 1)
+		return (1);
+	print(4, philo);
+	return (0);
 }

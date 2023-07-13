@@ -14,24 +14,22 @@
 
 void	*thread_routine(void *arg)
 {
-	t_all	*all;
+	t_philo	*philo;
 
-	all = (t_all *)arg;
-	if (all->num_philo % 2 == 0)
+	philo = (t_philo *)arg;
+	if (philo->num % 2 == 0)
+		usleep_time(philo->all->time_to_eat);
+	if (philo->all->n_philo != 1)
 	{
-		printf("soy numero par\n");
-		//eat(all); que se esperen usleep
-	}
-	else if (all->num_philo == 1)
-		printf("eating solo\n");
-	else
-	{
-		while (all->death == 0) //comprobamos q no esten muertos
+		if (is_dead(philo) != 1)
 		{
-			// to_think(all);
-			to_sleep(all, all->philo);
-			to_eat(all->philo);
-			break;
+			while (philo->all->dead == 0) //comprobamos q no esten muertos
+			{
+				if (to_think(philo) != 0 || to_eat(philo) != 0  || to_sleep(philo) != 0)
+				{
+					break ;
+				}
+			}
 		}
 	}
 	return (NULL);
@@ -43,30 +41,29 @@ void	start_philo(t_all *all)
 	int				i;
 
 	i = 0;
-	id = malloc(sizeof(pthread_t) * all->num_philo);
+	id = malloc(sizeof(pthread_t) * all->n_philo);
 	if (!id)
 		return ;
-	pthread_mutex_init(&all->mutex, NULL);
-	get_time(all);
-	while (i < all->num_philo)
+	pthread_mutex_init(&all->print, NULL);
+	while (i < all->n_philo)
 	{
-		if (pthread_create(&id[i], NULL, thread_routine, (void *)all) != 0)
+		if (pthread_create(&id[i], NULL, thread_routine, &all->philo[i]) != 0)
 		{
 			free(id);
 			return ;
 		}
-		printf("thread started: %d\n", i);
+		// printf("thread started: %d\n", i + 1);
 		i++;
 	}
 	i = 0;
-	while (all->num_philo > i)
+	while (all->n_philo > i)
 	{
 		if (pthread_join(id[i], NULL) != 0)
 			return ;
-		printf("thread finished: %d\n", i);
+		// printf("thread finished: %d\n", i + 1);
 		i++;
 	}
-	pthread_mutex_destroy(&all->mutex);
+	pthread_mutex_destroy(&all->print);
 }
 
 int	main(int argc, char **argv)
@@ -78,7 +75,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (argc == 5 || argc == 6)
 	{
-		all->philo = malloc(sizeof(t_philo) * all->num_philo);
+		all->philo = malloc(sizeof(t_philo) * all->n_philo);
 		if (all->philo == NULL)
 		{
 			free(all->philo); //Clean up allocated memory before returning
