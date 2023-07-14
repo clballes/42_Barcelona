@@ -10,7 +10,7 @@ SRCS_DIR = src/
 
 # Sources
 LIB = ${INC_DIR}/philosophers.h
-SRCS = $(SRCS_DIR)main.c $(SRCS_DIR)philo_utils.c $(SRCS_DIR)functions.c $(SRCS_DIR)init.c
+SRCS = $(SRCS_DIR)main.c $(SRCS_DIR)philo_utils.c $(SRCS_DIR)functions.c $(SRCS_DIR)init.c $(SRCS_DIR)free.c
 
 DEPS = $(SRCS:%.c=%.d)
 OBJ = $(SRCS:%.c=%.o)

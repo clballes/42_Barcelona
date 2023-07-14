@@ -41,5 +41,12 @@ void	init(char **argv, t_all *all)
 	all->time_start = get_time();
 	all->dead = 0;
 	if (pthread_mutex_init(&all->died, NULL) != 0)
-			return ;
+		return ;
+	all->philo = malloc(sizeof(t_philo) * all->n_philo);
+	if (all->philo == NULL)
+	{
+		free(all);
+		// return (0);
+	}
+	init_philo(all);
 }

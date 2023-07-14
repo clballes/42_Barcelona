@@ -19,18 +19,10 @@ void	*thread_routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->num % 2 == 0)
 		usleep_time(philo->all->time_to_eat);
-	if (philo->all->n_philo != 1)
+	while (philo->all->dead == 0)
 	{
-		if (is_dead(philo) != 1)
-		{
-			while (philo->all->dead == 0) //comprobamos q no esten muertos
-			{
-				if (to_think(philo) != 0 || to_eat(philo) != 0  || to_sleep(philo) != 0)
-				{
-					break ;
-				}
-			}
-		}
+		if (to_think(philo) != 0 || to_eat(philo) != 0 || to_sleep(philo) != 0)
+			print(5, philo); // si retorna 1 el filo signiifica q ha muerto.
 	}
 	return (NULL);
 }
@@ -52,15 +44,15 @@ void	start_philo(t_all *all)
 			free(id);
 			return ;
 		}
-		// printf("thread started: %d\n", i + 1);
 		i++;
 	}
+	is_dead(all);
 	i = 0;
 	while (all->n_philo > i)
 	{
 		if (pthread_join(id[i], NULL) != 0)
 			return ;
-		// printf("thread finished: %d\n", i + 1);
+		printf("thread finished: %d\n", i + 1);
 		i++;
 	}
 	pthread_mutex_destroy(&all->print);
@@ -75,19 +67,30 @@ int	main(int argc, char **argv)
 		return (0);
 	if (argc == 5 || argc == 6)
 	{
-		all->philo = malloc(sizeof(t_philo) * all->n_philo);
-		if (all->philo == NULL)
-		{
-			free(all->philo); //Clean up allocated memory before returning
-			return (0);
-		}
 		init(argv, all);
-		init_philo(all);
 		start_philo(all);
 	}
 	else
 		write(2, "Missing arguments\n", 19);
 	free(all);
-	free(all->philo); //free elemnts
+	free(all->philo);
+	system("leaks philosophers");
 	return (0);
 }
+
+// IF n_philo == 1;
+
+// ELIF n_philo > 1:
+
+// 	IF n_philo % 2 == 0: 
+
+// 		IF time_to_die < (time_to_eat + time_to_sleep);
+
+// 		IF time_to_eat > (time_to_die / 2);
+		
+// 	ELIF n_philo % 2 == 1:
+
+// 		IF time_to_die < (time_to_eat + time_to_sleep);
+
+// 		IF time_to_eat > (time_to_die / 3);
+// los impares han de morir con 5 410 200 200
