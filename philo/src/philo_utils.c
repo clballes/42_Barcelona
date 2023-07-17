@@ -79,7 +79,7 @@ int	max_int(char *argv)
 	int max;
 
 	max = ft_atoi(argv);
-	if (max > 2147483647)
+	if (max < 0)
 		return (1);
 	else
 		return (0);

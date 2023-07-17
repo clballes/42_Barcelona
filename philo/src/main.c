@@ -19,12 +19,12 @@ int	parsing(char **argv)
 	{
 		if (is_not_digit(argv[i]) != 0)
 		{
-			printf("there are letters\n");
+			write(2, "there are letters\n", 18);
 			return (1);
 		}
 		if (max_int(argv[i]) != 0)
 		{
-			printf("maxim int\n");
+			write(2, "number above maxim int\n", 23);
 			return (1);
 		}
 		i++;
@@ -97,7 +97,7 @@ int	main(int argc, char **argv)
 	}
 	else
 		write(2, "Missing arguments\n", 19);
-	system("leaks philosophers");
+	system("leaks philo");
 	return (0);
 }
 
