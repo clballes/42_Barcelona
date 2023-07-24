@@ -60,11 +60,12 @@ void	usleep_time(int time)
 	return ;
 }
 
-int		is_not_digit(char *argv)
+int	is_not_digit(char *argv)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	while(argv[i])
+	while (argv[i])
 	{
 		if (argv[i] >= 48 && argv[i] <= 57)
 			i++;
@@ -76,7 +77,7 @@ int		is_not_digit(char *argv)
 
 int	max_int(char *argv)
 {
-	int max;
+	int	max;
 
 	max = ft_atoi(argv);
 	if (max < 0)

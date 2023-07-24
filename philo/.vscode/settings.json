@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"locale": "c",
-		"ratio": "c"
+		"ratio": "c",
+		"time.h": "c"
 	}
 }

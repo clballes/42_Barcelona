@@ -15,30 +15,13 @@
 void	print(int idx, t_philo *philo)
 {
 	long long int	time;
+	const char		*colors[7] = {SLEEPING, EATING, \
+			L_FORK, R_FORK, THINKING, DIED, ATE};
 
 	time = get_time() - philo->all->time_start;
 	pthread_mutex_lock(&philo->all->print);
-	if (idx == 0 && !philo->all->dead)
-		printf("[%lld] %sphilo %d%s %sis sleeping%s\n",
-			time, CYAN, philo->num, RESET, BLUE, RESET);
-	if (idx == 1 && !philo->all->dead)
-		printf("[%lld] %sphilo %d%s %sis eating%s\n",
-			time, CYAN, philo->num, RESET, GREEN, RESET);
-	if (idx == 2 && !philo->all->dead)
-		printf("[%lld] %sphilo %d%s %shas taken left fork%s\n",
-			time, CYAN, philo->num, RESET, MAGENTA, RESET);
-	if (idx == 3 && !philo->all->dead)
-		printf("[%lld] %sphilo %d%s %shas taken right fork%s\n",
-			time, CYAN, philo->num, RESET, MAGENTA, RESET);
-	if (idx == 4 && !philo->all->dead)
-		printf("[%lld] %sphilo %d%s %sis thinking%s\n",
-			time, CYAN, philo->num, RESET, YELLOW, RESET);
-	if (idx == 5 && !philo->all->dead)
-		printf("[%lld] %sphilo %d%s %sdied%s\n",
-			time, CYAN, philo->num, RESET, RED, RESET);
-	if (idx == 6 && !philo->all->dead)
-		printf("[%lld] %sphilo %d%s %seat all the times given%s\n",
-			time, CYAN, philo->num, RESET, RED, RESET);
+	if (!philo->all->dead)
+		printf(colors[idx], time, RESET, philo->num, RESET);
 	pthread_mutex_unlock(&philo->all->print);
 }
 

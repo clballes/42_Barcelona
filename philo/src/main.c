@@ -14,8 +14,10 @@
 
 int	parsing(char **argv)
 {
-	int i = 1;
-	while(argv[i])
+	int	i;
+
+	i = 1;
+	while (argv[i])
 	{
 		if (is_not_digit(argv[i]) != 0)
 		{
@@ -47,6 +49,23 @@ void	*thread_routine(void *arg)
 	return (NULL);
 }
 
+void	philo_join_free(t_all *all, pthread_t *id)
+{
+	int	i;
+
+	i = 0;
+	while (all->n_philo > i)
+	{
+		if (pthread_join(id[i], NULL) != 0)
+			return ;
+		i++;
+	}
+	free(id);
+	free_mutex(all);
+	free(all->philo);
+	free(all);
+}
+
 void	start_philo(t_all *all)
 {
 	pthread_t		*id;
@@ -67,18 +86,7 @@ void	start_philo(t_all *all)
 		i++;
 	}
 	is_dead(all);
-	i = 0;
-	while (all->n_philo > i)
-	{
-		if (pthread_join(id[i], NULL) != 0)
-			return ;
-		printf("thread finished: %d\n", i + 1);
-		i++;
-	}
-	free(id);
-	free_mutex(all);
-	free(all->philo);
-	free(all);
+	philo_join_free(all, id);
 }
 
 int	main(int argc, char **argv)
@@ -97,23 +105,5 @@ int	main(int argc, char **argv)
 	}
 	else
 		write(2, "Missing arguments\n", 19);
-	system("leaks philo");
 	return (0);
 }
-
-// IF n_philo == 1;
-
-// ELIF n_philo > 1:
-
-// 	IF n_philo % 2 == 0: 
-
-// 		IF time_to_die < (time_to_eat + time_to_sleep);
-
-// 		IF time_to_eat > (time_to_die / 2);
-		
-// 	ELIF n_philo % 2 == 1:
-
-// 		IF time_to_die < (time_to_eat + time_to_sleep);
-
-// 		IF time_to_eat > (time_to_die / 3);
-// los impares han de morir con 5 410 200 200

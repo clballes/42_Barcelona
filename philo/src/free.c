@@ -12,17 +12,17 @@
 
 #include "philosophers.h"
 
-void    free_mutex(t_all *all)
+void	free_mutex(t_all *all)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    pthread_mutex_destroy(&all->print);
+	i = 0;
+	pthread_mutex_destroy(&all->print);
 	pthread_mutex_destroy(&all->died);
-    while(i < all->n_philo)
-    {
-        pthread_mutex_destroy(&all->philo[i].r_fork);
-        pthread_mutex_destroy(all->philo[i].l_fork);
-        i++;
-    }
-}  
+	while (i < all->n_philo)
+	{
+		pthread_mutex_destroy(&all->philo[i].r_fork);
+		pthread_mutex_destroy(all->philo[i].l_fork);
+		i++;
+	}
+}

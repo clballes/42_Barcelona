@@ -36,8 +36,8 @@ void	init(char **argv, t_all *all)
 {
 	all->n_philo = ft_atoi(argv[1]);
 	all->time_to_die = ft_atoi(argv[2]);
-	all->time_to_sleep = ft_atoi(argv[3]);
-	all->time_to_eat = ft_atoi(argv[4]);
+	all->time_to_eat = ft_atoi(argv[3]);
+	all->time_to_sleep = ft_atoi(argv[4]);
 	all->time_start = get_time();
 	all->dead = 0;
 	if (!argv[5])

@@ -19,14 +19,15 @@
 # include <sys/time.h>
 
 // defining colors
+
 # define RESET	"\033[0m"
-# define RED		"\033[31m"
-# define GREEN	"\033[32m"
-# define YELLOW	"\033[33m"
-# define BLUE	"\033[34m"
-# define MAGENTA	"\033[35m"
-# define CYAN	"\033[36m"
-# define WHITE	"\033[37m"
+# define SLEEPING		"[%lld] \033[36mphilo  %s %d \033[33mis sleeping  %s\n"
+# define DIED	"[%lld] \033[36mphilo  %s %d \033[31mis dead  %s\n"
+# define L_FORK	"[%lld] \033[36mphilo  %s %d \033[32mhas taken left fork  %s\n"
+# define R_FORK	"[%lld] \033[36mphilo  %s %d \033[32mmhas taken right fork  %s\n"
+# define EATING	"[%lld] \033[36mphilo  %s %d \033[34mis eating  %s\n"
+# define THINKING	"[%lld] \033[36mphilo  %s %d \033[35mis thinking  %s\n"
+# define ATE	"[%lld] \033[36mphilo  %s %d \033[36meat all the times given  %s\n"
 
 typedef struct s_all	t_all;
 
