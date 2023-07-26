@@ -39,8 +39,11 @@ void	is_dead(t_all *all)
 			pthread_mutex_lock(&all->died);
 			if (all->philo[i].times_eat == all->n_eats)
 			{
-				print(6, &all->philo[i]);
-				all->dead = 1;
+				if (eating_finish(all) == 0)
+				{
+					print(6, &all->philo[i]);
+					all->dead = 1;
+				}
 			}
 			if (time - all->philo[i].finish_meal >= all->time_to_die)
 			{

@@ -12,6 +12,21 @@
 
 #include "philosophers.h"
 
+int			eating_finish(t_all *all)
+{
+	int	i;
+
+	i = 0;
+	while(i < all->n_philo)
+	{
+		if (all->philo[i].times_eat == all->n_eats)
+			i++;
+		else
+			return (1);
+	}
+	return (0);
+}
+
 void	init_philo(t_all *all)
 {
 	int		i;

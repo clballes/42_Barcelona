@@ -69,5 +69,6 @@ void			is_dead(t_all *all);
 int				is_not_digit(char *argv);
 int				max_int(char *argv);
 void			free_mutex(t_all *all);
+int			eating_finish(t_all *all);
 
 #endif
