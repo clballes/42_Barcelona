@@ -21,13 +21,13 @@
 // defining colors
 
 # define RESET	"\033[0m"
-# define SLEEPING		"[%lld] \033[36mphilo  %s %d \033[33mis sleeping  %s\n"
+# define SLEEPING	"[%lld] \033[36mphilo  %s %d \033[33mis sleeping  %s\n"
 # define DIED	"[%lld] \033[36mphilo  %s %d \033[31mis dead  %s\n"
+# define ATE	"[%lld] \033[36mphilo  %s %d \033[31meat all the times given  %s\n"
 # define L_FORK	"[%lld] \033[36mphilo  %s %d \033[32mhas taken left fork  %s\n"
-# define R_FORK	"[%lld] \033[36mphilo  %s %d \033[32mmhas taken right fork  %s\n"
+# define R_FORK	"[%lld] \033[36mphilo  %s %d \033[32mhas taken right fork  %s\n"
 # define EATING	"[%lld] \033[36mphilo  %s %d \033[34mis eating  %s\n"
 # define THINKING	"[%lld] \033[36mphilo  %s %d \033[35mis thinking  %s\n"
-# define ATE	"[%lld] \033[36mphilo  %s %d \033[36meat all the times given  %s\n"
 
 typedef struct s_all	t_all;
 
@@ -56,7 +56,7 @@ typedef struct s_all
 	pthread_mutex_t		print;
 }				t_all;
 
-void			init(char **argv, t_all *all);
+int				init(char **argv, t_all *all);
 void			init_philo(t_all *all);
 int				ft_atoi(const char *str);
 int				to_sleep(t_philo *philo);
@@ -69,6 +69,8 @@ void			is_dead(t_all *all);
 int				is_not_digit(char *argv);
 int				max_int(char *argv);
 void			free_mutex(t_all *all);
-int			eating_finish(t_all *all);
+int				eating_finish(t_all *all);
+void			philo_join_free(t_all *all, pthread_t *id);
+int				ft_strlen(char *argv);
 
 #endif
