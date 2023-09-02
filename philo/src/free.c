@@ -21,7 +21,7 @@ void	free_mutex(t_all *all)
 	pthread_mutex_destroy(&all->died);
 	while (i < all->n_philo)
 	{
-		pthread_mutex_destroy(&all->philo[i].r_fork);
+		pthread_mutex_destroy(&[i].r_fork);
 		pthread_mutex_destroy(all->philo[i].l_fork);
 		i++;
 	}

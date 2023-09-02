@@ -74,7 +74,7 @@ static	void	ft_map_list(t_map *map, int fd)
 			map->map_unid = ft_strdup(line);
 		else
 			map->map_unid = free_var(map->map_unid, line);
-		map->map_unid = free_var(map->ma	p_unid, "\n");
+		map->map_unid = free_var(map->map_unid, "\n");
 		free(line);
 		line = get_next_line(fd);
 		rows++;
