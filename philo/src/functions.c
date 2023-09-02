@@ -12,17 +12,19 @@
 
 #include "philosophers.h"
 
-void	print(int idx, t_philo *philo)
+int	eating_finish(t_all *all)
 {
-	long long int	time;
-	const char		*colors[7] = {SLEEPING, EATING, \
-			L_FORK, R_FORK, THINKING, DIED, ATE};
+	int	i;
 
-	time = get_time() - philo->all->time_start;
-	pthread_mutex_lock(&philo->all->print);
-	if (!philo->all->dead)
-		printf(colors[idx], time, RESET, philo->num, RESET);
-	pthread_mutex_unlock(&philo->all->print);
+	i = 0;
+	while (i < all->n_philo)
+	{
+		if (all->philo[i].times_eat == all->n_eats)
+			i++;
+		else
+			return (1);
+	}
+	return (0);
 }
 
 void	is_dead(t_all *all)
@@ -37,7 +39,8 @@ void	is_dead(t_all *all)
 		{
 			time = get_time() - all->time_start;
 			pthread_mutex_lock(&all->died);
-			if (all->philo[i].times_eat == all->n_eats)
+			if (all->philo[i].times_eat == all->n_eats
+				&& eating_finish(all) == 0)
 			{
 				print(6, &all->philo[i]);
 				all->dead = 1;

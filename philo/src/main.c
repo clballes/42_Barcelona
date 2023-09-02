@@ -49,23 +49,6 @@ void	*thread_routine(void *arg)
 	return (NULL);
 }
 
-void	philo_join_free(t_all *all, pthread_t *id)
-{
-	int	i;
-
-	i = 0;
-	while (all->n_philo > i)
-	{
-		if (pthread_join(id[i], NULL) != 0)
-			return ;
-		i++;
-	}
-	free(id);
-	free_mutex(all);
-	free(all->philo);
-	free(all);
-}
-
 void	start_philo(t_all *all)
 {
 	pthread_t		*id;
@@ -93,17 +76,19 @@ int	main(int argc, char **argv)
 {
 	t_all	*all;
 
+	if ((argc != 5 && argc != 6) || parsing(argv) != 0)
+	{
+		write(2, "Wrong arguments\n", 16);
+		return (1);
+	}
 	all = malloc(sizeof(t_all));
 	if (!all)
 		return (0);
-	if (argc == 5 || argc == 6)
+	if (init(argv, all) != 0)
 	{
-		if (parsing(argv) != 0)
-			return (0);
-		init(argv, all);
-		start_philo(all);
+		free(all);
+		return (1);
 	}
-	else
-		write(2, "Missing arguments\n", 19);
+	start_philo(all);
 	return (0);
 }

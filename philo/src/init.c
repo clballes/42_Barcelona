@@ -32,12 +32,18 @@ void	init_philo(t_all *all)
 	all->philo[0].l_fork = &all->philo[i - 1].r_fork;
 }
 
-void	init(char **argv, t_all *all)
+int	init(char **argv, t_all *all)
 {
 	all->n_philo = ft_atoi(argv[1]);
 	all->time_to_die = ft_atoi(argv[2]);
 	all->time_to_eat = ft_atoi(argv[3]);
 	all->time_to_sleep = ft_atoi(argv[4]);
+	if (all->n_philo == 0 || all->time_to_die == 0
+		|| all->time_to_eat == 0 || all->time_to_sleep == 0)
+	{
+		write(2, "cannot be 0 in arguments\n", 25);
+		return (1);
+	}
 	all->time_start = get_time();
 	all->dead = 0;
 	if (!argv[5])
@@ -45,9 +51,10 @@ void	init(char **argv, t_all *all)
 	else
 		all->n_eats = ft_atoi(argv[5]);
 	if (pthread_mutex_init(&all->died, NULL) != 0)
-		return ;
+		return (1);
 	all->philo = malloc(sizeof(t_philo) * all->n_philo);
 	if (all->philo == NULL)
 		free(all);
 	init_philo(all);
+	return (0);
 }

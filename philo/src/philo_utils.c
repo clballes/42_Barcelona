@@ -79,6 +79,8 @@ int	max_int(char *argv)
 {
 	int	max;
 
+	if (ft_strlen(argv) > 11)
+		return (1);
 	max = ft_atoi(argv);
 	if (max < 0)
 		return (1);
